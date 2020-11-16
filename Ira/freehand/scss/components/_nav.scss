@@ -1,0 +1,21 @@
+.nav {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 15px 28px;
+  font-family: $baseFontFamily;
+  color: $navLinksColor;
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+.nav-link, .active {
+  font-family: $hoverNavLinkFontFamily;
+}

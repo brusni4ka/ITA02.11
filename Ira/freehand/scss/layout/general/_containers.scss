@@ -1,0 +1,42 @@
+.container,
+.container-middle,
+.container-small {
+  max-width: $siteWidthSmall;
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    max-width: $siteWidthMiddle;
+  }
+
+  @media (min-width: 992px) {
+    max-width: $siteWidthMiddleLg;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: $siteWidth;
+  }
+}
+
+.container-middle {
+  padding: 0 20px;
+
+  @media (min-width: 768px) {
+    padding: 0 50px;
+  }
+
+  @media (min-width: 992px) {
+    padding: 0 110px;
+  }
+}
+
+.container-small {
+  padding: 0 20px;
+
+  @media (min-width: 768px) {
+    padding: 0 50px;
+  }
+
+  @media (min-width: 992px) {
+    padding: 0 154px;
+  }
+}
