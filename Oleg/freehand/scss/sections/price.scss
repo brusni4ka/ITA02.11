@@ -1,0 +1,25 @@
+.price {
+  margin-bottom: 250px;
+
+  &-title {
+    @include fontStack(secondary, text-dark, 40px, 600);
+    line-height: 1.3;
+    margin-bottom: 15px;
+  }
+
+  &-content {
+    @include fontStack(primary, text-light, 18px, normal);
+    line-height: 0.89;
+    margin-bottom: 64px;
+  }
+
+  .plans {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .plan {
+      margin-bottom: 60px;
+    }
+  }
+}

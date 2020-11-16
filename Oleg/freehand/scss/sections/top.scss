@@ -1,0 +1,44 @@
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 38px 0;
+  border-bottom: 1px solid getColor(divider);
+  margin-bottom: 50px;
+
+  .logo {
+    display: flex;
+    img {
+      margin-right: 16px;
+    }
+
+    div {
+      @include fontStack(primary, text-dark, 32px, 500);
+    }
+  }
+
+  .navigation {
+    a {
+      @include fontStack(primary, text-black, 16px, 500);
+      text-decoration: none;
+      margin-right: 62px;
+      transition: 0.4s;
+
+      &:hover {
+        font-family: getFont(third);
+        font-weight: normal;
+      }
+
+      &.active {
+        font-family: getFont(third);
+        font-weight: normal;
+      }
+    }
+  }
+
+  .authorization {
+    a:nth-child(1) {
+      margin-right: 16px;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.get-started {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 180px;
+
+  &-container {
+    width: 1222px;
+    height: 457px;
+    background-image: url("../img/get-started.jpg");
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    min-width: 300px;
+  }
+
+  &-title {
+    @include fontStack(primary, text-white, 40px, normal);
+    line-height: 1.3;
+    margin: 130px 0 32px 0;
+  }
+
+  &-content {
+    @include fontStack(primary, text-white, 18px, normal);
+    line-height: 0.89;
+    margin-bottom: 46px;
+  }
+
+  .btn-fill-rounded-light {
+    margin-right: 14px;
+  }
+}

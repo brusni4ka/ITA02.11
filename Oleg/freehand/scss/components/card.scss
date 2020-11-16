@@ -1,0 +1,33 @@
+// ---------------------------------------------------------------------
+// Cards with services
+// (design, ecommerce, application)
+// ---------------------------------------------------------------------
+.card {
+  padding: 42px;
+  border: solid 1px getColor(border-light);
+  border-radius: getSize(radius-sm);
+  width: 30%;
+
+  &-icon {
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+
+  &-title {
+    @include fontStack(primary, text-dark, 24px, normal);
+    line-height: 2.17;
+  }
+
+  &-content {
+    @include fontStack(primary, text-dark, 16px, normal);
+    line-height: 1.75;
+    margin-bottom: 18px;
+  }
+
+  &-link {
+    @include fontStack(primary, text-dark, 16px, normal);
+    line-height: 3.25;
+    padding: 20px 0;
+    text-decoration: none;
+  }
+}

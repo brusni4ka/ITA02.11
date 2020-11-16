@@ -1,0 +1,187 @@
+footer {
+  background-color: getColor(bg-dark);
+  padding-top: 95px;
+  padding-bottom: 74px;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    .left-side {
+      width: 20%;
+
+      .footer-logo {
+        display: flex;
+
+        div {
+          @include fontStack(primary, text-white, 32px, 500);
+          margin-left: 16px;
+        }
+      }
+
+      .footer-slogan {
+        @include fontStack(primary, text-white, 16px, normal);
+        line-height: 1.75;
+        margin-top: 29px;
+        margin-bottom: 60px;
+      }
+
+      .footer-social {
+        display: flex;
+
+        a {
+          width: 38px;
+          height: 38px;
+          display: inline-block;
+          background-color: getColor(bg-light);
+          border-radius: 5px;
+          padding: 10px;
+          margin-right: 9px;
+        }
+      }
+
+      @include mobile {
+        margin-bottom: 60px;
+      }
+    }
+
+    .right-side {
+      display: flex;
+      flex-wrap: wrap;
+
+      .footer-section-title {
+        @include fontStack(primary, text-white, 17px, normal);
+        text-transform: uppercase;
+        line-height: 1.29;
+        margin-bottom: 38px;
+      }
+
+      a {
+        @include fontStack(primary, text-white, 15px, normal);
+        line-height: 1.47;
+        letter-spacing: 1.76px;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 14px;
+      }
+
+      .footer-services {
+        margin-right: 20px;
+      }
+
+      .footer-company {
+        margin-right: 50px;
+
+        @include mobile {
+          margin-bottom: 60px;
+        }
+      }
+
+      .footer-contact {
+        .footer-contact-slogan {
+          @include fontStack(primary, text-white, 15px, normal);
+          line-height: 1.47;
+          letter-spacing: 1.76px;
+          margin-bottom: 16px;
+        }
+
+        .footer-email {
+          @include fontStack(primary, text-white, 25px, normal);
+          line-height: 0.88;
+          letter-spacing: 2.94px;
+          margin-bottom: 34px;
+        }
+
+        .gdpr {
+          border-radius: 3px;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+
+  .footer-copyright {
+    text-align: center;
+    @include fontStack(primary, text-white, 15px, normal);
+    margin-top: 146px;
+  }
+}
+
+// footer {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   background-color: getColor(bg-dark);
+//   padding-top: 95px;
+
+//   .footer-content {
+//     display: flex;
+//     justify-content: center;
+
+//     .left-side {
+//       width: 30%;
+
+//       .footer-logo {
+//         display: flex;
+
+//         div {
+//           @include fontStack(primary, text-white, 32px, 500);
+//           margin-left: 16px;
+//         }
+//       }
+
+//       .footer-slogan {
+//         @include fontStack(primary, text-white, 16px, normal);
+//         line-height: 1.75;
+//         margin-top: 29px;
+//         margin-bottom: 60px;
+//       }
+
+//       .footer-social {
+//         display: flex;
+
+//         a {
+//           width: 38px;
+//           height: 38px;
+//           display: inline-block;
+//           background-color: getColor(bg-light);
+//           border-radius: 5px;
+//           padding: 10px;
+//           margin-right: 9px;
+//         }
+//       }
+//     }
+
+//     .right-side {
+//       width: 60%;
+//       display: flex;
+
+//       .footer-section-title {
+//         @include fontStack(primary, text-white, 17px, normal);
+//         text-transform: uppercase;
+//         line-height: 1.29;
+//         margin-bottom: 38px;
+//       }
+
+//       a {
+//         @include fontStack(primary, text-white, 15px, normal);
+//         line-height: 1.47;
+//         text-decoration: none;
+//         display: block;
+//         margin-bottom: 14px;
+//       }
+
+//       .footer-services {
+//         margin-right: 20px;
+//       }
+
+//       .footer-company {
+//         margin-right: 50px;
+//       }
+//     }
+//   }
+
+//   .footer-copyright {
+//   }
+// }

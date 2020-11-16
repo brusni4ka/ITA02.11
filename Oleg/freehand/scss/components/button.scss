@@ -1,0 +1,88 @@
+// ---------------------------------------------------------------------
+// Buttons
+// Buttons with small radius - light, dark, outlined, filled
+// Buttons with large radius (rounded) - light, dark, outlined, filled
+// ---------------------------------------------------------------------
+
+.btn {
+  text-decoration: none;
+  display: inline-block;
+
+  // Dark button with small border radius
+  // outlined
+  &-outline-dark {
+    @include fontStack(primary, btn-black, 16px, 500);
+    @include buttonParams(2px, btn-dark, radius-sm, 15px, 35px);
+    transition: 0.4s;
+
+    &:hover {
+      @include fontStack(primary, btn-white, 16px, 500);
+      background-color: getColor(btn-dark);
+    }
+  }
+  // filled
+  &-fill-dark {
+    @include fontStack(primary, btn-white, 16px, 500);
+    @include buttonParams(2px, btn-dark, radius-sm, 15px, 35px);
+    background-color: getColor(btn-dark);
+  }
+
+  // Light button with small border radius
+  // outlined
+  &-outline-light {
+    @include fontStack(primary, btn-light, 16px, 500);
+    @include buttonParams(2px, btn-light, radius-sm, 15px, 35px);
+    transition: 0.4s;
+
+    &:hover {
+      @include fontStack(primary, btn-white, 16px, 500);
+      background-color: getColor(btn-light);
+    }
+  }
+  // filled
+  &-fill-light {
+    @include fontStack(primary, btn-white, 16px, 500);
+    @include buttonParams(2px, btn-light, radius-sm, 15px, 35px);
+    background-color: getColor(btn-light);
+  }
+
+  // Rounded button dark
+  // outlined
+  &-outline-rounded-dark {
+    @include fontStack(primary, btn-dark, 16px, normal);
+    @include buttonParams(2px, btn-dark, radius-lg, 17px, 50px);
+    transition: 0.4s;
+
+    &:hover {
+      @include fontStack(primary, btn-white, 16px, normal);
+      background-color: getColor(btn-dark);
+    }
+  }
+
+  // filled
+  &-fill-rounded-dark {
+    @include fontStack(primary, btn-white, 16px, normal);
+    @include buttonParams(2px, btn-dark, radius-lg, 17px, 50px);
+    background-color: getColor(btn-dark);
+  }
+
+  // Rounded button light
+  // outlined
+  &-outline-rounded-light {
+    @include fontStack(primary, btn-white, 16px, normal);
+    @include buttonParams(2px, btn-white, radius-lg, 17px, 50px);
+    transition: 0.4s;
+
+    &:hover {
+      @include fontStack(primary, btn-dark, 16px, normal);
+      background-color: getColor(btn-white);
+    }
+  }
+
+  // filled
+  &-fill-rounded-light {
+    @include fontStack(primary, btn-dark, 16px, normal);
+    @include buttonParams(2px, btn-white, radius-lg, 17px, 50px);
+    background-color: getColor(btn-white);
+  }
+}
