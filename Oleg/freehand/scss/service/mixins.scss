@@ -1,0 +1,28 @@
+// ---------------------------------------------------------------------
+// Setup font-family, font-color, font-size and font-weight
+// ---------------------------------------------------------------------
+@mixin fontStack($fontFamily, $fontColor, $fontSize, $fontWeight) {
+  font-family: getFont($fontFamily);
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  color: getColor($fontColor);
+}
+// Ex.:
+// @include fontStack(primary, text-dark, 14px, normal);
+
+// ---------------------------------------------------------------------
+// Setup border parameters and padding for buttons
+// ---------------------------------------------------------------------
+@mixin buttonParams(
+  $borderWidth,
+  $borderColor,
+  $borderRadius,
+  $borderPaddingTopBottom,
+  $borderPaddingLeftRight
+) {
+  border: $borderWidth solid getColor($borderColor);
+  border-radius: getSize($borderRadius);
+  padding: $borderPaddingTopBottom $borderPaddingLeftRight;
+}
+// Ex.:
+// @include buttonParams(2px, btn-dark, radius-sm, 15px, 35px);

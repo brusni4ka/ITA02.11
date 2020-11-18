@@ -1,0 +1,21 @@
+.hero {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 120px;
+
+  &-textual h1 {
+    @include fontStack(secondary, text-dark, 56px, 600);
+    line-height: 1.21;
+    margin-bottom: 25px;
+  }
+
+  &-textual p {
+    @include fontStack(primary, text-muted, 19px, normal);
+    line-height: 1.89;
+    margin-bottom: 36px;
+  }
+
+  &-textual a.btn-fill-light {
+    margin-right: 16px;
+  }
+}

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freehand</title>
+    <!-- -----------------------------------------------------------------------------------
+      **  See styling in scss folder.
+      **  Resets, variables and mixins are placed into services folder.
+      **  Components such as buttons, cards, plans are placed into components folder.
+      **  Page sections (top, hero, services, get started, price, footer) are placed into
+      **  sections folder.
+      **  All scss code imported in main.scss. See bash script called scss.sh to 
+      **  transpile main.scss to style.css (sass npm module should be installed).
+      ---------------------------------------------------------------------------------- -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!-- -----------------------------------------------------------------------------------
+      **  Page container
+      **  Style reference: sections/page.scss
+      ---------------------------------------------------------------------------------- -->
+    <div id="container">
+      <!-- ----------------------------------------------------------------------------------
+      **  
+      **  Top section
+      **  Style references: sections/top.scss, components/button.scss
+      **  
+      ----------------------------------------------------------------------------------- -->
+      <section class="top">
+        <!-- logo -->
+        <div class="logo">
+          <img src="./img/logo.svg" alt="Logo" />
+          <div>Freehand</div>
+        </div>
+
+        <!-- navigation -->
+        <nav class="navigation">
+          <a href="#" class="active">Home</a>
+          <a href="#">Portfolio</a>
+          <a href="#">Pages</a>
+          <a href="#">Blog</a>
+        </nav>
+
+        <!-- authorization -->
+        <div class="authorization">
+          <a href="" class="btn btn-outline-dark">Sign In</a>
+          <a href="" class="btn btn-fill-dark">Login</a>
+        </div>
+      </section>
+      <!-- ----------------------------------------------------------------------------------
+      **  End of Top section
+      ----------------------------------------------------------------------------------- -->
+
+      <!-- ----------------------------------------------------------------------------------
+      **  
+      **  Hero section
+      **  Style references: sections/top.scss, components/button.scss
+      **  
+      ----------------------------------------------------------------------------------- -->
+      <section class="hero">
+        <!-- left side, textual -->
+        <div class="hero-textual">
+          <h1>Freehand your brand with a beautiful website</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt,
+            nostrum.
+          </p>
+          <!-- buttons -->
+          <a href="" class="btn btn-fill-light">View Projects</a>
+          <a href="" class="btn btn-outline-light">Learn more</a>
+        </div>
+
+        <!-- right side, image -->
+        <div class="hero-image">
+          <img src="./img/top.jpg" alt="Hero Image" />
+        </div>
+      </section>
+      <!-- ----------------------------------------------------------------------------------
+      **  End of Hero section
+      ----------------------------------------------------------------------------------- -->
+
+      <!-- ----------------------------------------------------------------------------------
+      **  
+      **  Services section (with cards)
+      **  Style references: sections/services.scss, components/card.scss
+      **  
+      ----------------------------------------------------------------------------------- -->
+      <section class="services services-1">
+        <!-- head content -->
+        <h6 class="services-title">Our Services</h6>
+        <h3 class="services-subtitle">We build experience</h3>
+        <p class="services-content">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, unde.
+        </p>
+
+        <!-- cards -->
+        <div class="cards">
+          <!-- design card-->
+          <div class="card">
+            <!-- svg icon -->
+            <img
+              class="card-icon"
+              src="./img/design-icon.svg"
+              alt="Design Icon"
+            />
+            <!-- card title -->
+            <h3 class="card-title">Design</h3>
+            <!-- card content -->
+            <p class="card-content">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Adipisci, placeat!
+            </p>
+            <!-- card link -->
+            <a class="card-link" href="">Learn more</a>
+          </div>
+
+          <!-- ecommerce card-->
+          <div class="card">
+            <!-- svg icon -->
+            <img
+              class="card-icon"
+              src="./img/ecommerce-icon.svg"
+              alt="Ecommerce Icon"
+            />
+            <!-- card title -->
+            <h3 class="card-title">Ecommerce</h3>
+            <!-- card content -->
+            <p class="card-content">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Adipisci, placeat!
+            </p>
+            <!-- card link -->
+            <a class="card-link" href="">Learn more</a>
+          </div>
+
+          <!-- application card -->
+          <div class="card">
+            <!-- svg icon -->
+            <img
+              class="card-icon"
+              src="./img/application-icon.svg"
+              alt="Application Icon"
+            />
+            <!-- card title -->
+            <h3 class="card-title">Application</h3>
+            <!-- card content -->
+            <p class="card-content">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Adipisci, placeat!
+            </p>
+            <!-- card link -->
+            <a class="card-link" href="">Learn more</a>
+          </div>
+        </div>
+        <!-- end of cards -->
+      </section>
+      <!-- ----------------------------------------------------------------------------------
+      **  End of Services section (with cards) 
+      ------------------------------------------------------------------------------------ -->
+
+      <!-- ----------------------------------------------------------------------------------
+      **  
+      **  Services section (with images)
+      **  Style references: sections/services.scss
+      **  
+      ------------------------------------------------------------------------------------ -->
+      <section class="services services-2">
+        <!-- head content -->
+        <h6 class="services-title">Our Services</h6>
+        <h3 class="services-subtitle">We build experience</h3>
+        <p class="services-content">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, unde.
+        </p>
+
+        <!-- image gallery -->
+        <div class="gallery">
+          <!-- left image (as bg-image) with content -->
+          <div class="img img-left">
+            <p class="img-content">120 million curious readers and growing</p>
+          </div>
+          <!-- right image (as bg-image) with content -->
+          <div class="img img-right">
+            <p class="img-content">
+              Expand your reading. <br />
+              Expand your mind.
+            </p>
+          </div>
+        </div>
+        <!-- end of image gallery -->
+      </section>
+      <!-- ----------------------------------------------------------------------------------
+      **  End of Services section (with images)
+      ----------------------------------------------------------------------------------- -->
+
+      <!-- ----------------------------------------------------------------------------------
+      **  
+      **  Price section
+      **  Style references: sections/price.scss, components/plan.scss
+      **  
+      ----------------------------------------------------------------------------------- -->
+      <section class="price">
+        <!-- head content -->
+        <h3 class="price-title">We build experience</h3>
+        <p class="price-content">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo, unde.
+        </p>
+
+        <!-- plans -->
+        <div class="plans">
+          <!-- free plan -->
+          <div class="plan plan-free">
+            <!-- plan info -->
+            <h3 class="plan-title">Started Plan</h3>
+            <p class="plan-price plan-price-free">Free</p>
+            <p class="plan-per-month">per month</p>
+            <p class="plan-content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <!-- button -->
+            <a href="" class="btn btn-outline-rounded-dark">Get Started</a>
+          </div>
+
+          <!-- $20 plan -->
+          <div class="plan plan-20">
+            <!-- plan info -->
+            <h3 class="plan-title">Started Plan</h3>
+            <p class="plan-price plan-price-20">$20.00</p>
+            <p class="plan-per-month">per month</p>
+            <p class="plan-content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <!-- button -->
+            <a href="" class="btn btn-outline-rounded-dark">Get Started</a>
+          </div>
+
+          <!-- $50 plan -->
+          <div class="plan plan-50">
+            <!-- plan info -->
+            <h3 class="plan-title">Started Plan</h3>
+            <p class="plan-price plan-price-50">$50.00</p>
+            <p class="plan-per-month">per month</p>
+            <p class="plan-content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+            <!-- button -->
+            <a href="" class="btn btn-fill-rounded-dark">Get Started</a>
+          </div>
+        </div>
+        <!-- end of plans -->
+      </section>
+      <!-- ----------------------------------------------------------------------------------
+      **  End of Price section
+      ----------------------------------------------------------------------------------- -->
+
+      <!-- ----------------------------------------------------------------------------------
+      **  
+      **  Get Started section
+      **  Style references: sections/get-started.scss
+      **  
+      ----------------------------------------------------------------------------------- -->
+      <section class="get-started">
+        <!-- centering container, image set as bg-img -->
+        <div class="get-started-container">
+          <!-- textual info -->
+          <h2 class="get-started-title">
+            Get started today and get 30 days free
+          </h2>
+          <p class="get-started-content">
+            No contact, no set-up costs, just awesome way to organize your
+            money.
+          </p>
+          <!-- buttons -->
+          <a href="" class="btn btn-fill-rounded-light">Try it for free</a>
+          <a href="" class="btn btn-outline-rounded-light">Watch Demo</a>
+        </div>
+      </section>
+      <!-- ----------------------------------------------------------------------------------
+      **  End of Get Started
+      ----------------------------------------------------------------------------------- -->
+    </div>
+
+    <!-- -----------------------------------------------------------------------------------
+      **  End of Page container 
+      ---------------------------------------------------------------------------------- -->
+
+    <!-- -----------------------------------------------------------------------------------
+      **  
+      **  Footer
+      **  Style references: sections/footer.scss
+      **  
+      ---------------------------------------------------------------------------------- -->
+    <footer>
+      <!-- footer content -->
+      <div class="footer-content">
+        <!-- left side (logo, slogan, social media) -->
+        <div class="left-side">
+          <!-- logo -->
+          <div class="footer-logo">
+            <img src="./img/logo.svg" alt="Logo" />
+            <div>Freehand</div>
+          </div>
+
+          <!-- slogan -->
+          <div class="footer-slogan">
+            We'are brand strategy and digital design agency, building brands
+            that matter in culture.
+          </div>
+
+          <!-- social media -->
+          <div class="footer-social">
+            <a href=""
+              ><img src="./img/instagram-icon.svg" alt="Instagram"
+            /></a>
+            <a href=""><img src="./img/facebook-icon.svg" alt="Facebook" /></a>
+            <a href=""><img src="./img/github-icon.svg" alt="GitHub" /></a>
+            <a href=""><img src="./img/social-icon.svg" alt="Social" /></a>
+            <a href=""><img src="./img/twitter-icon.svg" alt="Twitter" /></a>
+          </div>
+        </div>
+        <!-- end of left side  -->
+
+        <!-- right side (navigation of services, company, contact us) -->
+        <div class="right-side">
+          <!-- services navigation -->
+          <nav class="footer-services">
+            <h3 class="footer-section-title">Services</h3>
+            <a href="">Blog</a>
+            <a href="">Partner with freehand</a>
+            <a href="">Apps & Plugins</a>
+            <a href="">FAQ</a>
+            <a href="">UI Kit</a>
+          </nav>
+
+          <!-- company navigation -->
+          <nav class="footer-company">
+            <h3 class="footer-section-title">Company</h3>
+            <a href="">About</a>
+            <a href="">Terms</a>
+            <a href="">Privacy Police</a>
+            <a href="">Careers</a>
+          </nav>
+
+          <!-- contact us -->
+          <div class="footer-contact">
+            <h3 class="footer-section-title">Contact Us</h3>
+            <p class="footer-contact-slogan">We're Always Happy to Help</p>
+            <a href="" class="footer-email">mail@freehand.io</a>
+            <div>
+              <img class="gdpr" src="./img/gdpr.jpg" alt="GDPR" />
+              <img
+                class="trustpilot"
+                src="./img/trustpilot.png"
+                alt="Trustpilot"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- end of right side -->
+      </div>
+      <!-- end of footer content -->
+
+      <!-- footer copyright -->
+      <div class="footer-copyright">
+        Copyright &copy; 2020. Crafted with love.
+      </div>
+    </footer>
+    <!-- -----------------------------------------------------------------------------------
+      **  End of Footer
+      ---------------------------------------------------------------------------------- -->
+  </body>
+</html>

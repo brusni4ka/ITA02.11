@@ -1,0 +1,32 @@
+// Fonts
+Helvetica, 16px, normal
+Roboto, 16px, 500
+Roboto, 16px, normal
+Roboto, 18px, normal
+Roboto, 19px, normal
+Roboto, 24px, normal
+Roboto, 40px, bold
+NunitoSans, 56px, 600
+NunitoSans, 40px, 600
+
+
+// Colors
+
+Buttons
+border, background #16133e
+border, background #007ffc
+border, background #ffffff
+
+Text
+#000000
+#87a1b6
+#16133e
+#5a7184
+
+#0593fa
+#56cbae
+#fa6770
+
+Background
+#ffffff
+#16143d

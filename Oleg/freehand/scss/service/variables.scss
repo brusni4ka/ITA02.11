@@ -1,0 +1,61 @@
+// -----------------------------------------------------------
+//  Fonts
+// -----------------------------------------------------------
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap");
+
+$fontsList: (
+  "primary": Roboto,
+  "secondary": Nunito Sans,
+  "third": Helvetica,
+);
+
+@function getFont($font) {
+  @return map-get($fontsList, $font);
+}
+
+// -----------------------------------------------------------
+//  Colors
+// -----------------------------------------------------------
+
+$colorsList: (
+  // buttons
+  btn-light: #007ffc,
+  btn-dark: #16133e,
+  btn-white: #ffffff,
+  btn-black: #000000,
+  // text
+  text-verylight: #87a1b6,
+  text-light: #5a7184,
+  text-muted: #183b56,
+  text-dark: #16133e,
+  text-bright-first: #0593fa,
+  text-bright-second: #56cbae,
+  text-bright-third: #fa6770,
+  text-white: #ffffff,
+  text-black: #000000,
+  // dividers and borders
+  divider: #efeef3,
+  border-light: #e5eaf4,
+  // background
+  bg-light: #ffffff,
+  bg-dark: #16143d
+);
+
+@function getColor($color) {
+  @return map-get($colorsList, $color);
+}
+
+// -----------------------------------------------------------
+//  Sizes
+// -----------------------------------------------------------
+
+$sizes: (
+  radius-sm: 8px,
+  radius-md: 15px,
+  radius-lg: 23px,
+);
+
+@function getSize($size) {
+  @return map-get($sizes, $size);
+}
