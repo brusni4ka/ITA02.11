@@ -1,0 +1,134 @@
+footer{
+    background-color: #16143d;
+    padding-top: 95px;
+    .layout{
+        .networks{
+            width: 279px;
+            float: left;
+            margin-right: 199px;
+            a{
+                .logo{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    margin-bottom: 29px;
+                    font-family: 'Nunito', sans-serif;
+                    font-size: 15px;
+                    .logo-picture{
+                        margin-right: 16px;
+                        width:27px;
+                    }
+                    .logo-word{
+                        font-family: 'Nunito', sans-serif;
+                        font-size: 36px;
+                        font-weight: 400;
+                        color: #fafafa;
+                    }
+                }
+            }
+            p{
+                font-size: 16px;
+                font-weight: normal;
+                line-height: 1.75;
+                color: #fafafa;
+                margin-bottom: 60px;
+            }
+            .networks-container{
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+
+                .footer-nav-icon{
+                    display: block;
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 5px;
+                    box-sizing: border-box;
+                    padding: 9px;
+                    background-color: #efeef3;
+                    margin-right: 9px;
+                    &:hover{
+                        background-color: #007ffc;
+                    }
+                    svg{
+                        display: block;
+                        margin: auto;
+                    }
+                }
+            }
+        }
+        .footer-nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 159px;
+            .nav-item{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                margin-right: 14px;
+                h4{
+                    font-size: 17px;
+                    font-weight: normal;
+                    line-height: 1.29;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    color: #efeef3;
+                    margin-bottom: 38px;
+                }
+                p{
+                    font-size: 15px;
+                    font-weight: normal;
+                    line-height: 1.47;
+                    letter-spacing: 1.76px;
+                    color: #efeef3;
+                    margin-bottom: 16px;
+                }
+                a{
+                    display: block;
+                    margin-bottom: 14px;
+                    font-size: 15px;
+                    font-weight: normal;
+                    line-height: 1.47;
+                    letter-spacing: 1.76px;
+                    color: #efeef3;
+                    &:hover{
+                        color: #007ffc;
+                    }
+                }
+                .email{
+                    font-size: 25px;
+                    line-height: 0.88;
+                    letter-spacing: 2.94px;
+                    margin-bottom: 34px;
+                }
+                .contact-images{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    img{
+                        display: block;
+                        width: 106px;
+                        height: 41px;
+                        margin-right: 20px;
+                    }
+                    .trustpilot{
+                        width: 100px;
+                        height: 25px; 
+                    }
+                }
+            }
+        }
+        .copyright{
+            text-align: center;
+            padding-bottom: 74px;
+            font-size: 15px;
+            font-weight: normal;
+            line-height: 1.47;
+            color: #efeef3;
+        }
+    }
+}

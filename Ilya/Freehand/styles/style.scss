@@ -1,0 +1,15 @@
+@import "./global/reset";
+
+body{
+    background-color: #fafafa;
+}
+.layout{
+    margin: 0 auto;
+    width: 1158px;
+    // text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+@import "./partials/header";
+@import "./partials/main";
+@import "./partials/footer";
+

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="19" viewBox="0 0 10 19">
+    <defs>
+        <filter id="iinqrf6e7b" width="140%" height="121.4%" x="-20%" y="-10.7%" filterUnits="objectBoundingBox">
+            <feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="1.5"/>
+            <feOffset dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"/>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"/>
+            <feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+        </filter>
+        <path id="yfnm102iia" d="M23.345 20.503l.518-3.38h-3.242v-2.192c0-.925.453-1.826 1.905-1.826H24v-2.877S22.662 10 21.384 10c-2.67 0-4.416 1.618-4.416 4.548v2.575H14v3.38h2.968v8.168h3.653v-8.168h2.724z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g fill-rule="nonzero">
+            <g>
+                <g transform="translate(-213 -4024) translate(0 3720) translate(199 294)">
+                    <use fill="#0D0D0D" xlink:href="#yfnm102iia"/>
+                    <use fill="#000" filter="url(#iinqrf6e7b)" xlink:href="#yfnm102iia"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
