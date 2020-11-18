@@ -1,0 +1,29 @@
+.header-container {
+  display: grid;
+  grid-template-columns: 33% 33% 34%;
+  grid-template-rows: 1fr;
+  padding-top: 33px;
+  padding-bottom: 39px;
+}
+
+.header-underline {
+  height: 1px;
+  width: 100%;
+  background-color: $headerUnderLineColor;
+}
+
+.login-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn-singin {
+  margin-right: 15px;
+  background-color: $siteColor;
+  color: $lightFontColor;
+}
+
+.btn-login {
+  margin-right: 13px;
+}

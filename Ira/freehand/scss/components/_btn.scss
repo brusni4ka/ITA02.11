@@ -1,0 +1,11 @@
+.btn {
+  display: block;
+  border: 2px solid $siteColor;
+  border-radius: 8px;
+  background-color: $lightFontColor;
+  color: $siteColor;
+  font-size: $siteFontSize;
+  font-family: $baseFontFamily;
+  padding: 15px 35px;
+  cursor: pointer;
+}

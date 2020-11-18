@@ -1,0 +1,351 @@
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+}
+
+.info {
+  width: 40%;
+}
+
+.info-section-img{
+  width: 50%;
+  height: 420px;
+}
+
+.info-title,
+.services-title,
+.price-title {
+  font-family: $siteFontFamily;
+}
+
+.info-title {
+  font-size: $mainTitleFontSize;
+  color: $siteColor;
+  line-height: 1.21em;
+}
+
+.info-about,
+.services-subtitle,
+.services-about,
+.cost,
+.card-link,
+.card-description,
+.example-img-caption,
+.price-long,
+.price-info,
+.getstarted-title,
+.getstarted-about {
+  font-family: $baseFontFamily;
+}
+
+.info-about {
+  font-size: $contentFontSize;
+  color: $contentColor;
+  line-height: 1.89em;
+  margin-top: 25px;
+}
+
+.info-btns {
+  margin-top: 35px;
+  display: flex;
+  justify-content: start;
+}
+
+.btn-projects,
+.btn-learnmore {
+  margin-right: 23px;
+  background-color: $infoBtnsColor;
+  color: $lightFontColor;
+  border: none;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn-learnmore {
+  color: $infoBtnsColor;
+  background-color: $lightFontColor;
+  border: 2px solid $infoBtnsColor;
+}
+
+.info-section-img {
+  display: flex;
+  align-items: flex-start;
+}
+
+.info-container-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.info-img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.btn-getstarted {
+  border-radius: 50px;
+  padding: 17px 50px;
+
+  &.active {
+    color: $lightFontColor;
+    background-color: $siteColor;
+  }
+}
+
+.services {
+  padding-top: 121px;
+  padding-bottom: 82px;
+}
+
+.services-subtitle {
+  font-size: $siteFontSize;
+  color: $sectionSubtitleColor;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.services-title,
+.price-title {
+  font-size: $sectionTitleFontSize;
+  color: $siteColor;
+  margin-bottom: 15px;
+}
+
+.services-about {
+  margin-bottom: 64px;
+}
+
+.services-about,
+.price-info {
+  font-size: $contentFontSize;
+  color: $contentColor;
+}
+
+.services-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.service-card {
+  border: 1px solid $cardBorderColor;
+  border-radius: 8px;
+  padding: 42px 45px;
+
+  &:hover {
+    border-color: $contentColor;
+  }
+}
+
+.card-logo {
+  width: 62px;
+  height: 66px;
+  border: 1px solid $cardBorderColor;
+  border-radius: 16px;
+  padding: 15px 11px;
+  display: flex;
+  justify-content: center;
+}
+
+.card-title {
+  font-size: $cardTitle;
+  color: $siteColor;
+  padding: 42px 0;
+}
+
+.card-description {
+  font-size: $siteFontSize;
+  line-height: 1.75em;
+  color: $cardDescriptionColor;
+  margin-bottom: 18px;
+}
+
+.card-link {
+  padding: 18px 0;
+  color: $cardDescriptionColor;
+}
+
+.services-examples {
+  display: flex;
+  justify-content: space-between;
+}
+
+.service-img {
+  width: 47%;
+}
+
+.service-img:first-of-type {
+  margin-right: 6%;
+}
+
+.example-container-img {
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  position: relative;
+}
+
+.example-img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.example-img-caption {
+  position: absolute;
+  font-size: $cardCaptionFontSize;
+  bottom: 0;
+  color: $lightFontColor;
+  padding: 0 22px 45px 48px;
+}
+
+.price {
+  padding-top: 118px;
+  padding-bottom: 193px;
+}
+
+.price-list {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 54px;
+}
+
+.price-card {
+  padding: 51px 77px 56px 77px;
+  border-top: 4px solid $secondPriceCardTopLineColor;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .cost {
+    font-size: $sectionTitleFontSize;
+    font-weight: bold;
+    color: $secondPriceCardTopLineColor;
+    padding: 6px;
+  }
+}
+
+.price-card:first-of-type {
+  border-top: 4px solid $firstPriceCardTopLineColor;
+
+  .cost {
+    color: $firstPriceCardTopLineColor;
+    font-weight: bold;
+  }
+}
+
+.price-card:last-of-type {
+  border-top: 4px solid $thirdPriceCardTopLineColor;
+
+  .cost {
+    color: $thirdPriceCardTopLineColor;
+    font-weight: bold;
+  }
+}
+
+.card-price-title {
+  padding: 0;
+  margin-bottom: 31px;
+}
+
+.price-long {
+  padding: 4px;
+  color: $sectionSubtitleColor;
+  margin-bottom: 32px;
+}
+
+.price-info {
+  line-height: 1.75rem;
+  margin-bottom: 54px;
+}
+
+.getstarted-section {
+  height: 387px;
+  margin-bottom: 197px;
+  position: relative;
+}
+
+.getstarter-container-background {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.img-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.getstarted {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.getstarted-title {
+  margin: 100px 0 32px 0;
+  font-size: $sectionTitleFontSize;
+  color: $lightFontColor;
+}
+
+.getstarted-about {
+  font-size: $contentFontSize;
+  color: $lightFontColor;
+  margin-bottom: 46px;
+}
+
+.getstarted-container-btns {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-try,
+.btn-watch {
+  padding: 17px 50px;
+  border-radius: 50px;
+}
+
+.btn-try {
+  margin-right: 7px;
+  border: none;
+  background-color: $lightFontColor;
+  font-size: $siteFontSize;
+  color: $cardDescriptionColor;
+}
+
+.btn-watch {
+  background-color: transparent;
+  color: $lightFontColor;
+  border: 2px solid $lightFontColor;
+}
