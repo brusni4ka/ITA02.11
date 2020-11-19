@@ -8,7 +8,7 @@
   width: 40%;
 }
 
-.info-section-img{
+.info-section-img {
   width: 50%;
   height: 420px;
 }
@@ -23,6 +23,7 @@
   font-size: $mainTitleFontSize;
   color: $siteColor;
   line-height: 1.21em;
+  margin-bottom: 25px;
 }
 
 .info-about,
@@ -43,7 +44,6 @@
   font-size: $contentFontSize;
   color: $contentColor;
   line-height: 1.89em;
-  margin-top: 25px;
 }
 
 .info-btns {
@@ -55,18 +55,22 @@
 .btn-projects,
 .btn-learnmore {
   margin-right: 23px;
-  background-color: $infoBtnsColor;
-  color: $lightFontColor;
-  border: none;
   font-family: Roboto;
   font-size: 16px;
   font-weight: 500;
-}
-
-.btn-learnmore {
   color: $infoBtnsColor;
   background-color: $lightFontColor;
   border: 2px solid $infoBtnsColor;
+
+  &:hover {
+    background-color: $infoBtnsColor;
+    color: $lightFontColor;
+    border: 2px solid $infoBtnsColor;
+  }
+}
+
+.btn-learnmore {
+  margin-right: 0;
 }
 
 .info-section-img {
@@ -96,11 +100,6 @@
 .btn-getstarted {
   border-radius: 50px;
   padding: 17px 50px;
-
-  &.active {
-    color: $lightFontColor;
-    background-color: $siteColor;
-  }
 }
 
 .services {
@@ -129,22 +128,17 @@
 .services-about,
 .price-info {
   font-size: $contentFontSize;
-  color: $contentColor;
+  color: $sectionSubtitleColor;
 }
 
 .services-list {
   display: flex;
-  justify-content: space-between;
 }
 
 .service-card {
   border: 1px solid $cardBorderColor;
   border-radius: 8px;
   padding: 42px 45px;
-
-  &:hover {
-    border-color: $contentColor;
-  }
 }
 
 .card-logo {
@@ -173,35 +167,26 @@
 .card-link {
   padding: 18px 0;
   color: $cardDescriptionColor;
+
+  &:hover {
+    color:  $siteColor;
+  }
 }
 
 .services-examples {
   display: flex;
-  justify-content: space-between;
 }
 
 .service-img {
-  width: 47%;
-}
-
-.service-img:first-of-type {
-  margin-right: 6%;
-}
-
-.example-container-img {
-  display: block;
-  width: 100%;
-  height: 0;
-  padding-top: 100%;
+  flex: 1;
   position: relative;
 }
 
+.service-img:first-of-type {
+  margin-right: 47px;
+}
+
 .example-img {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -214,6 +199,7 @@
   bottom: 0;
   color: $lightFontColor;
   padding: 0 22px 45px 48px;
+  z-index: 2;
 }
 
 .price {
@@ -223,7 +209,6 @@
 
 .price-list {
   display: flex;
-  justify-content: space-between;
   padding-top: 54px;
 }
 
@@ -233,6 +218,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 2px 35px 0 rgba(0, 0, 0, 0.03);
 
   .cost {
     font-size: $sectionTitleFontSize;
@@ -274,6 +260,7 @@
 .price-info {
   line-height: 1.75rem;
   margin-bottom: 54px;
+  text-align: center;
 }
 
 .getstarted-section {
@@ -336,16 +323,20 @@
   border-radius: 50px;
 }
 
-.btn-try {
+.btn-try,
+.btn-watch  {
   margin-right: 7px;
-  border: none;
-  background-color: $lightFontColor;
   font-size: $siteFontSize;
-  color: $cardDescriptionColor;
+  color: $lightFontColor;
+  border: 2px solid $lightFontColor;
+  background-color: transparent;
+
+  &:hover {
+    background-color: $lightFontColor;
+    color: $cardDescriptionColor;
+  }
 }
 
 .btn-watch {
-  background-color: transparent;
-  color: $lightFontColor;
-  border: 2px solid $lightFontColor;
+  margin-right: 0;
 }

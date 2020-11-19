@@ -1,5 +1,10 @@
 .card {
-  width: 31%;
+  flex: 1;
+  margin-right: 38px;
+}
+
+.card:last-of-type {
+  margin-right: 0;
 }
 
 .card-title {
