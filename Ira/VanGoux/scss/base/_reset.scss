@@ -1,0 +1,53 @@
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+p,
+a,
+img,
+i,
+ul,
+li,
+label,
+aside,
+figure,
+footer,
+header,
+menu,
+nav,
+section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  font: inherit;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+i {
+  font-style: normal;
+}
+
+footer,
+header,
+menu,
+section {
+  display: block;
+}
+
+img {
+  display: block;
+}
+*,
+::before,
+::after {
+  box-sizing: border-box; /* intuitive sizing */
+}
