@@ -1,4 +1,29 @@
 main{
+    padding-top: 50px;
+    .section-header{
+        h2{
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 1;
+            color: #87a1b6;
+            margin-bottom:18px;
+        }
+        h4{
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: normal;
+            font-size: 40px;
+            font-weight: 600;
+            line-height: 1.3;
+            color: #16133e;
+            margin-bottom: 15px;
+        }
+        p{
+            font-size: 18px;
+            line-height: 0.89;
+            color: #5a7184;
+        }
+    }
     .layout{
         .project-section{
             margin-bottom: 121px;
@@ -41,6 +66,7 @@ main{
                     padding-right: 35px;
                     background-color: #fafafa;
                     margin-right: 23px;
+                    cursor: pointer;
                     &:hover{
                         background-color:  #007ffc;
                         color: #fafafa;
@@ -49,41 +75,21 @@ main{
             }
         }
         .services{
-            h4{
-                text-transform: uppercase;
-                font-size: 16px;
-                font-weight: normal;
-                line-height: 1;
-                color: #87a1b6;
-                margin-bottom:18px;
-            }
-            h2{
-                font-family: 'Nunito Sans', sans-serif;
-                font-weight: normal;
-                font-size: 40px;
-                font-weight: 600;
-                line-height: 1.3;
-                color: #16133e;
-                margin-bottom: 15px;
-            }
-            p{
-                font-size: 18px;
-                line-height: 0.89;
-                color: #5a7184;
+            .section-header{
                 margin-bottom: 64px;
             }
             .services-container{
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
                 align-items: center;
                 margin-bottom: 203px;
                 .services-item{
-                    width: 362px;
+                    flex: 1;
                     border: solid 1px #efeef3;
                     border-radius: 8px;
                     box-sizing:border-box;
                     padding: 42px 42px 42px;
+                    margin-right: 38px;
                     .icon{
                         width: 72px;
                        border: solid 1px #efeef3;
@@ -119,48 +125,31 @@ main{
                         }
                     }
                 }
+                .services-item:last-child{
+                    margin-right:0;
+                }
             }
         }
         .experience-section{
-            h4{
-                text-transform: uppercase;
-                font-size: 16px;
-                font-weight: normal;
-                line-height: 1;
-                color: #87a1b6;
-                margin-bottom:18px;
-            }
-            h2{
-                font-family: 'Nunito Sans', sans-serif;
-                font-weight: normal;
-                font-size: 40px;
-                font-weight: 600;
-                line-height: 1.3;
-                color: #16133e;
-                margin-bottom: 15px;
-            }
-            p{
-                font-size: 18px;
-                line-height: 0.89;
-                color: #5a7184;
-                margin-bottom: 64px;
+            .section-header{
+                margin-bottom: 90px;
             }
             .exp-container{
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
                 align-items: center;
                 margin-bottom: 203px;
                 .exp-item{
+                    flex: 1;
                     position: relative;
-                    width: 555px;
                     height: 485px;
+                    margin-right: 46px;
                     background-repeat: no-repeat;
                     &:first-child{
-                        background-image: url(/images/rectangle.png);
+                        background-image: url(../images/rectangle.png);
                     }
                     &:last-child{
-                        background-image: url(/images/rectangle-copy-6.png);
+                        background-image: url(../images/rectangle-copy-6.png);
                     }
                     p{
                         position: absolute;
@@ -174,52 +163,45 @@ main{
                         margin-bottom: 18px;
                     }
                 }
+                .exp-item:last-child{
+                    margin-right: 0;
+                }
             }
+            
         }
         .plan-section{
-            h2{
-                font-family: 'Nunito Sans', sans-serif;
-                font-weight: normal;
-                font-size: 40px;
-                font-weight: 600;
-                line-height: 1.3;
-                color: #16133e;
-                margin-bottom: 15px;
-            }
-            p{
-                font-size: 18px;
-                line-height: 0.89;
-                color: #5a7184;
-                margin-bottom: 64px;
+            .section-header{
+                margin-bottom: 84px;
             }
             .plan-container{
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
+                align-items: flex-start;
                 margin-bottom: 197px;
                 .plan-item{
-                    text-align: center;
-                    width: 362px;
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
                     background-color: #ffffff;
                     box-shadow: 0 2px 35px 0 rgba(0, 0, 0, 0.03);
+                    border-top: solid 4px #0593fa;
                     box-sizing: border-box;
-                    &:first-child .plan-line {
-                        background-color: #56cbae;
+                    padding: 56px 76px 56px 76px;
+                    margin-right: 26px;
+
+                    &:first-child{
+                        border-top: solid 4px #56cbae;
+                        .item-price{
+                            color: #56cbae;
+                        }
                     }
-                    &:last-child .plan-line {
-                        background-color: #fa6770;
-                    }
-                    &:first-child h2 {
-                        color: #56cbae;
-                    }
-                    &:last-child h2 {
-                        color: #fa6770;
-                    }
-                    .plan-line{
-                        height: 4px;
-                        background-color: #0593fa;
-                        margin-bottom: 54px;
+                    &:last-child{
+                        border-top: solid 4px #fa6770;
+                        margin-right: 0;
+                        .item-price{
+                            color: #fa6770;
+                        }
                     }
                     h3{
                         font-size: 24px;
@@ -228,7 +210,7 @@ main{
                         color: #16133e;
                         margin-bottom: 31px;
                     }
-                    h2{
+                    .item-price{
                         font-family: Roboto;
                         font-size: 40px;
                         font-weight: bold;
@@ -237,13 +219,14 @@ main{
                         margin-bottom: 3px;
                     }
                     p{
+                        text-align: center;
+                        width: 200px;
+                        word-break: break-all;
                         font-size: 16px;
                         font-weight: normal;
                         line-height: 1.5;
                         color: #87a1b6;
-                        padding-right: 76px;
-                        padding-left: 76px;
-                        margin-bottom: 32px;
+                        margin-bottom: 50px;
                     }
                     .plan-btn{
                         height: 50px;
@@ -256,7 +239,6 @@ main{
                         color: #16133e;
                         padding-left: 50px;
                         padding-right: 50px;
-                        margin-bottom: 56px;
                         background-color: #fafafa;
                         &:hover{
                             background-color:  #16133e;
@@ -273,7 +255,7 @@ main{
                 border-radius: 15px;
                 background-position: center;
                 box-shadow: 0 2px 35px 0 rgba(0, 0, 0, 0.03);
-                background-image: url(/images/rectangle-copy-13.png);
+                background-image: url(../images/rectangle-copy-13.png);
                 background-repeat: no-repeat;
                 margin-bottom: 193px;
                 h2{

@@ -21,39 +21,37 @@
     <header>
         <div class="layout">
             <div id="nav-container">
-                <a href="">
-                    <div class="logo">
-                        <div class="logo-picture">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
-                                <g fill="none" fill-rule="evenodd">
-                                    <g fill-rule="nonzero" stroke="#3DB370" stroke-width="2">
-                                        <g>
-                                            <g>
-                                                <path
-                                                    d="M27.25 7.731c0-3.85-3.131-6.981-6.98-6.981-2.7 0-5.118 1.572-6.27 3.912C12.848 2.322 10.43.75 7.73.75 3.882.75.75 3.881.75 7.731c0 2.697 1.518 5.075 3.841 6.235C2.268 15.126.75 17.503.75 20.2c0 3.85 3.131 6.981 6.98 6.981 2.7 0 5.118-1.572 6.27-3.912 1.152 2.34 3.57 3.912 6.27 3.912 3.849 0 6.98-3.131 6.98-6.98 0-2.698-1.518-5.076-3.841-6.235 2.323-1.16 3.841-3.538 3.841-6.235z"
-                                                    transform="translate(-152 -40) translate(153 33) translate(0 8)" />
-                                            </g>
-                                        </g>
+                <a class="logo" href="#">
+                    <svg class="logo-picture" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        viewBox="0 0 30 30">
+                        <g fill="none" fill-rule="evenodd">
+                            <g fill-rule="nonzero" stroke="#3DB370" stroke-width="2">
+                                <g>
+                                    <g>
+                                        <path
+                                            d="M27.25 7.731c0-3.85-3.131-6.981-6.98-6.981-2.7 0-5.118 1.572-6.27 3.912C12.848 2.322 10.43.75 7.73.75 3.882.75.75 3.881.75 7.731c0 2.697 1.518 5.075 3.841 6.235C2.268 15.126.75 17.503.75 20.2c0 3.85 3.131 6.981 6.98 6.981 2.7 0 5.118-1.572 6.27-3.912 1.152 2.34 3.57 3.912 6.27 3.912 3.849 0 6.98-3.131 6.98-6.98 0-2.698-1.518-5.076-3.841-6.235 2.323-1.16 3.841-3.538 3.841-6.235z"
+                                            transform="translate(-152 -40) translate(153 33) translate(0 8)" />
                                     </g>
                                 </g>
-                            </svg>
-                        </div>
-                        <h3 class="logo-word">Freehand</h3>
-                    </div>
+                            </g>
+                        </g>
+                    </svg>
+                    <h3 class="logo-word">Freehand</h3>
                 </a>
                 <nav>
                     <a href="">Home</a>
                     <a href="">Portfolio</a>
                     <a href="">Pages</a>
-                    <a href="">Blog</a>
+                    <a class="blog" href="">Blog</a>
+                    <div class="header-btn">
+                        <button class="nav-btn sign-in-btn" type="submit" class="sign-in-btn">Sign In</button>
+                        <button class="nav-btn" type="submit">Login</button>
+                    </div>
                 </nav>
-                <div class="header-btn">
-                    <button class="nav-btn sign-in-btn" type="submit" class="sign-in-btn">Sign In</button>
-                    <button class="nav-btn" type="submit">Login</button>
-                </div>
-            </div>
 
-            <div class="grey-line"></div>
+
+
+            </div>
         </div>
     </header>
     <main>
@@ -69,13 +67,15 @@
                 <img src="./images/rectangle_2.png" alt="office">
             </section>
             <section class="services">
-                <h4>Our services</h4>
-                <h2> We build experience</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non nesciunt velit neque exercitationem.
-                </p>
-
-                <ul class="services-container">
-                    <li class="services-item">
+                <div class="section-header">
+                    <h2>Our services</h2>
+                    <h4> We build experience</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non nesciunt velit neque
+                        exercitationem.
+                    </p>
+                </div>
+                <div class="services-container">
+                    <div class="services-item">
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="39" height="36" viewBox="0 0 39 36">
                                 <g fill="none" fill-rule="evenodd">
@@ -115,8 +115,8 @@
                             dolore.
                         </p>
                         <a href="">Learn more</a>
-                    </li>
-                    <li class="services-item">
+                    </div>
+                    <div class="services-item">
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="39" height="37" viewBox="0 0 39 37">
                                 <g fill="none" fill-rule="evenodd">
@@ -155,8 +155,8 @@
                             distinctio omnis fuga
                             dolore.</p>
                         <a href="">Learn more</a>
-                    </li>
-                    <li class="services-item">
+                    </div>
+                    <div class="services-item">
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="37" viewBox="0 0 25 37">
                                 <g fill="none" fill-rule="evenodd">
@@ -192,56 +192,58 @@
                             distinctio omnis fuga
                             dolore.</p>
                         <a href="">Learn more</a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </section>
             <section class="experience-section">
-                <h4>Our services</h4>
-                <h2> We build experience</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non nesciunt velit neque exercitationem
-                    debit.
-                </p>
-                <ul class="exp-container">
-                    <li class="exp-item">
+                <div class="section-header">
+                    <h2>Our services</h2>
+                    <h4> We build experience</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non nesciunt velit neque exercitationem
+                        debit.
+                    </p>
+                </div>
+                <div class="exp-container">
+                    <div class="exp-item">
                         <p>120 million curious readers and growing.</p>
-                    </li>
-                    <li class="exp-item">
+                    </div>
+                    <div class="exp-item">
                         <p>Expand your reading. <br>
                             Expand your mind
                         </p>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </section>
             <section class="plan-section">
-                <h2>Choose the plan that's right for your buisiness</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non nesciunt velit neque exercitationem.
-                </p>
-                <ul class="plan-container">
-                    <li class="plan-item">
-                        <div class="plan-line"></div>
+                <div class="section-header">
+                    <h4>Choose the plan that's right for your buisiness</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non nesciunt velit neque
+                        exercitationem.
+                    </p>
+                </div>
+                <div class="plan-container">
+                    <div class="plan-item">
                         <h3>Started plan</h3>
-                        <h2>Free</h2>
+                        <p class="item-price">Free</p>
                         <p>per month</p>
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                         <button class="plan-btn" type="button">Get Started</button>
-                    </li>
-                    <li class="plan-item">
-                        <div class="plan-line"></div>
+                    </div>
+                    <div class="plan-item">
                         <h3>Started plan</h3>
-                        <h2>$20.00</h2>
+                        <p class="item-price">$20.00</p>
                         <p>per month</p>
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                         <button class="plan-btn" type="button">Get Started</button>
-                    </li>
-                    <li class="plan-item">
-                        <div class="plan-line"></div>
+                    </div>
+                    <div class="plan-item">
                         <h3>Started plan</h3>
-                        <h2>$50.00</h2>
+                        <p class="item-price">$50.00</p>
                         <p>per month</p>
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                         <button class="plan-btn" type="button">Get Started</button>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </section>
             <section class="probation-section">
                 <div class="blue-rectangle">
@@ -255,9 +257,9 @@
     </main>
     <footer>
         <div class="layout">
-            <div class="networks">
-                <a href="">
-                    <div class="logo">
+            <div class="footer-container">
+                <div class="networks">
+                    <a class="logo" href="">
                         <div class="logo-picture">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
                                 <g fill="none" fill-rule="evenodd">
@@ -274,126 +276,126 @@
                             </svg>
                         </div>
                         <h3 class="logo-word">Freehand</h3>
+                    </a>
+                    <p>We're brand strategy and digital design agency, building brands that matter in culture.</p>
+                    <div class="networks-container">
+                        <a class="footer-nav-icon" href="https://www.instagram.com/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20">
+                                <g fill="none" fill-rule="evenodd">
+                                    <g fill="#0D0D0D" fill-rule="nonzero">
+                                        <g>
+                                            <g>
+                                                <path
+                                                    d="M19.008 13.874c-2.84 0-5.13 2.29-5.13 5.13 0 2.839 2.29 5.129 5.13 5.129s5.13-2.29 5.13-5.13c0-2.839-2.29-5.13-5.13-5.13zm0 8.464c-1.835 0-3.335-1.495-3.335-3.335 0-1.839 1.496-3.335 3.335-3.335 1.84 0 3.335 1.496 3.335 3.335 0 1.84-1.5 3.335-3.335 3.335zm6.536-8.674c0 .665-.536 1.197-1.197 1.197-.665 0-1.196-.536-1.196-1.197 0-.66.535-1.196 1.196-1.196.66 0 1.197.535 1.197 1.196zm3.397 1.214c-.076-1.602-.442-3.022-1.616-4.192-1.17-1.17-2.59-1.535-4.192-1.616-1.652-.093-6.603-.093-8.255 0-1.598.076-3.018.442-4.192 1.612-1.174 1.17-1.535 2.59-1.616 4.192-.093 1.652-.093 6.603 0 8.254.076 1.603.442 3.023 1.616 4.192 1.175 1.17 2.59 1.536 4.192 1.616 1.652.094 6.603.094 8.255 0 1.602-.076 3.022-.442 4.192-1.616 1.17-1.17 1.535-2.589 1.616-4.192.094-1.651.094-6.598 0-8.25zm-2.134 10.023c-.348.875-1.022 1.549-1.902 1.901-1.317.523-4.442.402-5.897.402-1.456 0-4.585.116-5.897-.402-.876-.348-1.55-1.022-1.902-1.901-.523-1.317-.402-4.442-.402-5.898 0-1.455-.116-4.585.402-5.897.348-.875 1.022-1.55 1.902-1.902 1.316-.522 4.441-.402 5.897-.402 1.455 0 4.585-.116 5.897.402.875.348 1.55 1.023 1.902 1.902.522 1.317.402 4.442.402 5.897 0 1.456.12 4.585-.402 5.898z"
+                                                    transform="translate(-161 -4023) translate(0 3720) translate(152 294)" />
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                        <a class="footer-nav-icon" href="https://www.facebook.com/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="10" height="19" viewBox="0 0 10 19">
+                                <defs>
+                                    <filter id="iinqrf6e7b" width="140%" height="121.4%" x="-20%" y="-10.7%"
+                                        filterUnits="objectBoundingBox">
+                                        <feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="1.5" />
+                                        <feOffset dy="1" in="shadowBlurInner1" result="shadowOffsetInner1" />
+                                        <feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1"
+                                            operator="arithmetic" result="shadowInnerInner1" />
+                                        <feColorMatrix in="shadowInnerInner1"
+                                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0" />
+                                    </filter>
+                                    <path id="yfnm102iia"
+                                        d="M23.345 20.503l.518-3.38h-3.242v-2.192c0-.925.453-1.826 1.905-1.826H24v-2.877S22.662 10 21.384 10c-2.67 0-4.416 1.618-4.416 4.548v2.575H14v3.38h2.968v8.168h3.653v-8.168h2.724z" />
+                                </defs>
+                                <g fill="none" fill-rule="evenodd">
+                                    <g fill-rule="nonzero">
+                                        <g>
+                                            <g transform="translate(-213 -4024) translate(0 3720) translate(199 294)">
+                                                <use fill="#0D0D0D" xlink:href="#yfnm102iia" />
+                                                <use fill="#000" filter="url(#iinqrf6e7b)" xlink:href="#yfnm102iia" />
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                        <a class="footer-nav-icon" href="https://github.com/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                <g fill="none" fill-rule="evenodd">
+                                    <g fill="#0D0D0D" fill-rule="nonzero">
+                                        <g>
+                                            <g>
+                                                <path
+                                                    d="M15.69 24.702c0 .08-.093.145-.21.145-.133.012-.226-.053-.226-.145 0-.081.093-.146.21-.146.12-.012.226.053.226.146zm-1.255-.182c-.028.08.053.174.174.198.105.04.226 0 .25-.08.024-.082-.053-.174-.174-.21-.104-.029-.221.011-.25.092zm1.783-.068c-.117.028-.198.104-.186.197.012.08.117.133.238.105.117-.028.198-.105.186-.186-.012-.076-.121-.129-.238-.116zM18.87 9C13.278 9 9 13.246 9 18.839c0 4.472 2.815 8.298 6.835 9.645.516.093.697-.226.697-.488 0-.25-.012-1.63-.012-2.476 0 0-2.822.605-3.415-1.201 0 0-.46-1.174-1.121-1.476 0 0-.924-.633.064-.621 0 0 1.004.08 1.557 1.04.883 1.556 2.363 1.109 2.94.843.092-.645.354-1.093.644-1.359-2.254-.25-4.528-.577-4.528-4.456 0-1.108.307-1.665.952-2.375-.105-.262-.448-1.342.105-2.738.842-.262 2.782 1.09 2.782 1.09.806-.227 1.673-.344 2.532-.344.86 0 1.726.117 2.532.343 0 0 1.94-1.355 2.783-1.089.552 1.4.21 2.476.105 2.738.645.714 1.04 1.27 1.04 2.375 0 3.892-2.375 4.202-4.63 4.456.372.319.686.923.686 1.87 0 1.36-.012 3.041-.012 3.372 0 .262.186.58.698.488C26.266 27.137 29 23.31 29 18.839 29 13.246 24.464 9 18.871 9zm-5.952 13.907c-.052.04-.04.133.029.21.064.064.157.093.21.04.052-.04.04-.133-.029-.21-.064-.064-.157-.092-.21-.04zm-.435-.326c-.028.052.012.117.093.157.064.04.145.028.173-.028.028-.053-.012-.117-.093-.158-.08-.024-.145-.012-.173.029zm1.306 1.435c-.064.053-.04.174.053.25.092.093.21.105.262.04.052-.052.028-.173-.053-.25-.088-.092-.21-.104-.262-.04zm-.46-.593c-.064.04-.064.146 0 .238.065.093.174.133.226.093.065-.052.065-.157 0-.25-.056-.093-.16-.133-.225-.08z"
+                                                    transform="translate(-255 -4023) translate(0 3720) translate(246 294)" />
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                        <a class="footer-nav-icon" href="https://dribbble.com/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                <g fill="none" fill-rule="evenodd">
+                                    <g fill="#0D0D0D" fill-rule="nonzero">
+                                        <g>
+                                            <g>
+                                                <path
+                                                    d="M18.688 9C13.346 9 9 13.346 9 18.688c0 5.341 4.346 9.687 9.688 9.687 5.341 0 9.687-4.346 9.687-9.688 0-5.341-4.346-9.687-9.688-9.687zm6.405 4.467c1.152 1.409 1.85 3.202 1.868 5.155-.273-.058-3.008-.613-5.762-.266-.224-.549-.436-1.031-.727-1.626 3.06-1.25 4.446-3.027 4.62-3.263zm-.92-.957c-.15.213-1.395 1.887-4.337 2.99-1.356-2.492-2.859-4.538-3.088-4.845 2.624-.632 5.39.05 7.425 1.856zm-9.003-1.298c.218.299 1.696 2.348 3.067 4.785-3.87 1.028-7.28 1.013-7.65 1.008.537-2.567 2.268-4.701 4.583-5.793zM10.413 18.7c0-.084.002-.169.004-.253.362.008 4.372.06 8.504-1.177.237.463.463.934.671 1.404-2.992.843-5.71 3.263-7.052 5.559-1.321-1.467-2.127-3.408-2.127-5.533zm3.195 6.528c.865-1.767 3.21-4.048 6.546-5.186 1.162 3.02 1.643 5.55 1.766 6.275-2.66 1.133-5.86.823-8.312-1.089zm9.703.332c-.085-.504-.525-2.926-1.608-5.9 2.593-.415 4.871.264 5.155.354-.37 2.302-1.69 4.29-3.547 5.546z"
+                                                    transform="translate(-301 -4023) translate(0 3720) translate(292 294)" />
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                        <a class="footer-nav-icon" href="https://twitter.com/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
+                                <g fill="none" fill-rule="evenodd">
+                                    <g fill="#0D0D0D" fill-rule="nonzero">
+                                        <g>
+                                            <g>
+                                                <path
+                                                    d="M26.944 15.048c.013.178.013.356.013.533 0 5.419-4.125 11.663-11.663 11.663-2.322 0-4.48-.673-6.294-1.84.33.038.647.05.99.05 1.916 0 3.68-.647 5.089-1.751-1.802-.038-3.313-1.218-3.833-2.843.254.038.508.064.774.064.368 0 .736-.051 1.079-.14-1.878-.38-3.287-2.03-3.287-4.023v-.05c.546.304 1.18.495 1.853.52-1.104-.736-1.827-1.992-1.827-3.414 0-.761.203-1.46.558-2.068 2.018 2.487 5.05 4.111 8.452 4.289-.064-.305-.102-.622-.102-.939 0-2.259 1.828-4.099 4.1-4.099 1.18 0 2.245.495 2.994 1.294.926-.177 1.815-.52 2.602-.99-.305.952-.952 1.752-1.802 2.26.824-.09 1.624-.318 2.36-.635-.558.812-1.256 1.535-2.056 2.12z"
+                                                    transform="translate(-348 -4025) translate(0 3720) translate(339 294)" />
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
                     </div>
-                </a>
-                <p>We're brand strategy and digital design agency, building brands that matter in culture.</p>
-                <div class="networks-container">
-                    <a class="footer-nav-icon" href="https://www.instagram.com/" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20">
-                            <g fill="none" fill-rule="evenodd">
-                                <g fill="#0D0D0D" fill-rule="nonzero">
-                                    <g>
-                                        <g>
-                                            <path
-                                                d="M19.008 13.874c-2.84 0-5.13 2.29-5.13 5.13 0 2.839 2.29 5.129 5.13 5.129s5.13-2.29 5.13-5.13c0-2.839-2.29-5.13-5.13-5.13zm0 8.464c-1.835 0-3.335-1.495-3.335-3.335 0-1.839 1.496-3.335 3.335-3.335 1.84 0 3.335 1.496 3.335 3.335 0 1.84-1.5 3.335-3.335 3.335zm6.536-8.674c0 .665-.536 1.197-1.197 1.197-.665 0-1.196-.536-1.196-1.197 0-.66.535-1.196 1.196-1.196.66 0 1.197.535 1.197 1.196zm3.397 1.214c-.076-1.602-.442-3.022-1.616-4.192-1.17-1.17-2.59-1.535-4.192-1.616-1.652-.093-6.603-.093-8.255 0-1.598.076-3.018.442-4.192 1.612-1.174 1.17-1.535 2.59-1.616 4.192-.093 1.652-.093 6.603 0 8.254.076 1.603.442 3.023 1.616 4.192 1.175 1.17 2.59 1.536 4.192 1.616 1.652.094 6.603.094 8.255 0 1.602-.076 3.022-.442 4.192-1.616 1.17-1.17 1.535-2.589 1.616-4.192.094-1.651.094-6.598 0-8.25zm-2.134 10.023c-.348.875-1.022 1.549-1.902 1.901-1.317.523-4.442.402-5.897.402-1.456 0-4.585.116-5.897-.402-.876-.348-1.55-1.022-1.902-1.901-.523-1.317-.402-4.442-.402-5.898 0-1.455-.116-4.585.402-5.897.348-.875 1.022-1.55 1.902-1.902 1.316-.522 4.441-.402 5.897-.402 1.455 0 4.585-.116 5.897.402.875.348 1.55 1.023 1.902 1.902.522 1.317.402 4.442.402 5.897 0 1.456.12 4.585-.402 5.898z"
-                                                transform="translate(-161 -4023) translate(0 3720) translate(152 294)" />
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </a>
-                    <a class="footer-nav-icon" href="https://www.facebook.com/" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10"
-                            height="19" viewBox="0 0 10 19">
-                            <defs>
-                                <filter id="iinqrf6e7b" width="140%" height="121.4%" x="-20%" y="-10.7%"
-                                    filterUnits="objectBoundingBox">
-                                    <feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="1.5" />
-                                    <feOffset dy="1" in="shadowBlurInner1" result="shadowOffsetInner1" />
-                                    <feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1"
-                                        operator="arithmetic" result="shadowInnerInner1" />
-                                    <feColorMatrix in="shadowInnerInner1"
-                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0" />
-                                </filter>
-                                <path id="yfnm102iia"
-                                    d="M23.345 20.503l.518-3.38h-3.242v-2.192c0-.925.453-1.826 1.905-1.826H24v-2.877S22.662 10 21.384 10c-2.67 0-4.416 1.618-4.416 4.548v2.575H14v3.38h2.968v8.168h3.653v-8.168h2.724z" />
-                            </defs>
-                            <g fill="none" fill-rule="evenodd">
-                                <g fill-rule="nonzero">
-                                    <g>
-                                        <g transform="translate(-213 -4024) translate(0 3720) translate(199 294)">
-                                            <use fill="#0D0D0D" xlink:href="#yfnm102iia" />
-                                            <use fill="#000" filter="url(#iinqrf6e7b)" xlink:href="#yfnm102iia" />
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </a>
-                    <a class="footer-nav-icon" href="https://github.com/" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                            <g fill="none" fill-rule="evenodd">
-                                <g fill="#0D0D0D" fill-rule="nonzero">
-                                    <g>
-                                        <g>
-                                            <path
-                                                d="M15.69 24.702c0 .08-.093.145-.21.145-.133.012-.226-.053-.226-.145 0-.081.093-.146.21-.146.12-.012.226.053.226.146zm-1.255-.182c-.028.08.053.174.174.198.105.04.226 0 .25-.08.024-.082-.053-.174-.174-.21-.104-.029-.221.011-.25.092zm1.783-.068c-.117.028-.198.104-.186.197.012.08.117.133.238.105.117-.028.198-.105.186-.186-.012-.076-.121-.129-.238-.116zM18.87 9C13.278 9 9 13.246 9 18.839c0 4.472 2.815 8.298 6.835 9.645.516.093.697-.226.697-.488 0-.25-.012-1.63-.012-2.476 0 0-2.822.605-3.415-1.201 0 0-.46-1.174-1.121-1.476 0 0-.924-.633.064-.621 0 0 1.004.08 1.557 1.04.883 1.556 2.363 1.109 2.94.843.092-.645.354-1.093.644-1.359-2.254-.25-4.528-.577-4.528-4.456 0-1.108.307-1.665.952-2.375-.105-.262-.448-1.342.105-2.738.842-.262 2.782 1.09 2.782 1.09.806-.227 1.673-.344 2.532-.344.86 0 1.726.117 2.532.343 0 0 1.94-1.355 2.783-1.089.552 1.4.21 2.476.105 2.738.645.714 1.04 1.27 1.04 2.375 0 3.892-2.375 4.202-4.63 4.456.372.319.686.923.686 1.87 0 1.36-.012 3.041-.012 3.372 0 .262.186.58.698.488C26.266 27.137 29 23.31 29 18.839 29 13.246 24.464 9 18.871 9zm-5.952 13.907c-.052.04-.04.133.029.21.064.064.157.093.21.04.052-.04.04-.133-.029-.21-.064-.064-.157-.092-.21-.04zm-.435-.326c-.028.052.012.117.093.157.064.04.145.028.173-.028.028-.053-.012-.117-.093-.158-.08-.024-.145-.012-.173.029zm1.306 1.435c-.064.053-.04.174.053.25.092.093.21.105.262.04.052-.052.028-.173-.053-.25-.088-.092-.21-.104-.262-.04zm-.46-.593c-.064.04-.064.146 0 .238.065.093.174.133.226.093.065-.052.065-.157 0-.25-.056-.093-.16-.133-.225-.08z"
-                                                transform="translate(-255 -4023) translate(0 3720) translate(246 294)" />
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </a>
-                    <a class="footer-nav-icon" href="https://dribbble.com/" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                            <g fill="none" fill-rule="evenodd">
-                                <g fill="#0D0D0D" fill-rule="nonzero">
-                                    <g>
-                                        <g>
-                                            <path
-                                                d="M18.688 9C13.346 9 9 13.346 9 18.688c0 5.341 4.346 9.687 9.688 9.687 5.341 0 9.687-4.346 9.687-9.688 0-5.341-4.346-9.687-9.688-9.687zm6.405 4.467c1.152 1.409 1.85 3.202 1.868 5.155-.273-.058-3.008-.613-5.762-.266-.224-.549-.436-1.031-.727-1.626 3.06-1.25 4.446-3.027 4.62-3.263zm-.92-.957c-.15.213-1.395 1.887-4.337 2.99-1.356-2.492-2.859-4.538-3.088-4.845 2.624-.632 5.39.05 7.425 1.856zm-9.003-1.298c.218.299 1.696 2.348 3.067 4.785-3.87 1.028-7.28 1.013-7.65 1.008.537-2.567 2.268-4.701 4.583-5.793zM10.413 18.7c0-.084.002-.169.004-.253.362.008 4.372.06 8.504-1.177.237.463.463.934.671 1.404-2.992.843-5.71 3.263-7.052 5.559-1.321-1.467-2.127-3.408-2.127-5.533zm3.195 6.528c.865-1.767 3.21-4.048 6.546-5.186 1.162 3.02 1.643 5.55 1.766 6.275-2.66 1.133-5.86.823-8.312-1.089zm9.703.332c-.085-.504-.525-2.926-1.608-5.9 2.593-.415 4.871.264 5.155.354-.37 2.302-1.69 4.29-3.547 5.546z"
-                                                transform="translate(-301 -4023) translate(0 3720) translate(292 294)" />
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </a>
-                    <a class="footer-nav-icon" href="https://twitter.com/" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
-                            <g fill="none" fill-rule="evenodd">
-                                <g fill="#0D0D0D" fill-rule="nonzero">
-                                    <g>
-                                        <g>
-                                            <path
-                                                d="M26.944 15.048c.013.178.013.356.013.533 0 5.419-4.125 11.663-11.663 11.663-2.322 0-4.48-.673-6.294-1.84.33.038.647.05.99.05 1.916 0 3.68-.647 5.089-1.751-1.802-.038-3.313-1.218-3.833-2.843.254.038.508.064.774.064.368 0 .736-.051 1.079-.14-1.878-.38-3.287-2.03-3.287-4.023v-.05c.546.304 1.18.495 1.853.52-1.104-.736-1.827-1.992-1.827-3.414 0-.761.203-1.46.558-2.068 2.018 2.487 5.05 4.111 8.452 4.289-.064-.305-.102-.622-.102-.939 0-2.259 1.828-4.099 4.1-4.099 1.18 0 2.245.495 2.994 1.294.926-.177 1.815-.52 2.602-.99-.305.952-.952 1.752-1.802 2.26.824-.09 1.624-.318 2.36-.635-.558.812-1.256 1.535-2.056 2.12z"
-                                                transform="translate(-348 -4025) translate(0 3720) translate(339 294)" />
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </a>
+                </div>
+                <div class="footer-nav">
+                    <div class="nav-item">
+                        <h4>Services</h4>
+                        <a href="">Blog</a>
+                        <a href="">Partner with freehand</a>
+                        <a href="">Apps & Plugins</a>
+                        <a href="">FAQ</a>
+                        <a href="">UI Kit</a>
+                    </div>
+                    <div class="nav-item">
+                        <h4>Company</h4>
+                        <a href="">About</a>
+                        <a href="">Terms</a>
+                        <a href="">Privacy Policy</a>
+                        <a href="">Careers</a>
+                    </div>
+                    <div class="nav-item">
+                        <h4>Contact Us</h4>
+                        <p>We're Always Happy to Help</p>
+                        <a class="email" href="mailto:mail@freehand.io">mail@freehand.io</a>
+                        <div class="contact-images">
+                            <img src="./images/image-2.png" alt="">
+                            <img class="trustpilot" src="./images/image-7.png" alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <nav class="footer-nav">
-                <div class="nav-item">
-                    <h4>Services</h4>
-                    <a href="">Blog</a>
-                    <a href="">Partner with freehand</a>
-                    <a href="">Apps & Plugins</a>
-                    <a href="">FAQ</a>
-                    <a href="">UI Kit</a>
-                </div>
-                <div class="nav-item">
-                    <h4>Company</h4>
-                    <a href="">About</a>
-                    <a href="">Terms</a>
-                    <a href="">Privacy Policy</a>
-                    <a href="">Careers</a>
-                </div>
-                <div class="nav-item">
-                    <h4>Contact Us</h4>
-                    <p>We're Always Happy to Help</p>
-                    <a class="email" href="mailto:mail@freehand.io">mail@freehand.io</a>
-                    <div class="contact-images">
-                        <img src="./images/image-2.png" alt="">
-                        <img class="trustpilot" src="./images/image-7.png" alt="">
-                    </div>
-                </div>
-            </nav>
             <p class="copyright">Copyright &copy; 2020. Crafted with love</p>
         </div>
     </footer>

@@ -4,6 +4,9 @@ header{
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        border-bottom: solid 1px #efeef3;
+        height: 118px;
+
         .logo{
             display: flex;
             flex-direction: row;
@@ -15,7 +18,7 @@ header{
             }
             .logo-word{
                 font-family: 'Nunito', sans-serif;
-                font-size: 36px;
+                font-size: 34px;
                 font-weight: 600;
                 color: #16133e;
             }
@@ -25,21 +28,21 @@ header{
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            width: 364px;
             a{
                 font-size: 16px;
                 font-weight: 500;
                 line-height: 1;
                 color: #000000;
+                margin-right: 62px;
                 &:hover{
                     color: #007ffc;
                 }
             }
+            .blog{
+                margin-right: 142px;
+            }
         }
         .header-btn{
-            margin-top: 33px;
-            margin-bottom: 39px;
-
             .nav-btn{
                 height: 46px;
                 border-radius: 8px;
@@ -52,6 +55,7 @@ header{
                 padding-left: 35px;
                 padding-right: 35px;
                 background-color: #fafafa;
+                cursor: pointer;
                 &:hover{
                     background-color: #16133e;
                     color: #fafafa;
@@ -61,11 +65,5 @@ header{
                 margin-right: 16px;
             }
         }
-    }
-    .grey-line{
-        width: 100%;
-        height: 1px;
-        background-color:#efeef3;
-        margin-bottom: 50px;
     }
 }
