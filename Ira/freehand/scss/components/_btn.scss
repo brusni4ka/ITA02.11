@@ -8,4 +8,9 @@
   font-family: $baseFontFamily;
   padding: 15px 35px;
   cursor: pointer;
+
+  &:hover {
+    background-color: $siteColor;
+    color: $lightFontColor;
+  }
 }
