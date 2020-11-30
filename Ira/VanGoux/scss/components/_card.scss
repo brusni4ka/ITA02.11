@@ -1,0 +1,87 @@
+.card {
+  flex: 1;
+  width: 100%;
+  padding: 40px;
+  background-color: $lightTextColor;
+  box-shadow: 0 20px 60px 0 $boxShadowColor;
+}
+
+.card-content {
+  display: flex;
+}
+
+.card-comment {
+  font-family: $mainFontFamily;
+  color: $textColor;
+  font-size: $siteFontSize;
+  line-height: 1.88;
+}
+
+.card-top {
+  display: flex;
+  background-color: $cardTopBackgroundColor;
+}
+
+.card-logo {
+  height: 120px;
+  width: 120px;
+}
+
+.card-title {
+  padding: 20px;
+  color: $textColor;
+  font-size: $mainDiscriptionFontSize;
+  font-family: $mainFontFamily;
+}
+
+.card-icon {
+  position: absolute;
+  right: 0;
+  width: 60px;
+  height: 46px;
+}
+
+.card-about {
+  padding: 40px;
+  line-height: 1.88;
+  font-size: $siteFontSize;
+  font-family: $mainFontFamily;
+}
+
+.card.card-profession {
+  padding: 20px;
+  margin-bottom: 0;
+}
+
+.card-profession-title {
+  font-size: $mainDiscriptionFontSize;
+  font-family: $mainFontFamily;
+  color: $cardTitleColor;
+  text-transform: uppercase;
+}
+
+.card-profession-about {
+  line-height: 1.88;
+  font-size: $siteFontSize;
+  color: $textColor;
+  font-family: $mainFontFamily;
+}
+
+.card-exapmle {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  background-color: $lightTextColor;
+}
+
+.card-exapmle-logo {
+  width: 80px;
+  height: 80px;
+}
+
+.card-exapmle-title {
+  padding: 16px;
+  font-size: $cardPersonNamesFontSize;
+  color: $linksColor;
+  font-family: $mainFontFamily;
+}

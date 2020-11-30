@@ -1,9 +1,9 @@
 .container {
-  max-width: $siteWidth;
+  min-width: $minSiteWidth;
   margin: 0 auto;
-  // background:no-repeat center/contain  url(/img/background-decor.png);
-  background:no-repeat center/cover  url(/img/background-decor@3x.png);
-  border: 1px solid red;
-  padding: 0 160px;
-  position: relative
+  background: no-repeat center/cover url(/img/background-decor@3x.png);
+
+  @media (min-width: 1200px) {
+    max-width: $siteWidth;
+  }
 }

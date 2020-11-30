@@ -1,0 +1,11 @@
+.btn {
+  color: $lightTextColor;
+  background-color: $btnsBackgroundColor;
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    color: $textColor;
+  }
+}
