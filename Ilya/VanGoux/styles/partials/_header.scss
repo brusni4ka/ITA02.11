@@ -1,0 +1,52 @@
+header{
+    #nav-container{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        .logo{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            .logo-picture{
+                margin-right: 20px;
+            }
+            .logo-word{
+                font-family: 'Cabin', sans-serif;
+                font-size: 22px;
+                font-weight: 400;
+                color: #1968fc;
+            }
+        }
+        nav{
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            a{
+                font-family: 'Mulish', sans-serif;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 1.43;
+                color: #000000;
+                margin-right: 54px;
+                &:hover{
+                    color: #1968fc;
+                }
+            }
+            .upload-btn{
+                padding: 0px 30px 0px 30px;
+            }
+        }
+    }
+}
+@media (min-width: 320px) and (max-width: 950px) {
+    header{
+        #nav-container{
+            nav{
+                display: none;
+            }
+        }
+    }
+}

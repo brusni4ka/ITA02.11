@@ -1,0 +1,81 @@
+footer{
+    background-color: #fbfbfb;;
+    padding: 40px 0px 40px 0px;
+    @media (min-width: 320px) and (max-width: 950px) {
+        padding: 40px 0px 0px 0px;
+    }
+    .layout{
+        .footer-container{
+            display: flex;
+            align-items: center;
+           justify-content: space-between;
+           @media (min-width: 320px) and (max-width: 950px) {
+               flex-wrap: wrap;
+           }
+            
+            .logo{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .logo-word{
+                    padding:15px 20px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    line-height: 1.43;
+                    color: #1968fc;
+                    background-color: rgba(25,104,252,0.05);
+                }
+                @media (min-width: 320px) and (max-width: 950px) {
+                    margin-bottom: 40px;
+                }
+            }
+            .footer-nav{
+                display: flex;
+                a{
+                    font-family: 'Mulish', sans-serif;
+                    font-size: 14px;
+                    font-weight: 600;
+                    line-height: 1.43;
+                    color: #000000;
+                    margin:0 25px;
+                    &:hover{
+                        color: #1968fc;
+                    }
+                }
+                @media (min-width: 320px) and (max-width: 950px) {
+                    order: 3;
+                    padding: 0px 0px 60px 10px;
+                }
+            }
+            .networks-container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .footer-nav-icon{
+                    margin:0 18px;
+                }
+                @media (min-width: 320px) and (max-width: 950px) {
+                    order: 2;
+                    padding: 15px 0;
+                    align-self: baseline;
+                }
+            }
+            .vincent{
+                margin-bottom: -40px;
+                @media (min-width: 320px) and (max-width: 950px) {
+                    order: 4;
+                    display: block;
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    height: 60px;
+                    width: auto;
+                    margin-bottom: 0px;
+                }
+            }
+        
+        }
+
+    }
+
+}
