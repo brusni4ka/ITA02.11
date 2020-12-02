@@ -1,0 +1,9 @@
+.container {
+  min-width: $minSiteWidth;
+  margin: 0 auto;
+  background: no-repeat center/cover url(/img/background-decor@3x.png);
+
+  @media (min-width: 1200px) {
+    max-width: $siteWidth;
+  }
+}
