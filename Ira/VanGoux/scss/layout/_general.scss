@@ -208,17 +208,21 @@
   font-size: $sectionTitleFontSize;
   text-transform: uppercase;
   padding: 15px 0;
-}
-
-.section-title-underline {
-  background-color: $btnsBackgroundColor;
-  width: 80px;
-  height: 2px;
+  position: relative;
   margin-bottom: 60px;
-  margin-left: 0;
 
-  @media (min-width: 992px) {
-    margin-left: -40px;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0px;
+    background-color: $btnsBackgroundColor;
+    width: 80px;
+    height: 2px;
+
+    @media (min-width: 992px) {
+      left: -40px;
+    }
   }
 }
 
@@ -255,6 +259,17 @@
   padding: 0;
   margin-right: 0;
   margin-bottom: 60px;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -57px;
+    left: 60px;
+    height: 57px;
+    width: 1px;
+    border-left: 1px dotted blue;
+  }
 
   &:first-of-type {
     align-self: center;
@@ -268,6 +283,15 @@
     align-self: center;
     margin-right: 0;
 
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 0;
+      width: 0;
+    }
+
     @media (min-width: 992px) {
       align-self: flex-end;
     }
@@ -276,6 +300,15 @@
   @media (min-width: 992px) {
     margin-bottom: 0;
     margin-right: 64px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 0;
+      width: 0;
+    }
   }
 
   @media (min-width: 1200px) {
@@ -326,13 +359,19 @@
   }
 }
 
-.section.section-colored {
+.section-colored {
   background-color: $btnsBackgroundColor;
-  position: relative;
-  max-width: 1440px;
+
+  .section {
+    position: relative;
+  }
 
   .section-title {
     color: $lightTextColor;
+
+    &::after {
+      background-color: $lightTextColor;
+    }
   }
 
   .section-title-underline {
@@ -400,23 +439,19 @@
 }
 
 .contact-content {
-  max-width: 520px;
+  flex: 1;
   padding-top: 60px;
   margin: auto;
 
-  @media (min-width: 768px) {
-    max-width: 648px;
-  }
-
   @media (min-width: 992px) {
     padding-top: 120px;
-    padding-left: 120px;
-    max-width: 760px;
-    margin-right: 0;
+    padding-left: 65px;
+    margin-right: 65px;
   }
 
   @media (min-width: 1200px) {
     padding-left: 140px;
+    margin-right: 125px;
   }
 }
 
@@ -427,7 +462,7 @@
   margin: auto;
 
   @media (min-width: 992px) {
-    max-width: 648px;
+    width: 679px;
     margin: 0;
   }
 }

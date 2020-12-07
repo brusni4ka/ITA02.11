@@ -4,7 +4,6 @@
   justify-content: flex-start;
   align-items: flex-end;
   margin-bottom: 42px;
-  margin-left: 60px;
 
   @media (min-width: 992px) {
     margin-bottom: 0;
@@ -30,7 +29,6 @@
 .form-textarea {
   border: none;
   border-bottom: 2px solid $btnsBackgroundColor;
-  min-width: 520px;
   margin-bottom: 52px;
   background: transparent;
 

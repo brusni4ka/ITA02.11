@@ -3,6 +3,7 @@
   background-color: $btnsBackgroundColor;
   border: none;
   text-transform: uppercase;
+  box-shadow: 0 10px 40px $boxShadowColorBtn;
   cursor: pointer;
 
   &:hover {
