@@ -277,13 +277,13 @@ main .sketch-section {
 }
 
 main .sketch-section .project {
-  width: 600px;
+  max-width: 600px;
   margin-bottom: 160px;
 }
 
 @media (min-width: 320px) and (max-width: 950px) {
   main .sketch-section .project {
-    width: 480px;
+    max-width: 480px;
     margin-bottom: 80px;
     padding: 0px 30px 0px 30px;
   }
@@ -370,12 +370,14 @@ main .sketch-section .feedback-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin: 0 -20px;
 }
 
 @media (min-width: 320px) and (max-width: 950px) {
@@ -387,7 +389,7 @@ main .sketch-section .feedback-container {
 main .sketch-section .feedback-container .feedback-item {
   max-width: 540px;
   position: relative;
-  margin: 0 20px;
+  margin-bottom: 20px;
   padding: 40px;
   background-color: #ffffff;
   -webkit-box-shadow: 0 20px 60px 0 rgba(25, 104, 252, 0.1);
@@ -445,7 +447,7 @@ main .sketch-section .feedback-container .feedback-item .quote {
 }
 
 main .sketch-section .feedback-container .feedback-item .testimonial {
-  width: 460px;
+  max-width: 460px;
   font-family: 'Mulish', sans-serif;
   font-size: 16px;
   font-weight: normal;
@@ -482,6 +484,7 @@ main .features-section .features-container {
 }
 
 main .features-section .features-container .features-item {
+  position: relative;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -501,6 +504,19 @@ main .features-section .features-container .features-item {
         -ms-grid-row-align: normal;
         align-self: normal;
     margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 950px) {
+  main .features-section .features-container .features-item::after {
+    content: "";
+    width: 1px;
+    height: 60px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    border-left: dotted 3px #1968fc;
+    position: absolute;
+    left: 60px;
   }
 }
 
@@ -531,6 +547,9 @@ main .features-section .features-container .features-item:last-child {
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
+  }
+  main .features-section .features-container .features-item:last-child::after {
+    display: none;
   }
 }
 
@@ -628,6 +647,13 @@ main .site-users-section .user-container {
           align-items: center;
 }
 
+@media (min-width: 320px) and (max-width: 950px) {
+  main .site-users-section .user-container {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
+
 main .site-users-section .user-container .user-item {
   max-width: 320px;
   padding: 20px;
@@ -698,6 +724,7 @@ main .scope-section .scope-container .scope-item {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 40px;
+  margin-right: 6px;
   max-width: 555px;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -830,12 +857,12 @@ main .contact-us form .layout .information {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 40%;
+  max-width: 450px;
+  padding-right: 20px;
 }
 
 @media (min-width: 320px) and (max-width: 950px) {
   main .contact-us form .layout .information {
-    width: 450px;
     padding-left: 60px;
   }
 }
@@ -958,7 +985,7 @@ main .contact-us form #map {
   position: absolute;
   top: 0;
   right: 0;
-  width: 680px;
+  width: 40%;
   height: 100%;
 }
 
