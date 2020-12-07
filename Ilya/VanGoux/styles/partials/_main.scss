@@ -6,10 +6,10 @@ main{
             margin-bottom: 70px;
         }
         .project{
-            width: 600px;
+            max-width: 600px;
             margin-bottom: 160px;
             @media (min-width: 320px) and (max-width: 950px) {
-                width: 480px;
+                max-width: 480px;
                 margin-bottom: 80px;
                 padding: 0px 30px 0px 30px;
             }
@@ -75,16 +75,16 @@ main{
         }
         .feedback-container{
             display: flex;
+            justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            margin: 0 -20px;
             @media (min-width: 320px) and (max-width: 950px) {
                 padding-top: 50px;
             }
             .feedback-item{
                 max-width: 540px;
                 position: relative;
-                margin: 0 20px;
+                margin-bottom: 20px;
                 padding: 40px;
                 background-color: #ffffff;
                 box-shadow: 0 20px 60px 0 rgba(25, 104, 252, 0.1);
@@ -126,7 +126,7 @@ main{
                     right: 40px;
                 }
                 .testimonial{
-                    width: 460px;
+                    max-width: 460px;
                     font-family: 'Mulish', sans-serif;
                     font-size: 16px;
                     font-weight: normal;
@@ -150,6 +150,7 @@ main{
             align-items: center;
             flex-wrap: wrap;
             .features-item{
+                position: relative;
                 flex: 1;
                 margin-right: 80px;
                 box-shadow: 0 20px 60px 0 rgba(49, 69, 244, 0.1);
@@ -159,6 +160,17 @@ main{
                     margin-right: 0;
                     align-self: normal;
                     margin-bottom: 60px;
+                }
+                &::after{
+                    @media (min-width: 320px) and (max-width: 950px) {
+                        content:"";
+                        width: 1px;
+                        height: 60px;
+                        box-sizing: border-box;
+                        border-left: dotted 3px #1968fc;
+                        position: absolute;
+                        left: 60px;
+                    }
                 }
                 &:first-child{
                     align-self: flex-start;
@@ -174,6 +186,9 @@ main{
                     @media (min-width: 320px) and (max-width: 950px) {
                         margin-top: 0;
                         align-self: center;
+                        &::after{
+                            display: none;
+                        }
                     }
                 }
                 .item-heading{
@@ -221,6 +236,7 @@ main{
                     padding: 40px;
                     background-color: #ffffff;
                 }
+               
             }
         }
     }
@@ -235,7 +251,7 @@ main{
             flex-wrap: wrap;
             align-items: center;
             @media (min-width: 320px) and (max-width: 950px) {
-                
+                justify-content: space-around;
             }
             .user-item{
                 max-width: 320px;
@@ -281,6 +297,7 @@ main{
                 justify-content: flex-start;
                 align-items: center;
                 margin-bottom: 40px;
+                margin-right: 6px;
                 max-width: 555px;
                 flex-grow: 1;
                 
@@ -381,9 +398,9 @@ main{
                 .information{
                     display: flex;
                     flex-direction: column;
-                    width: 40%;
+                    max-width: 450px;
+                    padding-right: 20px;
                     @media (min-width: 320px) and (max-width: 950px) {
-                        width: 450px;
                         padding-left: 60px;
                     }
                     input{
@@ -445,7 +462,7 @@ main{
                 position: absolute;
                 top: 0;
                 right: 0;
-                width:680px;
+                width: 40%;
                 height: 100%;
                 @media (min-width: 320px) and (max-width: 950px) {
                     position: relative;
