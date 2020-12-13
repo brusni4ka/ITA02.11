@@ -1,0 +1,13 @@
+.search-btn{
+    background-color: #e95656;
+    opacity: 1;
+    font-size: 14px;
+    font-weight: 700;
+    height: 36px;
+    padding-right: 80px;
+    padding-left: 80px;
+    &:hover{
+        background-color: #f3f3f3;
+        color: #e95656;
+    }
+}

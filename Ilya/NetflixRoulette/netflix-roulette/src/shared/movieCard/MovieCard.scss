@@ -1,0 +1,25 @@
+.movie-card{
+    max-width: 340px;
+    .information{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 10px 14px 10px;
+
+        .movie-name{
+            font-size: 24px;
+            color: #000000;
+            margin-bottom: 0px;
+        }
+        .realese-year{
+            display: block;
+            font-size: 18px;
+            padding: 4px 10px 4px 10px;
+            border: 2px solid #000000;
+            border-radius: 4px;
+        }
+    }
+    p{
+        padding: 0px 10px 0px 10px;
+    }
+}

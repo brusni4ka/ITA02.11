@@ -1,0 +1,12 @@
+.wrapper{
+    background-image:  linear-gradient(to left, transparent, rgba(0, 0, 0, 0.658) 70%), url(../../images/background-img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 60px;
+    .btn{
+        position:absolute;
+        top: -32px;
+        right: 0;
+    }
+}
+
