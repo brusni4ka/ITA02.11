@@ -1,0 +1,35 @@
+@import "src/components/styles/variables";
+
+.btn {
+  cursor: pointer;
+  outline: none;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  border: none;
+  color: $lightColor;
+}
+
+.btn-by-title {
+  background-color: $genreBtnBackGroundColor;
+  font-size: $searchByBtnFontSize;
+  margin-right: 20px;
+
+  &.active {
+    background-color: $mainTitleColor;
+  }
+}
+
+.btn-by-genre {
+  background-color: $genreBtnBackGroundColor;
+  font-size: $searchByBtnFontSize;
+
+  &.active {
+    background-color: $mainTitleColor;
+  }
+}
+
+.search-btn {
+  background-color: $mainTitleColor;
+  font-size: $searchBtnFontSize;
+  padding: 8px 40px;
+}

@@ -1,0 +1,57 @@
+@import "src/components/styles/variables";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 0 0 16px 3px $searchResultSectionBackGroundColor;
+
+  &:hover {
+    box-shadow: 0 0 5px 3px $searchResultSectionBackGroundColor;
+  }
+}
+
+.poster {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.section-about {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 5px 10px;
+}
+
+.film-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.film-title,
+.film-genre {
+  font-size: $searchBtnFontSize;
+  color: $filmTitleColor;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.film-genre {
+  border: 1px solid $genreBtnBackGroundColor;
+  border-radius: 3px;
+  padding: 4px;
+  font-size: $filmGenre;
+
+  &:first-child {
+    margin-right: 12px;
+  }
+}
+
+.release {
+  font-size: $searchBtnFontSize;
+  color: $filmTitleColor;
+}

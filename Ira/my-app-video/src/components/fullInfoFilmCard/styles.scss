@@ -1,0 +1,44 @@
+@import "src/components/styles/variables";
+
+.full-info-film-card {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 40px;
+}
+
+.film-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.film-title-card {
+  font-size: $searchBtnFontSize;
+  color: $mainTitleColor;
+}
+
+.film-subtitle,
+.film-description {
+  color: $genreBtnBackGroundColor;
+  font-size: $searchByBtnFontSize;
+}
+
+.more-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $lightColor;
+  width: 150px;
+}
+
+.film-release {
+
+}
+
