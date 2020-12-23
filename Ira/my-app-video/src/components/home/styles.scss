@@ -1,0 +1,26 @@
+.top-header-section {
+  background-image: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.658) 70%),  url("https://akket.com/wp-content/uploads/2018/10/Apple-Filmy-Serialy-56.jpg");
+  padding: 100px 0 20px;
+}
+
+.search-result-content {
+  margin: 0 auto;
+  height: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  @media (min-width: 680px) {
+    max-width: 600px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 900px;
+  }
+
+  @media (min-width: 1200px) {
+    min-width: 1100px;
+  }
+}
+

@@ -1,0 +1,1 @@
+export {SearchResultSection} from './SearchResultSection';

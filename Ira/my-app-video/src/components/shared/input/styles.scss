@@ -1,0 +1,15 @@
+@import "src/components/styles/variables";
+
+.form-input {
+  background-color: #000;
+  border: none;
+  outline: none;
+  height: 40px;
+  color: $lightColor;
+  padding-left: 20px;
+  margin-bottom: 30px;
+
+  &:focus {
+    border-bottom: 2px solid $mainTitleColor;
+  }
+}

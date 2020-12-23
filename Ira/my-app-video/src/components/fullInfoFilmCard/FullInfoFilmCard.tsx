@@ -1,8 +1,12 @@
 import React from 'react';
-import {IFullInfoFilmCard} from "../../interfaces/IFullInfoFilmCard";
+import {IFilm} from "../../interfaces/IFilm";
 import './styles.scss';
 
-export const FullInfoFilmCard = ({film} : IFullInfoFilmCard) => {
+export interface IFullInfoFilmCardProps {
+  film: IFilm,
+}
+
+export const FullInfoFilmCard = ({film} : IFullInfoFilmCardProps) => {
 
   return (
     <section className="full-info-film-card">

@@ -1,7 +1,29 @@
 import React from 'react';
-import {IButton} from "../../../interfaces/IButton";
+import {Link} from 'react-router-dom';
+import {IButtonProps} from "../../../interfaces/IButtonProps";
 import './styles.scss';
 
-export const Button = ({title, className, onClick}: IButton) => {
-  return <button className={className} onClick={onClick}>{title}</button>
+export const Button = ({
+                         title,
+                         className,
+                         onClick,
+                         type = "button",
+                         isLink = false,
+                         to = '',
+                       }: IButtonProps) => {
+
+  return (
+    <>
+      {
+        isLink ?
+          <Link className={className} to={to}>{title}</Link>
+          :
+          <button
+            className={className}
+            onClick={onClick}
+            type={type}
+          >{title}</button>
+      }
+    </>
+  )
 }

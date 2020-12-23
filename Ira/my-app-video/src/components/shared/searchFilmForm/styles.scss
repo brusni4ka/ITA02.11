@@ -1,0 +1,42 @@
+@import "src/components/styles/variables";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.form-label {
+  color: $lightColor;
+  text-transform: uppercase;
+  font-size: 25px;
+  margin-bottom: 12px;
+}
+
+.form-input {
+  background-color: #000;
+  border: none;
+  outline: none;
+  height: 40px;
+  color: $lightColor;
+  padding-left: 20px;
+  margin-bottom: 30px;
+
+  &:focus {
+    border-bottom: 2px solid $mainTitleColor;
+  }
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.search-by-label {
+  text-transform: uppercase;
+  color: $lightColor;
+  font-size: $searchByBtnFontSize;
+  margin-right: 20px;
+}
