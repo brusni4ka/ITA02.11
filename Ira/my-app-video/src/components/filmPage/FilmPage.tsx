@@ -1,29 +1,33 @@
 import React from 'react';
+import {RouteComponentProps} from "react-router-dom";
 import {Header} from "../layout/header";
 import {FullInfoFilmCard} from "../fullInfoFilmCard";
-import {IFilm} from "../../interfaces/IFilm";
 import {Footer} from "../layout/footer";
 import {FilmList} from "../filmList";
 import {Button} from "../shared/button/Button";
+import {IFilm} from "../../interfaces/IFilm";
 import './styles.scss';
 
-interface IFilmPageProps {
+interface IOwnProps {
   films: IFilm[],
-  match: any,
 
   showFullFilmInfo(id: number): () => void,
 }
 
-export class FilmPage extends React.Component<IFilmPageProps> {
+//type TParams = { id: string };
+
+type FilmPageProps = RouteComponentProps<any> & IOwnProps;
+
+export class FilmPage extends React.Component<FilmPageProps> {
 
   render() {
 
-    const filmId: number = this.props.match.params.id;
+    const filmId: number = +this.props.match.params.id;
 
     const {
       films,
       showFullFilmInfo,
-    }: IFilmPageProps = this.props;
+    }: IOwnProps = this.props;
 
     const currentFilm: IFilm[] = films.filter((film) => film.id === +filmId);
 
@@ -35,7 +39,7 @@ export class FilmPage extends React.Component<IFilmPageProps> {
             <Button
               title="search"
               className="btn btn-return-to-home"
-              isLink={true}
+              isLink
               to="/"
             />
           </div>
@@ -49,7 +53,6 @@ export class FilmPage extends React.Component<IFilmPageProps> {
           films={films}
           showFullFilmInfo={showFullFilmInfo}
           filmId={filmId}
-
         />
         <Footer/>
       </>

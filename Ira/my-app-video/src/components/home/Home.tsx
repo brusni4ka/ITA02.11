@@ -1,83 +1,74 @@
 import React from 'react';
+import {RouteComponentProps} from "react-router-dom";
 import {Header} from "../layout/header";
-import SearchFilmForm from "../shared/searchFilmForm";
-import {IFilm} from "../../interfaces/IFilm";
 import {Footer} from "../layout/footer";
 import {FilmList} from "../filmList";
 import {SearchResultSection} from "../searchResultSection";
-import {RouteComponentProps} from "react-router-dom";
+import SearchFilmForm from "../shared/searchFilmForm";
+import {IFilm} from "../../interfaces/IFilm";
+import {queryString} from "../../constants/queryString";
 import './styles.scss';
 
-const queryString = require('query-string');
-
 interface IOwnProps {
-  stateSortByBtn: string,
   result: number,
   films: IFilm[],
 
   showFullFilmInfo(id: number): () => void,
 
-  sortBy(e: string): void,
-}
-
-interface IPathname {
-  sortBy?: string,
-  searchBy?: string,
 }
 
 interface IHomeState {
-  searchValue: string,
-  searchBy: string,
-  pathParams: IPathname,
+  sortBy: string,
 }
 
 type HomeProps = RouteComponentProps & IOwnProps;
 
 export class Home extends React.Component<HomeProps, IHomeState> {
   state: IHomeState = {
-    searchValue: '',
-    searchBy: '',
-    pathParams: {},
+    sortBy: 'release',
+  };
+
+  componentDidMount() {
+    const locationSearch = this.props.location.search;
+    const params = queryString.parse(locationSearch);
+
+    this.setState({
+      sortBy: params.sortBy || 'release',
+    });
   }
 
-  componentDidUpdate(prevProps: Readonly<HomeProps>, prevState: Readonly<IHomeState>, snapshot?: any) {
+  componentDidUpdate(prevProps: Readonly<HomeProps>) {
+    if (this.props.history.action !== 'PUSH' && this.props.location !== prevProps.location) {
+      const params = queryString.parse(this.props.location.search) as { search: string, searchBy: string, sortBy: string };
+      params.sortBy = params.sortBy || 'release';
 
-    if (prevProps.stateSortByBtn !== this.props.stateSortByBtn) {
-      this.setState({
-        pathParams: {
-          sortBy: this.props.stateSortByBtn
-        }
-      });
-    }
-
-    if (prevState.searchBy !== this.state.searchBy) {
-      this.setState({
-        pathParams: {
-          searchBy: this.state.searchBy,
-        }
-      });
+      this.setState({sortBy: params.sortBy});
     }
   };
 
-  getFormState = ({searchValue, searchBy}: { searchValue: string, searchBy: string }): void => {
+  onSearchSubmit = ({searchValue, searchBy}: { searchValue: string, searchBy: string }): void => {
+
+    const pathname: string = `/search?search=${searchValue}&searchBy=${searchBy}`;
+
+    this.props.history.push(pathname);
+  };
+
+  onToggleSortBy = (btnName: string) => {
     this.setState({
-      searchValue,
-      searchBy,
-    })
+      sortBy: btnName,
+    });
+
+    const params = queryString.parse(this.props.location.search);
+    const newParams = queryString.stringify({...params, sortBy: btnName});
+    this.props.history.push(`/search?${newParams}`);
   }
 
   render() {
-    const params = queryString.parse(this.props.location.search);
-    const history = this.props.history;
-    const searchValueFromUrl: string = params.search;
     const {
       showFullFilmInfo,
-      sortBy,
-      stateSortByBtn,
       result,
       films,
     }: HomeProps = this.props;
-    const sortByParam: string = params.sortBy;
 
     return (
       <>
@@ -89,20 +80,14 @@ export class Home extends React.Component<HomeProps, IHomeState> {
         <div className="top-header-section">
           <div className="search-result-content">
             <SearchFilmForm
-              pathParams={this.state.pathParams}
-              searchValueFromUrl={searchValueFromUrl}
-              getFormState={this.getFormState}
+              onSearchSubmit={this.onSearchSubmit}
             />
           </div>
         </div>
         <SearchResultSection
-          history={history}
-          stateSortByBtn={stateSortByBtn}
-          sortBy={sortBy}
+          stateSortByBtn={this.state.sortBy}
           result={result}
-          sortByParam={sortByParam}
-          searchValue={this.state.searchValue}
-          searchBy={this.state.searchBy}
+          onToggleSortBy={this.onToggleSortBy}
         />
         <FilmList
           films={films}

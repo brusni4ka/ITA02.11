@@ -2,9 +2,8 @@ import React from 'react';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {Input} from "../input";
 import {Button} from "../button/Button";
+import {queryString} from "../../../constants/queryString";
 import './styles.scss';
-
-const queryString = require('query-string');
 
 interface ISearchFilmFormState {
   searchValue: string,
@@ -12,10 +11,12 @@ interface ISearchFilmFormState {
 }
 
 interface IOwnProps {
-  searchValueFromUrl: string,
-  pathParams: { sortBy?: string, searchBy?: string },
+  onSearchSubmit({searchValue, searchBy}: { searchValue: string, searchBy: string }): void,
+}
 
-  getFormState({searchValue, searchBy}: { searchValue: string, searchBy: string }): void,
+enum searchBy {
+  title = "title",
+  genre = "genre"
 }
 
 type SearchFilmFormProps = IOwnProps & RouteComponentProps<{ search?: string, searchBy?: string }>;
@@ -31,10 +32,20 @@ class SearchFilmForm extends React.Component <SearchFilmFormProps, ISearchFilmFo
     const params = queryString.parse(locationSearch);
 
     this.setState({
-      searchValue: this.props.searchValueFromUrl || '',
+      searchValue: params.search || '',
       searchBy: params.searchBy || 'title',
     })
-  }
+  };
+
+  componentDidUpdate(prevProps: Readonly<SearchFilmFormProps>) {
+
+    if(this.props.history.action !== 'PUSH' && this.props.location !== prevProps.location) {
+      const params = queryString.parse(this.props.location.search) as {search: string, searchBy: string, sortBy: string};
+      const {search='', searchBy='title'} = params;
+
+      this.setState({searchValue: search, searchBy});
+    }
+  };
 
   searchBy = (btnName: string) => (): void => {
     this.setState({
@@ -52,47 +63,35 @@ class SearchFilmForm extends React.Component <SearchFilmFormProps, ISearchFilmFo
   searchFilm = (event: React.FormEvent<HTMLElement>): void => {
     event.preventDefault();
 
-    let sortBy: string = '';
-    let searchBy: string = '';
-
-    if (this.props.pathParams.sortBy) {
-      sortBy = `&sortBy=${this.props.pathParams.sortBy}`;
-    }
-
-    if (this.props.pathParams.searchBy) {
-      searchBy = `&searchBy=${this.props.pathParams.searchBy}`;
-    }
-
-    const pathname: string = `/search?search=${this.state.searchValue}${sortBy ? sortBy : ''}${searchBy ? searchBy : ''}`;
-
-    this.props.history.push(pathname);
-
-    this.props.getFormState({
+    this.props.onSearchSubmit({
       searchValue: this.state.searchValue,
       searchBy: this.state.searchBy,
     });
   };
 
   render() {
-    console.log('state', this.state.searchBy)
 
     return (
-      <form className="form" onSubmit={(event: React.FormEvent<HTMLElement>) => this.searchFilm(event)}>
+      <form className="form" onSubmit={this.searchFilm}>
         <label className="form-label" htmlFor="search">Find your movie</label>
         <Input
+          className="form-input"
+          id="search"
+          name="search"
+          placeholder="search..."
           value={this.state.searchValue}
           changeValue={this.changeValue}
         />
         <div className="btn-group">
           <div className="search-by-btn">
             <span className="search-by-label">Search by</span>
-            <Button title="Title"
+            <Button title={searchBy.title}
                     type="button"
-                    className={this.state.searchBy === 'title' ? 'btn btn-by-title active' : 'btn btn-by-title'}
+                    className={this.state.searchBy === searchBy.title ? 'btn btn-by-title active' : 'btn btn-by-title'}
                     onClick={this.searchBy('title')}
             />
-            <Button title="Genre"
-                    className={this.state.searchBy === 'genre' ? 'btn btn-by-genre active' : 'btn btn-by-genre'}
+            <Button title={searchBy.genre}
+                    className={this.state.searchBy === searchBy.genre ? 'btn btn-by-genre active' : 'btn btn-by-genre'}
                     onClick={this.searchBy('genre')}
             />
           </div>

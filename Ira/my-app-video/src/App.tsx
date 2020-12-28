@@ -1,10 +1,10 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch, RouteComponentProps} from "react-router-dom";
-import {BASE_URL, SEARCH, FILM} from './constants/pathNames';
 import {ErrorBoundary} from "./components/layout/errorBoundary";
 import {Home} from "./components/home";
 import {FilmPage} from "./components/filmPage";
 import {IFilm} from "./interfaces/IFilm";
+import {BASE_URL, SEARCH, FILM} from './constants/pathNames';
 import './general.scss';
 
 let films: IFilm[];
@@ -114,7 +114,6 @@ interface IAppState {
   films: IFilm[],
   currentFilmId: number | string,
   currentFilm: IFilm,
-  sortBy: string,
 }
 
 class App extends React.Component<{}, IAppState> {
@@ -122,7 +121,6 @@ class App extends React.Component<{}, IAppState> {
     films: [...films],
     currentFilmId: '',
     currentFilm: emptyObjectFilm,
-    sortBy: 'rating',
   }
 
   showFullFilmInfo = (id: number) => (): void => {
@@ -131,12 +129,6 @@ class App extends React.Component<{}, IAppState> {
     this.setState({
       currentFilmId: id,
       currentFilm: film[0],
-    })
-  }
-
-  sortBy = (btnName: string) => {
-    this.setState({
-      sortBy: btnName,
     })
   }
 
@@ -150,28 +142,26 @@ class App extends React.Component<{}, IAppState> {
               <Route path={BASE_URL} exact
                      render={(props: RouteComponentProps) => <Home
                        result={this.state.films.length}
-                       stateSortByBtn={this.state.sortBy}
                        showFullFilmInfo={this.showFullFilmInfo}
-                       sortBy={this.sortBy}
                        films={this.state.films}
                        {...props}
                      />}/>
               <Route path={SEARCH}
                      render={(props: RouteComponentProps) => <Home
                        result={this.state.films.length}
-                       stateSortByBtn={this.state.sortBy}
                        showFullFilmInfo={this.showFullFilmInfo}
-                       sortBy={this.sortBy}
                        films={this.state.films}
                        {...props}
                      />}
               />
+
               <Route path={FILM}
-                     component={(props: any) => <FilmPage
-                       match={props.match}
+                     render={(props: RouteComponentProps) => <FilmPage
                        films={this.state.films}
                        showFullFilmInfo={this.showFullFilmInfo}
-                     />}/>
+                       {...props}
+                     />}
+              />
             </Switch>
           </ErrorBoundary>
         </Router>

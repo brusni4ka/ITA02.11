@@ -5,29 +5,20 @@ import './styles.scss';
 interface SearchResultSectionProps {
   stateSortByBtn: string,
   result: number,
-  sortByParam: string,
-  searchValue: string,
-  searchBy: string,
-  history: { push(e: string): void },
 
-  sortBy(e: string): void,
+  onToggleSortBy(e: string): void,
+}
+
+enum sortBy {
+  release = "release",
+  rating = "rating",
 }
 
 export const SearchResultSection = ({
                                       stateSortByBtn,
                                       result,
-                                      sortBy,
-                                      sortByParam,
-                                      history,
-                                      searchValue,
-                                      searchBy,
+                                      onToggleSortBy
                                     }: SearchResultSectionProps) => {
-  const className = sortByParam || stateSortByBtn;
-
-  const makeUrlSortBy = (btnName: string) => (): void => {
-    sortBy(btnName);
-    history.push(`/search?search=${searchValue}&searchBy=${searchBy}&sortBy=${btnName}`);
-  };
 
   return (
     <div className="search-result-section">
@@ -38,17 +29,18 @@ export const SearchResultSection = ({
         <div className="sorting-section">
           <span className="sorting-label">Sort by</span>
           <Button
-            title="release date"
-            className={className === 'release' ? 'btn by-release-btn active' : 'btn by-release-btn'}
-            onClick={makeUrlSortBy('release')}
+            title={`${sortBy.release} date`}
+            className={stateSortByBtn === sortBy.release ? 'btn by-release-btn active' : 'btn by-release-btn'}
+            onClick={() => onToggleSortBy(sortBy.release)}
           />
           <Button
-            title="rating"
-            className={className === 'rating' ? 'btn by-rating-btn active' : 'btn by-rating-btn'}
-            onClick={makeUrlSortBy('rating')}
+            title={sortBy.rating}
+            className={stateSortByBtn === sortBy.rating ? 'btn by-rating-btn active' : 'btn by-rating-btn'}
+            onClick={() => onToggleSortBy(sortBy.rating)}
           />
         </div>
       </div>
     </div>
   );
 }
+
