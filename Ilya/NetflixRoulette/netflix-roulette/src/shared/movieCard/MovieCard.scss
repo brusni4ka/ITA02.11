@@ -1,5 +1,6 @@
 .movie-card{
     max-width: 340px;
+    margin-bottom: 30px;
     .information{
         display: flex;
         justify-content: space-between;
@@ -7,7 +8,7 @@
         padding: 14px 10px 14px 10px;
 
         .movie-name{
-            font-size: 24px;
+            font-size: 20px;
             color: #000000;
             margin-bottom: 0px;
         }

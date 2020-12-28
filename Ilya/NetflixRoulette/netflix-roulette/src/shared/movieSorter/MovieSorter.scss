@@ -12,14 +12,26 @@
             display: flex;
             align-items: center;
             p{
+                font-weight: 400;
+                margin-right: 40px;
+            }
+            .sort-by-radio-btn{
                 margin-right: 40px;
                 &:last-child{
                     margin-right: 0;
                 }
+                input[type=radio]{
+                    display: none;
+                    &:checked + label{
+                        color:#e95656;
+                    }
+                }
+                label{
+                    display: block;
+                    cursor: pointer;
+                    user-select: none;
+                }
             }
-            
-            
         }
-        
     }
 }

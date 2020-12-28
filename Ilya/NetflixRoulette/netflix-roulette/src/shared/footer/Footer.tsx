@@ -6,7 +6,7 @@ class Footer extends React.Component {
         return (
             <footer>
                 <div className="layout">
-                    <a className="logo" href="#">netflixroulette</a>
+                    <a className="logo" href="/">netflixroulette</a>
                 </div>
             </footer>
         );

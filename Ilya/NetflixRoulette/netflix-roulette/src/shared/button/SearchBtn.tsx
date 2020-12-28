@@ -1,23 +1,16 @@
-import React from "react";
 import "./SearchBtn.scss";
 
-interface ISearchBtn {
-    value: string,
+interface ISearchBtnProps {
+    title: string,
+    // onSubmit(): void
 }
 
-class SearchBtn extends React.Component<{}, ISearchBtn>{
-    state: ISearchBtn = {
-        value: '',
-    };
-
-    render() {
-        return (
-            <div className="btn">
-                {/* <button className="typical-btn search-btn" type="submit" onClick={this.handleSubmit}>Search</button> */}
-                <button className="typical-btn search-btn" type="submit">Search</button>
-            </div>
-        );
-    }
+function SearchBtn({ title }: ISearchBtnProps) {
+    return (
+        <div className="btn">
+            <button className="search-btn" type="submit">{title}</button>
+        </div>
+    );
 }
 
 export default SearchBtn;
