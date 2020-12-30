@@ -28,28 +28,18 @@ class SearchMovie extends React.Component<SearchMovieProps, ISearchMovieState> {
         searchBy: SearchBy.Title
     };
 
-
-
     componentDidMount() {
         const parsed = queryString.parse(this.props.location.search);
-        this.setState({ searchBy: parsed.searchBy as string || "title", value: parsed.inputValue as string || "" })
+        this.setState({ searchBy: parsed.searchBy as string || SearchBy.Title, value: parsed.inputValue as string || "" })
     }
 
     componentDidUpdate(prevProps: Readonly<SearchMovieProps>) {
-        console.log(prevProps);
-        console.log(this.props);
 
         if (this.props.history.action !== "PUSH" && this.props.location !== prevProps.location) {
-            const parsed = queryString.parse(this.props.location.search) as { inputValue: string, searchBy: string, sortBy: string };
-            const { inputValue = "", searchBy = "title", sortBy } = parsed;
-            console.log(parsed);
-
+            const { inputValue = "", searchBy = SearchBy.Title } = queryString.parse(this.props.location.search) as { inputValue: string, searchBy: string };
             this.setState({ value: inputValue, searchBy: searchBy });
         }
-
     }
-
-
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({ value: e.target.value });
@@ -86,7 +76,6 @@ class SearchMovie extends React.Component<SearchMovieProps, ISearchMovieState> {
                             <SearchBtn title="Search" />
                         </div>
                     </form>
-
                 </div>
             </div>
         );
@@ -94,6 +83,3 @@ class SearchMovie extends React.Component<SearchMovieProps, ISearchMovieState> {
 }
 
 export default withRouter(SearchMovie);
-
-// /search/:sort/:filter
-// /search/release/title-milk

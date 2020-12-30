@@ -8,32 +8,10 @@ import SearchMovie from "shared/searchMovie/SearchMovie";
 import Footer from 'shared/footer/Footer';
 import MovieList from 'shared/movieList/MovieList';
 import MovieSorter, { SortBy } from "shared/movieSorter/MovieSorter";
-
-interface IMovie {
-    id: number,
-    title: string,
-    tagline: string,
-    vote_average: number,
-    vote_count: number,
-    release_date: string,
-    poster_path: string,
-    overview: string,
-    budget: number,
-    revenue: number,
-    runtime: number,
-    genres: string[]
-}
+import { IMovie } from 'shared/interfaces/IMovie';
 
 interface IOwnProps {
     movies: IMovie[],
-    // sortedQuantity: number,
-
-    //     sortedQuantity: number,
-    //     sortMovieBy(param: string): void,
-    //     searchMovieBy(param1: string, param2: string): void,
-    //     searchMovies(): void
-    //     searchBy: string,
-    //     sortBy: string,
 }
 
 interface IHomePageState {
@@ -42,30 +20,17 @@ interface IHomePageState {
 
 type HomePageProps = RouteComponentProps & IOwnProps;
 
-
 class HomePage extends React.Component<HomePageProps, IHomePageState> {
 
     state = {
         sortBy: SortBy.Release,
     }
 
-    // componentDidUpdate() {
-    //     if (this.props.history.action !== "PUSH") {
-    //         const parsed = queryString.parse(this.props.history.location.search);
-    //         console.log(parsed);
-    //         // this.setState({ searchBy: parsed.searchBy as string, value: parsed.inputValue as string })
-    //     }
-
-    // }
-
     componentDidUpdate(prevProps: Readonly<HomePageProps>) {
-        console.log(prevProps);
-        console.log(this.props);
 
         if (this.props.history.action !== "PUSH" && this.props.location !== prevProps.location) {
-            const parsed = queryString.parse(this.props.location.search) as { inputValue: string, searchBy: string, sortBy: string };
-            const { inputValue, searchBy, sortBy } = parsed;
-            console.log(parsed);
+            const { sortBy } = queryString.parse(this.props.location.search) as { sortBy: string };
+
             let data = { sortBy: SortBy.Release };
 
             if (sortBy === "rating") {
@@ -74,6 +39,10 @@ class HomePage extends React.Component<HomePageProps, IHomePageState> {
             this.setState(data);
         }
 
+    }
+    componentDidMount() {
+        const parsed = queryString.parse(this.props.location.search);
+        this.setState({ sortBy: parsed.sortBy as SortBy || SortBy.Release });
     }
 
     sortMovieByHandler = (sortBy: SortBy) => {
@@ -84,12 +53,12 @@ class HomePage extends React.Component<HomePageProps, IHomePageState> {
     }
 
     submitSearchHandler = (inputValue: string, searchBy: string) => {
-        this.props.history.push(`/search?searchBy=${searchBy}&inputValue=${inputValue}`);
+        const parsed = queryString.parse(this.props.location.search);
+        const newSearchParams = queryString.stringify({ ...parsed, searchBy, inputValue });
+        this.props.history.push(`/search?${newSearchParams}`);
     }
 
     render() {
-        // console.log(this.props.location);
-        // console.log(this.props.history);
 
         return (
             <div className="home-page">
@@ -102,12 +71,6 @@ class HomePage extends React.Component<HomePageProps, IHomePageState> {
                 <Footer />
             </div>
         );
-
-
-
-
-
-
     }
 }
 
