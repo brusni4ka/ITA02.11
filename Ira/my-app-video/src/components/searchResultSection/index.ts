@@ -1,1 +1,0 @@
-export {SearchResultSection} from './SearchResultSection';

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {filmCardConnectProps} from "./index";
 import './styles.scss';
 
 interface IFilmCardProps {
@@ -7,10 +8,9 @@ interface IFilmCardProps {
   title: string,
   poster: string,
   release: string,
-  genres: string[],
-  filmId: number,
+  rating: number,
 
-  showFullFilmInfo(id: number): () => void
+  genres: string[],
 }
 
 export const FilmCard = ({
@@ -19,21 +19,29 @@ export const FilmCard = ({
                            release,
                            genres,
                            id,
-                           showFullFilmInfo,
-                           filmId
-                         }: IFilmCardProps) => {
+                           rating,
+                           fetchMoviesById,
+                         }: IFilmCardProps & filmCardConnectProps) => {
+
   return (
     <Link to={`/film/${id}`}>
-      <div className="card" onClick={showFullFilmInfo(filmId)}>
+      <div className="card"
+           onClick={() => {
+             fetchMoviesById(id);
+           }}
+      >
         <img className="poster" src={poster} alt="poster"/>
         <div className="section-about">
           <div className="film-info">
             <span className="film-title">{title}</span>
             <span className="film-genres">
-            {genres.map(genre => <span key={genre} className="film-genre">{genre}</span>)}
-          </span>
+              {genres.map(genre => <span key={genre} className="film-genre">{genre}</span>)}
+            </span>
           </div>
-          <span className="release">{release}</span>
+          <div className="film-rating-info">
+            <span className="release">{release}</span>
+            <span className="film-rating">Rating {rating}</span>
+          </div>
         </div>
       </div>
     </Link>

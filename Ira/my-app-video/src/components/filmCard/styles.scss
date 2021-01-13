@@ -5,15 +5,20 @@
   flex-direction: column;
   justify-content: flex-start;
   box-shadow: 0 0 16px 3px $searchResultSectionBackGroundColor;
+  min-height: 610px;
 
   &:hover {
     box-shadow:  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   }
+
+  @media (min-width: 1200px) {
+    min-height: 670px;
+  }
 }
 
 .poster {
-  height: 300px;
   width: 100%;
+  height: 480px;
   object-fit: cover;
   margin-bottom: 10px;
 }
@@ -30,6 +35,13 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 70%;
+}
+
+.film-genres {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .film-title,
@@ -38,20 +50,29 @@
   color: $filmTitleColor;
   text-transform: uppercase;
   margin-bottom: 20px;
+  margin-right: 5px;
 }
 
 .film-genre {
   border: 1px solid $genreBtnBackGroundColor;
   border-radius: 3px;
   padding: 4px;
+  margin-bottom: 5px;
   font-size: $filmGenre;
-
-  &:first-child {
-    margin-right: 12px;
-  }
 }
 
 .release {
-  font-size: $searchBtnFontSize;
+  font-size: $releaseFontSize;
+  color: $filmTitleColor;
+  margin-bottom: 8px;
+}
+
+.film-rating-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.film-rating {
+  font-size: $releaseFontSize;
   color: $filmTitleColor;
 }

@@ -5,31 +5,27 @@ import {FullInfoFilmCard} from "../fullInfoFilmCard";
 import {Footer} from "../layout/footer";
 import {FilmList} from "../filmList";
 import {Button} from "../shared/button/Button";
-import {IFilm} from "../../interfaces/IFilm";
+import Pagination from "../pagination";
+import {filmPageConnectProps} from "./index";
 import './styles.scss';
 
-interface IOwnProps {
-  films: IFilm[],
-
-  showFullFilmInfo(id: number): () => void,
-}
-
-//type TParams = { id: string };
-
-type FilmPageProps = RouteComponentProps<any> & IOwnProps;
+type FilmPageProps = RouteComponentProps<{ id: string }> & filmPageConnectProps;
 
 export class FilmPage extends React.Component<FilmPageProps> {
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    this.props.fetchMoviesById(Number(id));
+  }
+
+  componentWillUnmount() {
+    this.props.resetMovies();
+  }
 
   render() {
-
-    const filmId: number = +this.props.match.params.id;
-
     const {
-      films,
-      showFullFilmInfo,
-    }: IOwnProps = this.props;
-
-    const currentFilm: IFilm[] = films.filter((film) => film.id === +filmId);
+      movies,
+      currentFilm,
+    } = this.props;
 
     return (
       <>
@@ -46,14 +42,13 @@ export class FilmPage extends React.Component<FilmPageProps> {
         </div>
         <div className="top-header-section">
           <div className="search-result-content">
-            <FullInfoFilmCard film={currentFilm[0]}/>
+            <FullInfoFilmCard film={currentFilm}/>
           </div>
         </div>
         <FilmList
-          films={films}
-          showFullFilmInfo={showFullFilmInfo}
-          filmId={filmId}
+          films={movies}
         />
+        <Pagination />
         <Footer/>
       </>
     );

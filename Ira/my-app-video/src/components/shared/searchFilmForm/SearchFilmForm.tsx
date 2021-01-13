@@ -14,9 +14,9 @@ interface IOwnProps {
   onSearchSubmit({searchValue, searchBy}: { searchValue: string, searchBy: string }): void,
 }
 
-enum searchBy {
+enum SearchBy {
   title = "title",
-  genre = "genre"
+  genre = "genres"
 }
 
 type SearchFilmFormProps = IOwnProps & RouteComponentProps<{ search?: string, searchBy?: string }>;
@@ -24,26 +24,31 @@ type SearchFilmFormProps = IOwnProps & RouteComponentProps<{ search?: string, se
 class SearchFilmForm extends React.Component <SearchFilmFormProps, ISearchFilmFormState> {
   state: ISearchFilmFormState = {
     searchValue: '',
-    searchBy: '',
+    searchBy: SearchBy.title,
   };
 
   componentDidMount() {
-    const locationSearch = this.props.location.search;
-    const params = queryString.parse(locationSearch);
+    const params: { search: string, sortBy: string, searchBy: string } =
+      queryString.parse(this.props.location.search) as
+        { search: string, searchBy: string, sortBy: string };
 
     this.setState({
       searchValue: params.search || '',
       searchBy: params.searchBy || 'title',
-    })
+    });
   };
 
   componentDidUpdate(prevProps: Readonly<SearchFilmFormProps>) {
 
-    if(this.props.history.action !== 'PUSH' && this.props.location !== prevProps.location) {
-      const params = queryString.parse(this.props.location.search) as {search: string, searchBy: string, sortBy: string};
-      const {search='', searchBy='title'} = params;
+    if (this.props.history.action !== 'PUSH' && this.props.location !== prevProps.location) {
+      const params: { search: string, sortBy: string, searchBy: string } =
+        queryString.parse(this.props.location.search) as
+          { search: string, searchBy: string, sortBy: string };
 
-      this.setState({searchValue: search, searchBy});
+      this.setState({
+        searchValue: params.search || '',
+        searchBy: params.searchBy || 'title',
+      });
     }
   };
 
@@ -85,14 +90,18 @@ class SearchFilmForm extends React.Component <SearchFilmFormProps, ISearchFilmFo
         <div className="btn-group">
           <div className="search-by-btn">
             <span className="search-by-label">Search by</span>
-            <Button title={searchBy.title}
+            <Button title={SearchBy.title}
                     type="button"
-                    className={this.state.searchBy === searchBy.title ? 'btn btn-by-title active' : 'btn btn-by-title'}
-                    onClick={this.searchBy('title')}
+                    className={this.state.searchBy === SearchBy.title ?
+                      'btn btn-by-title active' :
+                      'btn btn-by-title'}
+                    onClick={this.searchBy(SearchBy.title)}
             />
-            <Button title={searchBy.genre}
-                    className={this.state.searchBy === searchBy.genre ? 'btn btn-by-genre active' : 'btn btn-by-genre'}
-                    onClick={this.searchBy('genre')}
+            <Button title={"genre"}
+                    className={this.state.searchBy === SearchBy.genre ?
+                      'btn btn-by-genre active' :
+                      'btn btn-by-genre'}
+                    onClick={this.searchBy(SearchBy.genre)}
             />
           </div>
           <Button

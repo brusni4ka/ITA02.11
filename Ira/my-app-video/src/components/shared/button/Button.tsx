@@ -10,6 +10,7 @@ export const Button = ({
                          type = "button",
                          isLink = false,
                          to = '',
+                         id,
                        }: IButtonProps) => {
 
   return (
@@ -22,6 +23,7 @@ export const Button = ({
             className={className}
             onClick={onClick}
             type={type}
+            id={id}
           >{title}</button>
       }
     </>

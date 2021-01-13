@@ -3,7 +3,8 @@ export interface IButtonProps {
   className: string,
   type?: 'submit' | 'button',
   isLink?: boolean,
-  to?: string
+  to?: string,
+  id?: string,
 
   onClick?(e?: any): void,
 }

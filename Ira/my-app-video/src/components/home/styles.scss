@@ -1,5 +1,5 @@
 .top-header-section {
-  background-image: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.658) 70%),  url("https://akket.com/wp-content/uploads/2018/10/Apple-Filmy-Serialy-56.jpg");
+  background-image: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.658) 70%), url("https://akket.com/wp-content/uploads/2018/10/Apple-Filmy-Serialy-56.jpg");
   padding: 100px 0 20px;
 }
 
@@ -24,3 +24,10 @@
   }
 }
 
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
