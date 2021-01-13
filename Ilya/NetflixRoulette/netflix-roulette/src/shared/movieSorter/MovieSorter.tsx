@@ -3,20 +3,20 @@ import "./MovieSorter.scss";
 
 interface IMovieSorterProps {
     sortedQuantity: number,
-    onSortChange(sortBy: string): void,
-    sortBy: string
+    onSortChange(sortBy: SortBy): void,
+    sortBy: SortBy
 }
 
 export enum SortBy {
-    Rating = "rating",
-    Release = "release"
+    Rating = "vote_average",
+    Release = "release_date"
 }
 
 
 class MovieSorter extends React.Component<IMovieSorterProps>{
 
     handlerSortBy = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.props.onSortChange(e.target.value);
+        this.props.onSortChange(e.target.value as SortBy);
     }
 
     render() {

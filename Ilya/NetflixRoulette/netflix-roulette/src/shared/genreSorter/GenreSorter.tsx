@@ -1,20 +1,15 @@
+import { HomePageConnectProps } from "pages/home";
 import React from "react";
 import "./GenreSorter.scss";
 
-interface IGenreSorter {
-    genre: string,
-}
+type GenreSorterProps = HomePageConnectProps;
 
-class GenreSorter extends React.Component<{}, IGenreSorter>{
-    state = {
-        genre: "Drama",
-    }
-
+class GenreSorter extends React.Component<GenreSorterProps>{
     render() {
         return (
             <div className="genre-sorter">
                 <div className="layout">
-                    <p>Sort by {this.state.genre} genre</p>
+                    <p>Sort by {this.props.movie.genres[0]} genre</p>
                 </div>
             </div>
         );

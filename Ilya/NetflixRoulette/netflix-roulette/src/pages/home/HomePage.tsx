@@ -7,67 +7,58 @@ import Header from 'shared/header/Header';
 import SearchMovie from "shared/searchMovie/SearchMovie";
 import Footer from 'shared/footer/Footer';
 import MovieList from 'shared/movieList/MovieList';
+import Pagination from 'shared/pagination/Pagination';
 import MovieSorter, { SortBy } from "shared/movieSorter/MovieSorter";
-import { IMovie } from 'shared/interfaces/IMovie';
+import { HomePageConnectProps } from '.';
 
-interface IOwnProps {
-    movies: IMovie[],
-}
+type HomePageProps = RouteComponentProps & HomePageConnectProps;
 
-interface IHomePageState {
-    sortBy: SortBy,
-}
+class HomePage extends React.Component<HomePageProps> {
 
-type HomePageProps = RouteComponentProps & IOwnProps;
+    componentDidMount() {
+        this.props.requestMovies(this.props.location.search);
+    }
 
-class HomePage extends React.Component<HomePageProps, IHomePageState> {
-
-    state = {
-        sortBy: SortBy.Release,
+    componentWillUnmount() {
+        this.props.resetMovies();
     }
 
     componentDidUpdate(prevProps: Readonly<HomePageProps>) {
 
         if (this.props.history.action !== "PUSH" && this.props.location !== prevProps.location) {
-            const { sortBy } = queryString.parse(this.props.location.search) as { sortBy: string };
-
-            let data = { sortBy: SortBy.Release };
-
-            if (sortBy === "rating") {
-                data = { sortBy: SortBy.Rating };
-            }
-            this.setState(data);
+            this.props.requestMovies(this.props.location.search);
         }
-
-    }
-    componentDidMount() {
-        const parsed = queryString.parse(this.props.location.search);
-        this.setState({ sortBy: parsed.sortBy as SortBy || SortBy.Release });
     }
 
     sortMovieByHandler = (sortBy: SortBy) => {
-        this.setState({ sortBy: sortBy });
         const parsed = queryString.parse(this.props.location.search);
         const newSearchParams = queryString.stringify({ ...parsed, sortBy });
         this.props.history.push(`/search?${newSearchParams}`);
+
+        this.props.requestMovies(newSearchParams);
     }
 
-    submitSearchHandler = (inputValue: string, searchBy: string) => {
+    submitSearchHandler = (search: string, searchBy: string) => {
         const parsed = queryString.parse(this.props.location.search);
-        const newSearchParams = queryString.stringify({ ...parsed, searchBy, inputValue });
+        const newSearchParams = queryString.stringify({ ...parsed, search, searchBy });
         this.props.history.push(`/search?${newSearchParams}`);
+
+        this.props.requestMovies(newSearchParams);
     }
 
     render() {
-
+        const sortBy: SortBy = queryString.parse(this.props.location.search).sortBy as SortBy || SortBy.Release;
         return (
             <div className="home-page">
                 <div className="wrapper">
                     <Header />
                     <SearchMovie onSubmit={this.submitSearchHandler} />
                 </div>
-                <MovieSorter sortedQuantity={this.props.movies.length} onSortChange={this.sortMovieByHandler} sortBy={this.state.sortBy} />
-                <MovieList movies={this.props.movies} />
+                <MovieSorter sortedQuantity={this.props.total} onSortChange={this.sortMovieByHandler} sortBy={sortBy} />
+                {this.props.loading ? (
+                    <div>Loading...</div>
+                ) : (<MovieList {...this.props} />)}
+                <Pagination {...this.props} />
                 <Footer />
             </div>
         );

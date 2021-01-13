@@ -8,32 +8,46 @@ import Footer from 'shared/footer/Footer';
 import GenreSorter from 'shared/genreSorter/GenreSorter';
 import MovieDecscription from 'shared/movieDescription/MovieDescription';
 import MovieList from 'shared/movieList/MovieList';
-import { IMovie } from 'shared/interfaces/IMovie';
+import { MoviePageConnectProps } from '.';
 
-interface IMoviePageOwnProps {
-    movies: IMovie[],
-}
+// interface IMoviePageOwnProps {
+//     movies: IMovie[],
+// }
 
-type MoviePageProps = RouteComponentProps<{ id: string }> & IMoviePageOwnProps;
+type MoviePageProps = RouteComponentProps<{ id: string }> & MoviePageConnectProps;
 
 class MoviePage extends React.Component<MoviePageProps>{
+
+    componentDidMount() {
+        this.props.requestMovieById(this.props.match.params.id);
+
+    }
+    componentWillUnmount() {
+        this.props.resetMovies();
+    }
+
     render() {
-        const film = this.props.movies.filter((movie) => movie.id === Number(this.props.match.params.id));
         return (
-            <div className="movie-page">
-                <div className="wrapper">
-                    <Header />
-                    <div className="layout">
-                        <div className="btn">
-                            <Link to="/"><button className="back-to-search-btn">Search</button></Link>
+            (this.props.loading) ? (
+                <div>Loading...</div>
+            ) : (
+                    <div className="movie-page">
+                        <div className="wrapper">
+                            <Header />
+                            <div className="layout">
+                                <div className="btn">
+                                    <Link to="/"><button className="back-to-search-btn">Search</button></Link>
+                                </div>
+                            </div>
+                            <MovieDecscription film={this.props.movie} />
                         </div>
+                        <GenreSorter {...this.props} />
+                        <MovieList {...this.props} />
+                        <Footer />
                     </div>
-                    <MovieDecscription film={film} />
-                </div>
-                <GenreSorter />
-                <MovieList movies={this.props.movies} />
-                <Footer />
-            </div>
+                )
+
+
         );
     }
 }

@@ -3,7 +3,7 @@ import "./MovieDescription.scss";
 import { IMovie } from 'shared/interfaces/IMovie';
 
 interface IMovieDecscriptionProps {
-    film: IMovie[]
+    film: IMovie
 }
 
 class MovieDecscription extends React.Component<IMovieDecscriptionProps> {
@@ -11,16 +11,16 @@ class MovieDecscription extends React.Component<IMovieDecscriptionProps> {
         return (
             <div className="description-container" >
                 <div className="description-item">
-                    <img src={this.props.film[0].poster_path} alt="poster" />
+                    <img src={this.props.film.poster_path} alt="poster" />
                 </div>
                 <div className="description-item">
-                    <h1>{this.props.film[0].title}</h1>
+                    <h1>{this.props.film.title}</h1>
                     <p>Oscar-winning Movies</p>
                     <div className="param-container">
                         <p className="release-year">1994</p>
                         <p className="duration">154 min</p>
                     </div>
-                    <p className="summary">{this.props.film[0].overview}</p>
+                    <p className="summary">{this.props.film.overview}</p>
                 </div>
             </div>
         );

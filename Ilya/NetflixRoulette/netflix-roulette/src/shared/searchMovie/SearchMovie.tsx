@@ -6,7 +6,7 @@ import "./SearchMovie.scss";
 import SearchBtn from "shared/button/SearchBtn";
 
 interface ISearchMovieOwnProps {
-    onSubmit(inputValue: string, search: string): void,
+    onSubmit(search: string, searchBy: string): void,
 }
 
 interface ISearchMovieState {
@@ -17,7 +17,7 @@ interface ISearchMovieState {
 type SearchMovieProps = ISearchMovieOwnProps & RouteComponentProps;
 
 export enum SearchBy {
-    Genre = "genre",
+    Genre = "genres",
     Title = "title"
 }
 
@@ -30,18 +30,18 @@ class SearchMovie extends React.Component<SearchMovieProps, ISearchMovieState> {
 
     componentDidMount() {
         const parsed = queryString.parse(this.props.location.search);
-        this.setState({ searchBy: parsed.searchBy as string || SearchBy.Title, value: parsed.inputValue as string || "" })
+        this.setState({ searchBy: parsed.searchBy as string || SearchBy.Title, value: parsed.search as string || "" })
     }
 
     componentDidUpdate(prevProps: Readonly<SearchMovieProps>) {
 
         if (this.props.history.action !== "PUSH" && this.props.location !== prevProps.location) {
-            const { inputValue = "", searchBy = SearchBy.Title } = queryString.parse(this.props.location.search) as { inputValue: string, searchBy: string };
-            this.setState({ value: inputValue, searchBy: searchBy });
+            const { search = "", searchBy = SearchBy.Title } = queryString.parse(this.props.location.search) as { search: string, searchBy: string };
+            this.setState({ value: search, searchBy: searchBy });
         }
     }
 
-    handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({ value: e.target.value });
     }
 
@@ -60,7 +60,7 @@ class SearchMovie extends React.Component<SearchMovieProps, ISearchMovieState> {
                 <div className="layout">
                     <h1>find your movie</h1>
                     <form onSubmit={this.handlerSubmitForm}>
-                        <input type="text" name="search" placeholder="Find your movie" value={this.state.value} onChange={this.handleChange} />
+                        <input type="text" name="search" placeholder="Find your movie" value={this.state.value} onChange={this.handlerChange} />
                         <div className="genres-btn">
                             <div className="btn-container">
                                 <p>Search by</p>
