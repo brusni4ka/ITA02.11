@@ -5,12 +5,12 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from 'rootSaga';
 
 const rootReducer = combineReducers({
-    homePage: moviesReducer,
+    moviesStore: moviesReducer,
 });
 
 
 export interface RootState {
-    homePage: MoviesReducerState,
+    moviesStore: MoviesReducerState,
 }
 
 const composeEnhancers = composeWithDevTools({ trace: true });

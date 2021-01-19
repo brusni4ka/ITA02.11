@@ -5,11 +5,11 @@ export enum MoviesActionTypes {
     REQUEST_MOVIES = 'requestMovies',
     REQUEST_MOVIES_SUCCESS = 'requestMoviesSuccess',
     REQUEST_MOVIES_ERROR = 'requestMoviesError',
-
     RESET_MOVIES = 'resetMovies',
 
     SET_CURRENT_PAGE = 'setCurrentPage',
 
+    REQUEST_MOVIE_DETAILS_DATA = 'requestMovieDetailsData',
 
     REQUEST_MOVIE_BY_ID = 'requestMovieById',
     REQUEST_MOVIE_BY_ID_SUCCESS = 'requestMovieByIdSuccess',
@@ -19,7 +19,9 @@ export enum MoviesActionTypes {
 
 export interface RequestMoviesAction {
     type: MoviesActionTypes.REQUEST_MOVIES,
-    payload: string
+    payload: {
+        search: string
+    }
 }
 
 export interface RequestMoviesSuccessAction {
@@ -60,6 +62,14 @@ export interface SetCurrentPageAction {
     currentPage: number
 }
 
+// requestMovieDetailsData
+export interface RequestMovieDetailsDataAction {
+    type: MoviesActionTypes.REQUEST_MOVIE_DETAILS_DATA,
+    payload: {
+        id: string,
+    }
+}
+
 export type MoviesAction =
     RequestMoviesAction
     | RequestMoviesSuccessAction
@@ -68,14 +78,17 @@ export type MoviesAction =
     | RequestMovieByIdSuccessAction
     | RequestMovieByIdErrorAction
     | ResetMoviesAction
-    | SetCurrentPageAction;
+    | SetCurrentPageAction
+    | RequestMovieDetailsDataAction;
 
 
 
 
 export const requestMovies = (search: string): RequestMoviesAction => ({
     type: MoviesActionTypes.REQUEST_MOVIES,
-    payload: search
+    payload: {
+        search
+    }
 });
 
 export const requestMoviesSuccess = (movies: IMovie[], total: number): RequestMoviesSuccessAction => ({
@@ -97,7 +110,7 @@ export const requestMovieById = (id: string): RequestMovieByIdAction => ({
     }
 });
 
-export const requestMovieByIdSuccess = (movie: IMovie, filter: string): RequestMovieByIdSuccessAction => ({
+export const requestMovieByIdSuccess = (movie: IMovie): RequestMovieByIdSuccessAction => ({
     type: MoviesActionTypes.REQUEST_MOVIE_BY_ID_SUCCESS,
     payload: {
         movie
@@ -116,3 +129,12 @@ export const setCurrentPage = (currentPage: number): SetCurrentPageAction => ({
     type: MoviesActionTypes.SET_CURRENT_PAGE,
     currentPage
 });
+
+// requestMovieDetailsData
+export const requestMovieDetailsData = (id: string): RequestMovieDetailsDataAction => ({
+    type: MoviesActionTypes.REQUEST_MOVIE_DETAILS_DATA,
+    payload: {
+        id
+    }
+});
+

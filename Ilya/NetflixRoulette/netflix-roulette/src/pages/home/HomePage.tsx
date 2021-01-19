@@ -46,7 +46,54 @@ class HomePage extends React.Component<HomePageProps> {
         this.props.requestMovies(newSearchParams);
     }
 
+    //Pagination Methods
+    changePage = (e: React.MouseEvent<HTMLButtonElement>) => {
+        let page;
+        const elem: HTMLButtonElement = e.target as HTMLButtonElement;
+
+        if (elem.value === "next" && this.props.currentPage < Math.ceil(this.props.total / this.props.limit)) {
+            page = this.props.currentPage + 1;
+            this.props.setCurrentPage(page);
+            const parsed = queryString.parse(this.props.location.search);
+            const newSearchParams = queryString.stringify({ ...parsed, page });
+            this.props.history.push(`/search?${newSearchParams}`);
+
+            this.props.requestMovies(newSearchParams);
+
+        } else if (elem.value === "prev" && this.props.currentPage > 1) {
+            page = this.props.currentPage - 1;
+            this.props.setCurrentPage(page);
+            const parsed = queryString.parse(this.props.location.search);
+            const newSearchParams = queryString.stringify({ ...parsed, page });
+            this.props.history.push(`/search?${newSearchParams}`);
+
+            this.props.requestMovies(newSearchParams);
+        }
+    }
+
+    moveToLimitPage = (e: React.MouseEvent<HTMLButtonElement>) => {
+        console.log(e);
+        let page;
+        const elem: HTMLButtonElement = e.target as HTMLButtonElement;
+
+        page = (elem.value === "1") ? 1 : (Math.ceil(this.props.total / this.props.limit));
+
+        this.props.setCurrentPage(page);
+        const parsed = queryString.parse(this.props.location.search);
+        const newSearchParams = queryString.stringify({ ...parsed, page });
+        this.props.history.push(`/search?${newSearchParams}`);
+
+        this.props.requestMovies(newSearchParams);
+    }
+
     render() {
+        let currentPage = this.props.currentPage;
+        const parsed = queryString.parse(this.props.location.search);
+
+        if ("page" in parsed) {
+            currentPage = Number(parsed.page);
+        }
+
         const sortBy: SortBy = queryString.parse(this.props.location.search).sortBy as SortBy || SortBy.Release;
         return (
             <div className="home-page">
@@ -57,8 +104,8 @@ class HomePage extends React.Component<HomePageProps> {
                 <MovieSorter sortedQuantity={this.props.total} onSortChange={this.sortMovieByHandler} sortBy={sortBy} />
                 {this.props.loading ? (
                     <div>Loading...</div>
-                ) : (<MovieList {...this.props} />)}
-                <Pagination {...this.props} />
+                ) : (<MovieList movies={this.props.movies} total={this.props.total} />)}
+                <Pagination total={this.props.total} limit={this.props.limit} currentPage={currentPage} onChangePage={this.changePage} onMoveToLimitPage={this.moveToLimitPage} />
                 <Footer />
             </div>
         );

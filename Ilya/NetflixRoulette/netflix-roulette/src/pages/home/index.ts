@@ -6,12 +6,12 @@ import HomePage from 'pages/home/HomePage';
 
 const mapStateToProps = (state: RootState) => {
     return {
-        movies: state.homePage.movies,
-        loading: state.homePage.loading,
-        movie: state.homePage.movie,
-        limit: state.homePage.limit,
-        total: state.homePage.total,
-        currentPage: state.homePage.currentPage,
+        movies: state.moviesStore.movies,
+        loading: state.moviesStore.loading,
+        movie: state.moviesStore.movie,
+        limit: state.moviesStore.limit,
+        total: state.moviesStore.total,
+        currentPage: state.moviesStore.currentPage,
     }
 }
 

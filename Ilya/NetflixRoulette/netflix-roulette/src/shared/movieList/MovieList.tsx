@@ -1,17 +1,19 @@
 import React from 'react';
 import "./MovieList.scss";
 import MovieCard from "shared/movieCard/MovieCard"
-import { Link, RouteComponentProps } from "react-router-dom";
-import { HomePageConnectProps } from 'pages/home';
+import { Link } from "react-router-dom";
 import { IMovie } from 'shared/interfaces/IMovie';
 
-type IMovieListProps = HomePageConnectProps & RouteComponentProps;
+interface IMovieListProps {
+    movies: IMovie[],
+    total: number,
+}
 
 class MovieList extends React.Component<IMovieListProps> {
 
     render() {
         return (
-            <main>
+            <div className="movie-list-container">
                 <div className="films-list">
                     <div className="layout">
                         {this.props.total === 0 ? (
@@ -21,13 +23,13 @@ class MovieList extends React.Component<IMovieListProps> {
                         ) : (< div className="films-container">
                             {this.props.movies.map((m: IMovie) => {
                                 return (
-                                    <Link to={`/moviePage/${m.id}`} key={m.id}><MovieCard key={m.id} film={m} {...this.props} /></Link>
+                                    <Link to={`/moviePage/${m.id}`} key={m.id}><MovieCard key={m.id} film={m} /></Link>
                                 )
                             })}
                         </div>)}
                     </div>
                 </div>
-            </main >
+            </div>
         );
     }
 }

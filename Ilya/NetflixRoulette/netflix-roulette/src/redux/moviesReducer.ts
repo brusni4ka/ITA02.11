@@ -44,7 +44,6 @@ export const moviesReducer = (state = MoviesDefaultState, action: MoviesAction) 
             }
         }
 
-
         case MoviesActionTypes.REQUEST_MOVIE_BY_ID: {
             return {
                 ...state,
@@ -72,6 +71,13 @@ export const moviesReducer = (state = MoviesDefaultState, action: MoviesAction) 
             return {
                 ...state,
                 currentPage: action.currentPage
+            }
+        }
+
+        // requestMovieDetailsData
+        case MoviesActionTypes.REQUEST_MOVIE_DETAILS_DATA: {
+            return {
+                ...state,
             }
         }
         default: return state;

@@ -14,8 +14,8 @@ class App extends React.Component<{}> {
         <div className="App">
           <Router>
             <Switch>
-              <Route path="/" exact render={(props: RouteComponentProps) => <HomePage  {...props} />} />
-              <Route path="/search" render={(props: RouteComponentProps) => <HomePage  {...props} />} />
+              <Route path="/" exact component={HomePage} />
+              <Route path="/search" component={HomePage} />
               <Route path="/moviePage/:id" render={(props: RouteComponentProps<{ id: string }>) => <MoviePage {...props} />} />
             </Switch>
           </Router>

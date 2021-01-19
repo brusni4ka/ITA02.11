@@ -28,8 +28,14 @@
         cursor:pointer;
         &:hover{
             background-color:#e95656;
-
         }
+        
+    }
+    button[disabled]{
+        background-color: #e7e5e5;
+        color: #bfbbbb;
+
+
     }
 
 }
