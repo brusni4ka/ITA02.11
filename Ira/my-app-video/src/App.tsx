@@ -16,18 +16,12 @@ class App extends React.Component {
         <Router>
           <ErrorBoundary>
             <Switch>
-              <Route path={BASE_URL} exact
-                     render={(props: RouteComponentProps) => <Home
-                       {...props}
-                     />}/>
+              <Route path={BASE_URL} exact component={Home}/>
               <Route path={SEARCH}
-                     render={(props: RouteComponentProps) => <Home
-                       {...props}
-                     />}
+                     component={Home}
               />
-
               <Route path={FILM}
-                     render={(
+                     component={(
                        props: RouteComponentProps<{ id: string }>
                      ) => <FilmPage
                        {...props}

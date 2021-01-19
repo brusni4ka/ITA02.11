@@ -14,7 +14,7 @@ interface IOwnProps {
   onSearchSubmit({searchValue, searchBy}: { searchValue: string, searchBy: string }): void,
 }
 
-enum SearchBy {
+export enum SearchBy {
   title = "title",
   genre = "genres"
 }
@@ -34,7 +34,7 @@ class SearchFilmForm extends React.Component <SearchFilmFormProps, ISearchFilmFo
 
     this.setState({
       searchValue: params.search || '',
-      searchBy: params.searchBy || 'title',
+      searchBy: params.searchBy || SearchBy.title,
     });
   };
 
@@ -47,7 +47,7 @@ class SearchFilmForm extends React.Component <SearchFilmFormProps, ISearchFilmFo
 
       this.setState({
         searchValue: params.search || '',
-        searchBy: params.searchBy || 'title',
+        searchBy: params.searchBy || SearchBy.title,
       });
     }
   };

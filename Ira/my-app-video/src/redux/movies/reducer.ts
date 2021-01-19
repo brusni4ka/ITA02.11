@@ -15,7 +15,7 @@ const initialState: IMovieInitialState = {
   totalMovies: 0,
 };
 
-export const MovieReducer = (state = initialState, action: moviesAction) => {
+export const MoviesReducer = (state = initialState, action: moviesAction) => {
   switch (action.type) {
     case MovieActionTypes.FETCH_MOVIES: {
       return {

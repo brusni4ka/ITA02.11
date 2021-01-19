@@ -9,6 +9,7 @@ import SearchFilmForm from "../shared/searchFilmForm";
 import {queryString} from "../../constants/queryString";
 import {movieConnectProps} from "./index";
 import loader from '../../accets/Dual Ball-1s-200px.svg';
+import {SortBy} from "../sortingSection/SortingSection";
 import './styles.scss';
 
 type HomeProps = RouteComponentProps & movieConnectProps;
@@ -16,21 +17,8 @@ type HomeProps = RouteComponentProps & movieConnectProps;
 export class Home extends React.Component<HomeProps> {
 
   componentDidMount() {
-    const params: { search: string, searchBy: string, sortBy: string, page: number } =
-      queryString.parse(this.props.location.search) as
-        { search: string, searchBy: string, sortBy: string, page: number };
-
-    if (Object.keys(params).length === 0) {
-      this.props.fetchMovies();
-    } else {
-      this.props.fetchMovies({
-        search: params.search,
-        searchBy: params.searchBy,
-        sortBy: params.sortBy || 'release_date',
-        page: Number(params.page) || 1,
-      });
-    }
-  }
+    this.getMovies();
+  };
 
   componentWillUnmount() {
     this.props.resetMovies();
@@ -38,36 +26,44 @@ export class Home extends React.Component<HomeProps> {
 
   componentDidUpdate(prevProps: Readonly<HomeProps>) {
     if (this.props.history.action !== 'PUSH' && this.props.location !== prevProps.location) {
-
-      const params: { search: string, searchBy: string, sortBy: string, page: number } =
-        queryString.parse(this.props.location.search) as
-          { search: string, searchBy: string, sortBy: string, page: number };
-
-      if (Object.keys(params).length === 0) {
-        this.props.fetchMovies();
-      } else {
-        this.props.fetchMovies({
-          search: params.search,
-          searchBy: params.searchBy,
-          sortBy: params.sortBy || 'release_date',
-          page: Number(params.page) || 1,
-        });
-      }
+      this.getMovies();
     }
   };
 
-  onSearchSubmit = ({searchValue, searchBy}: { searchValue: string, searchBy: string }): void => {
-    const params: string = queryString.stringify({
+  getMovies = () => {
+    const params: { search: string, searchBy: string, sortBy: string, page: number } =
+      queryString.parse(this.props.location.search) as
+        { search: string, searchBy: string, sortBy: string, page: number };
+
+    if (Object.keys(params).length === 0) {
+      this.props.fetchMovies( {sortBy: SortBy.release});
+    } else {
+      this.props.fetchMovies({
+        search: params.search,
+        searchBy: params.searchBy,
+        sortBy: params.sortBy || SortBy.release,
+        page: Number(params.page) || 1,
+      });
+    }
+  };
+
+  onSearchSubmit = ({searchValue, searchBy}: { searchValue: string, searchBy: string}): void => {
+    const params: { search: string, searchBy: string, sortBy: string, page: number } =
+      queryString.parse(this.props.location.search) as
+        { search: string, searchBy: string, sortBy: string, page: number };
+
+    const newParams: string = queryString.stringify({
+      ...params,
       search: searchValue,
-      searchBy: searchBy
+      searchBy: searchBy,
     });
 
-    this.props.history.push(`/search?${params}`);
+    this.props.history.push(`/search?${newParams}`);
 
     this.props.fetchMovies({
       search: searchValue,
       searchBy: searchBy,
-      sortBy: 'release_date',
+      sortBy: params.sortBy || SortBy.release,
     });
   };
 
@@ -85,6 +81,21 @@ export class Home extends React.Component<HomeProps> {
       sortBy: btnName,
       page: 1,
     });
+  }
+
+  onPage = (btnId: number) => {
+    // console.log('id', btnId)
+    const params: { search: string, searchBy: string, sortBy: string, page: number } =
+      queryString.parse(this.props.location.search) as
+        { search: string, searchBy: string, sortBy: string, page: number };
+
+    const newParams: string = queryString.stringify({...params, page: btnId});
+    const payLoadParams: { search: string, searchBy: string, sortBy: string, page: number } = {
+      search: params.search, searchBy: params.searchBy, sortBy: params.sortBy || 'release_date', page: btnId
+    };
+
+    this.props.history.push(`/search?${newParams}`);
+    this.props.fetchMovies(payLoadParams);
   }
 
   render() {
@@ -113,14 +124,16 @@ export class Home extends React.Component<HomeProps> {
               </div>
             </div>
             <SortingSection
-              sortBy={params.sortBy || 'release_date'}
+              sortBy={params.sortBy || SortBy.release}
               result={movies.length}
               onToggleSortBy={this.onToggleSortBy}
             />
             <FilmList
               films={movies}
             />
-            <Pagination />
+            <Pagination
+              onPage={this.onPage}
+            />
             <Footer/>
           </>
         )

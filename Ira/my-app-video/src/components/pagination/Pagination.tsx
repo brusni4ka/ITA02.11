@@ -5,50 +5,28 @@ import {queryString} from "../../constants/queryString";
 import {PaginationConnectProps} from "./index";
 import "./styles.scss";
 
-type PaginationType = PaginationConnectProps & RouteComponentProps;
+interface IPaginationProps {
+  onPage(btnId: number): void,
+}
+
+type PaginationType = PaginationConnectProps & RouteComponentProps & IPaginationProps;
 
 class Pagination extends React.Component<PaginationType> {
 
-  onPage = (btnId: number) => {
+  getNumberPage = (): number => {
     const params: { search: string, searchBy: string, sortBy: string, page: number } =
       queryString.parse(this.props.location.search) as
         { search: string, searchBy: string, sortBy: string, page: number };
-
-    const newParams: string = queryString.stringify({...params, page: btnId});
-    const payLoadParams: { search: string, searchBy: string, sortBy: string, page: number } = {
-      search: params.search, searchBy: params.searchBy, sortBy: params.sortBy || 'release_date', page: btnId
-    };
-
-    this.props.history.push(`/search?${newParams}`);
-    this.props.fetchMovies(payLoadParams);
+    return  Number(params.page) || 1;
   }
-
   onNextPage = () => {
-    const params: { search: string, searchBy: string, sortBy: string, page: number } =
-      queryString.parse(this.props.location.search) as
-        { search: string, searchBy: string, sortBy: string, page: number };
-    const page = Number(params.page) || 1;
-    const newParams: string = queryString.stringify({...params, page: page + 1});
-    const payLoadParams: { search: string, searchBy: string, sortBy: string, page: number } = {
-      search: params.search, searchBy: params.searchBy, sortBy: params.sortBy || 'release_date', page: page + 1
-    };
-
-    this.props.history.push(`/search?${newParams}`);
-    this.props.fetchMovies(payLoadParams);
+    const page = this.getNumberPage();
+    this.props.onPage(page + 1);
   }
 
   onPrevPage = () => {
-    const params: { search: string, searchBy: string, sortBy: string, page: number } =
-      queryString.parse(this.props.location.search) as
-        { search: string, searchBy: string, sortBy: string, page: number };
-    const page = Number(params.page) || 1;
-    const newParams: string = queryString.stringify({...params, page: page - 1});
-    const payLoadParams: { search: string, searchBy: string, sortBy: string, page: number } = {
-      search: params.search, searchBy: params.searchBy, sortBy: params.sortBy || 'release_date', page: page - 1
-    };
-
-    this.props.history.push(`/search?${newParams}`);
-    this.props.fetchMovies(payLoadParams);
+    const page = this.getNumberPage();
+    this.props.onPage(page - 1);
   }
 
 
@@ -94,7 +72,7 @@ class Pagination extends React.Component<PaginationType> {
         {arrBtn.map(number => <Button
             title={number.toString()}
             className={page === number ? "btn currentPageButton" : "btn pageButton"}
-            onClick={() => this.onPage(number)}
+            onClick={() => this.props.onPage(number)}
             key={number}
           />
         )}

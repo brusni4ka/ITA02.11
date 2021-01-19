@@ -10,12 +10,12 @@ interface IFilmsProps {
 export const FilmList = ({films}: IFilmsProps) => {
 
   return (
-    <>
+    <main>
       {
         films.length !== 0 ?
-          <main className="main">
-            {films.map((film, index) => <FilmCard
-              key={film.id + index}
+          <div className="main">
+            {films.map(film => <FilmCard
+              key={film.id}
               id={film.id}
               title={film.title}
               poster={film.poster_path}
@@ -23,10 +23,10 @@ export const FilmList = ({films}: IFilmsProps) => {
               genres={film.genres}
               rating={film.vote_average}
             />)}
-          </main>
+          </div>
           :
-          <main className="main-no-result">no film found</main>
+          <div className="main-no-result">no film found</div>
       }
-    </>
+    </main>
   );
 }

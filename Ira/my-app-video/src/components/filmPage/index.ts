@@ -1,7 +1,7 @@
 import {connect, ConnectedProps} from "react-redux";
 import {IRootState} from "../../redux";
 import {FilmPage} from "./FilmPage";
-import {fetchMovieById, fetchMovies, resetMovies} from "../../redux/movies/actions";
+import {initMoviePage, fetchMovies, resetMovies} from "../../redux/movies/actions";
 
 
 const mapStateToProps = (state: IRootState) => ({
@@ -10,7 +10,7 @@ const mapStateToProps = (state: IRootState) => ({
 });
 
 const mapDispatchToProps = {
-  fetchMoviesById: fetchMovieById,
+  initMoviePage: initMoviePage,
   fetchMovies: fetchMovies,
   resetMovies,
 

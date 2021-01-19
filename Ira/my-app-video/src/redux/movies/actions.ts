@@ -3,17 +3,17 @@ import {IFilm} from "../../interfaces/IFilm";
 
 export interface IFetchMovies {
   type: MovieActionTypes.FETCH_MOVIES,
-  payload?: {
-    search: string,
-    searchBy: string,
+  payload: {
+    search?: string,
+    searchBy?: string,
     sortBy: string,
     page?: number,
   }
 }
 
-export const fetchMovies = (payload?: {
-  search: string,
-  searchBy: string,
+export const fetchMovies = (payload: {
+  search?: string,
+  searchBy?: string,
   sortBy: string,
   page?: number,
 }): IFetchMovies => ({
@@ -61,6 +61,20 @@ export const fetchMovieByIdSuccess = (payload: IFilm): IFetchMovieByIdSuccess =>
   type: MovieActionTypes.FETCH_MOVIE_BY_ID_SUCCESS,
   payload,
 });
+
+export interface IInitMoviePage {
+  type: MovieActionTypes.INIT_MOVIE_PAGE,
+  payload: {
+    searchBy?: string,
+    page?: number,
+    id: number,
+  },
+}
+
+export const initMoviePage = (payload: { searchBy?: string, page?: number, id: number }): IInitMoviePage => ({
+  type: MovieActionTypes.INIT_MOVIE_PAGE,
+  payload: payload,
+})
 
 export interface IResetMovies {
   type: MovieActionTypes.RESET_MOVIES,

@@ -1,4 +1,5 @@
 import {takeLatest, call, put, all} from 'redux-saga/effects';
+import {queryString} from "../../constants/queryString";
 import {MovieActionTypes} from "./actionTypes";
 import {baseUrl} from "../../constants/baseUrl";
 import {
@@ -6,31 +7,29 @@ import {
   fetchMoviesError,
   IFetchMovies,
   IFetchMovieById,
-  fetchMovieByIdSuccess,
+  fetchMovieByIdSuccess, fetchMovieById, IInitMoviePage, fetchMovies,
 } from "./actions";
+import {SortBy} from "../../components/sortingSection/SortingSection";
+
+const fetchMoviesSub = () => {
+  return takeLatest(MovieActionTypes.FETCH_MOVIES, fetchMoviesSaga);
+};
+
+const fetchMovieByIdSub = () => {
+  return takeLatest(MovieActionTypes.FETCH_MOVIE_BY_ID, fetchMovieByIdSaga);
+};
+
+const initMoviePageSub = () => {
+  return takeLatest(MovieActionTypes.INIT_MOVIE_PAGE, initMoviePageSaga);
+};
 
 function* fetchMoviesSaga(action: IFetchMovies) {
   const limit = 9;
-  const page = (action.payload?.page || 1) - 1;
-  const offset: number = page * limit + 1;
-  let url = `${baseUrl}/movies?limit=${limit}&offset=${offset}&sortOrder=desc`;
+  const {page = 1, ...restParams} = action.payload;
+  const offset: number = (page - 1) * limit + 1;
+  const urlParams = queryString.stringify(restParams);
+  let url = `${baseUrl}/movies?limit=${limit}&${urlParams}&offset=${offset}&sortOrder=desc`;
 
-  if (action.payload === undefined) {
-    url += `&sortBy=release_date`;
-  }
-
-  if (action.payload?.search) {
-    url += `&search=${action.payload?.search}`;
-  }
-
-  if (action.payload?.searchBy) {
-    url += `&searchBy=${action.payload?.searchBy}`;
-  }
-
-  if (action.payload?.sortBy) {
-    url += `&sortBy=${action.payload?.sortBy}`;
-  }
-  
   if (action.payload?.searchBy === 'title') {
     url = `${baseUrl}/movies?limit=${limit}&search=${action.payload?.search}&searchBy=${action.payload?.searchBy}`;
   }
@@ -44,35 +43,34 @@ function* fetchMoviesSaga(action: IFetchMovies) {
   }
 }
 
-const fetchMoviesSub = () => {
-  return takeLatest(MovieActionTypes.FETCH_MOVIES, fetchMoviesSaga);
+function* initMoviePageSaga(action: IInitMoviePage) {
+  const movie = yield* fetchMovieByIdSaga(fetchMovieById(action.payload.id))
+  const search: string = movie.genres[0].toLowerCase();
+  //console.log('search', search)
+  yield* fetchMoviesSaga(fetchMovies({
+    search: search,
+    searchBy: action.payload.searchBy,
+    sortBy: SortBy.release,
+    page: action.payload.page
+  }));
 }
 
 function* fetchMovieByIdSaga(action: IFetchMovieById) {
-
   try {
     const movie = yield call(() => fetch(`${baseUrl}/movies/${action.payload}`).then(res => res.json()));
 
     yield put(fetchMovieByIdSuccess(movie));
-
-    const search = movie.genres[0];
-    const url = `${baseUrl}/movies?limit=9&search=${search}&searchBy=genres&sortBy=release_date`;
-    const sortedMovies = yield call(() => fetch(`${url}`).then(res => res.json()));
-
-    yield put(fetchMoviesSuccess({films: sortedMovies.data, total: sortedMovies.total}));
+    return movie;
 
   } catch (e) {
     yield put(fetchMoviesError());
   }
 }
 
-const fetchMovieByIdSub = () => {
-  return takeLatest(MovieActionTypes.FETCH_MOVIE_BY_ID, fetchMovieByIdSaga);
-}
-
 export function* moviesSagas() {
   yield all([
     fetchMoviesSub(),
     fetchMovieByIdSub(),
+    initMoviePageSub(),
   ]);
 }

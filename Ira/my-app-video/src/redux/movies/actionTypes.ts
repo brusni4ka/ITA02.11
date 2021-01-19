@@ -5,6 +5,7 @@ import {
   IFetchMovieById,
   IFetchMovieByIdSuccess,
   IResetMovies,
+  IInitMoviePage,
 } from "./actions";
 
 export enum MovieActionTypes {
@@ -14,6 +15,7 @@ export enum MovieActionTypes {
   FETCH_MOVIE_BY_ID = 'FETCH_MOVIE_BY_ID',
   FETCH_MOVIE_BY_ID_SUCCESS = 'FETCH_MOVIE_BY_ID_SUCCESS',
   RESET_MOVIES = 'RESET_MOVIES',
+  INIT_MOVIE_PAGE = 'INIT_MOVIE_PAGE',
 }
 
 export type moviesAction =
@@ -22,4 +24,5 @@ export type moviesAction =
   | IFetchMoviesError
   | IFetchMovieById
   | IFetchMovieByIdSuccess
-  | IResetMovies;
+  | IResetMovies
+  | IInitMoviePage;
