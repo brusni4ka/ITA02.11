@@ -4,6 +4,7 @@
     max-width: 1200px;
     justify-content: flex-start;
     align-items: flex-start;
+    background-color: #00000096;
     .description-item img{
         display: block;
         height: 510px;
@@ -16,10 +17,11 @@
         &:last-child{
             margin-right: 0px;
         }
-        h1{
+        h3{
             font-size: 32px;
             color: #e95656;
             padding: 20px 0 20px 0;
+            text-transform: uppercase;
         }
         p{
             font-size: 18px;

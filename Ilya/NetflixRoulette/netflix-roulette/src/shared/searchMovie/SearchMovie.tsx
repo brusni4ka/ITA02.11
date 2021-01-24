@@ -1,85 +1,80 @@
-import React from "react";
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useHistory, useLocation } from 'react-router-dom';
 import queryString from "query-string";
 
 import "./SearchMovie.scss";
 import SearchBtn from "shared/button/SearchBtn";
 
-interface ISearchMovieOwnProps {
+interface ISearchMovieProps {
     onSubmit(search: string, searchBy: string): void,
 }
-
-interface ISearchMovieState {
-    value: string,
-    searchBy: string
-}
-
-type SearchMovieProps = ISearchMovieOwnProps & RouteComponentProps;
 
 export enum SearchBy {
     Genre = "genres",
     Title = "title"
 }
 
-class SearchMovie extends React.Component<SearchMovieProps, ISearchMovieState> {
+function SearchMovie(props: ISearchMovieProps) {
 
-    state = {
-        value: "",
-        searchBy: SearchBy.Title
-    };
+    const [value, setValue] = useState("");
+    const [searchBy, setSearchBy] = useState(SearchBy.Title as string);
 
-    componentDidMount() {
-        const parsed = queryString.parse(this.props.location.search);
-        this.setState({ searchBy: parsed.searchBy as string || SearchBy.Title, value: parsed.search as string || "" })
-    }
+    let history = useHistory();
+    let location = useLocation();
 
-    componentDidUpdate(prevProps: Readonly<SearchMovieProps>) {
+    useEffect(() => {
+        const parsed = queryString.parse(location.search);
+        setValue(parsed.search as string || "");
+        setSearchBy(parsed.searchBy as string || SearchBy.Title);
+    }, [location.search]);
 
-        if (this.props.history.action !== "PUSH" && this.props.location !== prevProps.location) {
-            const { search = "", searchBy = SearchBy.Title } = queryString.parse(this.props.location.search) as { search: string, searchBy: string };
-            this.setState({ value: search, searchBy: searchBy });
+    useEffect(() => {
+        if (history.action !== "PUSH") {
+            const { search = "", searchBy = SearchBy.Title } = queryString.parse(location.search) as { search: string, searchBy: string };
+            setValue(search);
+            setSearchBy(searchBy);
         }
+    }, [history.action, location.search]);
+
+    const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
     }
 
-    handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ value: e.target.value });
+    const handlerSearchBy = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue("");
+        setSearchBy(e.target.value);
     }
 
-    handlerSearchBy = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ value: "", searchBy: e.target.value });
-    }
-
-    handlerSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    const handlerSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        this.props.onSubmit(this.state.value, this.state.searchBy);
+        props.onSubmit(value, searchBy);
     }
 
-    render() {
-        return (
-            <div className="search-movie">
-                <div className="layout">
-                    <h1>find your movie</h1>
-                    <form onSubmit={this.handlerSubmitForm}>
-                        <input type="text" name="search" placeholder="Find your movie" value={this.state.value} onChange={this.handlerChange} />
-                        <div className="genres-btn">
-                            <div className="btn-container">
-                                <p>Search by</p>
-                                <div className="radio-btn">
-                                    <input type="radio" id="title-btn" name="movie-genre" onChange={this.handlerSearchBy} value={SearchBy.Title} checked={this.state.searchBy === SearchBy.Title} />
-                                    <label htmlFor="title-btn">Title</label>
-                                </div>
-                                <div className="radio-btn">
-                                    <input type="radio" id="genre-btn" name="movie-genre" onChange={this.handlerSearchBy} value={SearchBy.Genre} checked={this.state.searchBy === SearchBy.Genre} />
-                                    <label htmlFor="genre-btn">Genre</label>
-                                </div>
+    return (
+        <div className="search-movie">
+            <div className="layout">
+                <h1>find your movie</h1>
+                <form onSubmit={handlerSubmitForm}>
+                    <input type="text" name="search" placeholder="Find your movie" value={value} onChange={handlerChange} />
+                    <div className="genres-btn">
+                        <div className="btn-container">
+                            <p>Search by</p>
+                            <div className="radio-btn">
+                                <input type="radio" id="title-btn" name="movie-genre" onChange={handlerSearchBy} value={SearchBy.Title} checked={searchBy === SearchBy.Title} />
+                                <label htmlFor="title-btn">Title</label>
                             </div>
-                            <SearchBtn title="Search" />
+                            <div className="radio-btn">
+                                <input type="radio" id="genre-btn" name="movie-genre" onChange={handlerSearchBy} value={SearchBy.Genre} checked={searchBy === SearchBy.Genre} />
+                                <label htmlFor="genre-btn">Genre</label>
+                            </div>
                         </div>
-                    </form>
-                </div>
+                        <SearchBtn title="Search" />
+                    </div>
+                </form>
             </div>
-        );
-    }
+        </div>
+    );
 }
 
-export default withRouter(SearchMovie);
+
+export default SearchMovie;

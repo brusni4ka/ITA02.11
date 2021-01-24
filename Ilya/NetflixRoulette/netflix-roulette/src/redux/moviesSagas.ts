@@ -12,7 +12,7 @@ import {
     requestMovies,
 
 } from "./moviesActions";
-import { all, call, put, select, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 import queryString from "query-string";
 
 function* requestMoviesSaga(action: RequestMoviesAction) {
@@ -52,6 +52,7 @@ function* requestMovieByIdSaga(action: RequestMovieByIdAction) {
                 .then(response => response.json()));
         });
         yield put(requestMovieByIdSuccess(film));
+        return film;
     } catch (error) {
         yield put(requestMovieByIdError());
     }
@@ -59,9 +60,8 @@ function* requestMovieByIdSaga(action: RequestMovieByIdAction) {
 
 //------------------ FetchMovieDetailsData
 function* requestMovieDetailsDataSaga(action: RequestMovieDetailsDataAction) {
-    yield* requestMovieByIdSaga(requestMovieById(action.payload.id));
-    const filmGenre = yield select((store) => store.moviesStore.movie.genres[0]);
-    const searchBySameGenre = `search=${filmGenre}&searchBy=genres`;
+    const actionPayload = yield* requestMovieByIdSaga(requestMovieById(action.payload.id));
+    const searchBySameGenre = `search=${actionPayload.genres[0]}&searchBy=genres`;
     yield* requestMoviesSaga(requestMovies(searchBySameGenre));
 }
 //--------------

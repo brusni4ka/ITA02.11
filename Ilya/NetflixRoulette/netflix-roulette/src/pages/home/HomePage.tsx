@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import queryString from "query-string";
-import { RouteComponentProps } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import "./HomePage.scss"
 import Header from 'shared/header/Header';
@@ -9,107 +9,115 @@ import Footer from 'shared/footer/Footer';
 import MovieList from 'shared/movieList/MovieList';
 import Pagination from 'shared/pagination/Pagination';
 import MovieSorter, { SortBy } from "shared/movieSorter/MovieSorter";
-import { HomePageConnectProps } from '.';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { requestMovies, resetMovies, setCurrentPage } from 'redux/moviesReducer';
 
-type HomePageProps = RouteComponentProps & HomePageConnectProps;
+function HomePage() {
+    let history = useHistory();
+    let location = useLocation();
+    const movies = useSelector((state: RootState) => state.store.movies);
+    const currentPage = useSelector((state: RootState) => state.store.currentPage);
+    const loading = useSelector((state: RootState) => state.store.loading);
+    const total = useSelector((state: RootState) => state.store.total);
+    const limit = useSelector((state: RootState) => state.store.limit);
+    const dispatch = useDispatch();
 
-class HomePage extends React.Component<HomePageProps> {
 
-    componentDidMount() {
-        this.props.requestMovies(this.props.location.search);
+
+    let currentPageUrl = currentPage;
+    const parsed = queryString.parse(location.search);
+
+    if ("page" in parsed) {
+        currentPageUrl = Number(parsed.page);
     }
 
-    componentWillUnmount() {
-        this.props.resetMovies();
-    }
-
-    componentDidUpdate(prevProps: Readonly<HomePageProps>) {
-
-        if (this.props.history.action !== "PUSH" && this.props.location !== prevProps.location) {
-            this.props.requestMovies(this.props.location.search);
+    useEffect(() => {
+        console.log("Mounted");
+        dispatch(requestMovies(location.search));
+        return () => {
+            console.log("Unmounted");
+            dispatch(resetMovies());
         }
-    }
+    }, []);
 
-    sortMovieByHandler = (sortBy: SortBy) => {
-        const parsed = queryString.parse(this.props.location.search);
+    useEffect(() => {
+        console.log("Updated");
+        if (history.action !== "PUSH") {
+            dispatch(requestMovies(location.search));
+        }
+    }, []);
+
+    const sortMovieByHandler = (sortBy: SortBy) => {
+        const parsed = queryString.parse(location.search);
         const newSearchParams = queryString.stringify({ ...parsed, sortBy });
-        this.props.history.push(`/search?${newSearchParams}`);
+        history.push(`/search?${newSearchParams}`);
 
-        this.props.requestMovies(newSearchParams);
+        dispatch(requestMovies(newSearchParams));
     }
 
-    submitSearchHandler = (search: string, searchBy: string) => {
-        const parsed = queryString.parse(this.props.location.search);
+    const submitSearchHandler = (search: string, searchBy: string) => {
+        const parsed = queryString.parse(location.search);
         const newSearchParams = queryString.stringify({ ...parsed, search, searchBy });
-        this.props.history.push(`/search?${newSearchParams}`);
+        history.push(`/search?${newSearchParams}`);
 
-        this.props.requestMovies(newSearchParams);
+        dispatch(requestMovies(newSearchParams));
     }
 
     //Pagination Methods
-    changePage = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const changePage = (e: React.MouseEvent<HTMLButtonElement>) => {
         let page;
         const elem: HTMLButtonElement = e.target as HTMLButtonElement;
 
-        if (elem.value === "next" && this.props.currentPage < Math.ceil(this.props.total / this.props.limit)) {
-            page = this.props.currentPage + 1;
-            this.props.setCurrentPage(page);
-            const parsed = queryString.parse(this.props.location.search);
+        if (elem.value === "next" && currentPage < Math.ceil(total / limit)) {
+            page = currentPage + 1;
+            dispatch(setCurrentPage(page));
+            const parsed = queryString.parse(location.search);
             const newSearchParams = queryString.stringify({ ...parsed, page });
-            this.props.history.push(`/search?${newSearchParams}`);
+            history.push(`/search?${newSearchParams}`);
 
-            this.props.requestMovies(newSearchParams);
+            dispatch(requestMovies(newSearchParams));
 
-        } else if (elem.value === "prev" && this.props.currentPage > 1) {
-            page = this.props.currentPage - 1;
-            this.props.setCurrentPage(page);
-            const parsed = queryString.parse(this.props.location.search);
+        } else if (elem.value === "prev" && currentPage > 1) {
+            page = currentPage - 1;
+            dispatch(setCurrentPage(page));
+            const parsed = queryString.parse(location.search);
             const newSearchParams = queryString.stringify({ ...parsed, page });
-            this.props.history.push(`/search?${newSearchParams}`);
+            history.push(`/search?${newSearchParams}`);
 
-            this.props.requestMovies(newSearchParams);
+            dispatch(requestMovies(newSearchParams));
         }
     }
 
-    moveToLimitPage = (e: React.MouseEvent<HTMLButtonElement>) => {
-        console.log(e);
+    const moveToLimitPage = (e: React.MouseEvent<HTMLButtonElement>) => {
         let page;
         const elem: HTMLButtonElement = e.target as HTMLButtonElement;
 
-        page = (elem.value === "1") ? 1 : (Math.ceil(this.props.total / this.props.limit));
+        page = (elem.value === "1") ? 1 : (Math.ceil(total / limit));
 
-        this.props.setCurrentPage(page);
-        const parsed = queryString.parse(this.props.location.search);
+        dispatch(setCurrentPage(page));
+        const parsed = queryString.parse(location.search);
         const newSearchParams = queryString.stringify({ ...parsed, page });
-        this.props.history.push(`/search?${newSearchParams}`);
+        history.push(`/search?${newSearchParams}`);
 
-        this.props.requestMovies(newSearchParams);
+        dispatch(requestMovies(newSearchParams));
     }
 
-    render() {
-        let currentPage = this.props.currentPage;
-        const parsed = queryString.parse(this.props.location.search);
-
-        if ("page" in parsed) {
-            currentPage = Number(parsed.page);
-        }
-
-        const sortBy: SortBy = queryString.parse(this.props.location.search).sortBy as SortBy || SortBy.Release;
-        return (
-            <div className="home-page">
-                <div className="wrapper">
-                    <Header />
-                    <SearchMovie onSubmit={this.submitSearchHandler} />
-                </div>
-                <MovieSorter sortedQuantity={this.props.total} onSortChange={this.sortMovieByHandler} sortBy={sortBy} />
-                {this.props.loading ? (
-                    <div>Loading...</div>
-                ) : (<MovieList movies={this.props.movies} total={this.props.total} />)}
-                <Pagination total={this.props.total} limit={this.props.limit} currentPage={currentPage} onChangePage={this.changePage} onMoveToLimitPage={this.moveToLimitPage} />
-                <Footer />
+    const sortBy: SortBy = queryString.parse(location.search).sortBy as SortBy || SortBy.Release;
+    return (
+        <div className="home-page">
+            <div className="wrapper">
+                <Header />
+                <SearchMovie onSubmit={submitSearchHandler} />
             </div>
-        );
-    }
+            <MovieSorter sortedQuantity={total} onSortChange={sortMovieByHandler} sortBy={sortBy} />
+            {loading ? (
+                <div>Loading...</div>
+            ) : (<MovieList movies={movies} total={total} />)}
+            <Pagination total={total} limit={limit} currentPage={currentPageUrl} onChangePage={changePage} onMoveToLimitPage={moveToLimitPage} />
+            <Footer />
+        </div>
+    );
 }
 
 export default HomePage;

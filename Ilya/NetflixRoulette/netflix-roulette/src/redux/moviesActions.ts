@@ -44,9 +44,9 @@ export interface RequestMovieByIdAction {
 }
 export interface RequestMovieByIdSuccessAction {
     type: MoviesActionTypes.REQUEST_MOVIE_BY_ID_SUCCESS,
-    payload: {
-        movie: IMovie,
-    }
+    // payload: {
+    movie: IMovie,
+    // }
 }
 
 export interface RequestMovieByIdErrorAction {
@@ -112,9 +112,9 @@ export const requestMovieById = (id: string): RequestMovieByIdAction => ({
 
 export const requestMovieByIdSuccess = (movie: IMovie): RequestMovieByIdSuccessAction => ({
     type: MoviesActionTypes.REQUEST_MOVIE_BY_ID_SUCCESS,
-    payload: {
-        movie
-    }
+    // payload: {
+    movie
+    // }
 });
 
 export const requestMovieByIdError = (): RequestMovieByIdErrorAction => ({

@@ -1,7 +1,8 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IMovie } from "shared/interfaces/IMovie";
-import { MoviesActionTypes, MoviesAction } from "./moviesActions";
+import { RequestMovieByIdAction, RequestMovieByIdSuccessAction, RequestMovieDetailsDataAction, RequestMoviesAction, RequestMoviesSuccessAction, SetCurrentPageAction } from "./moviesActionTypes";
 
-export interface MoviesReducerState {
+export interface MoviesDefaultState {
     movies: IMovie[],
     loading: boolean,
     movie: IMovie,
@@ -10,76 +11,76 @@ export interface MoviesReducerState {
     currentPage: number,
 }
 
-
-
-const MoviesDefaultState = {
+const moviesDefaultState: MoviesDefaultState = {
     movies: [],
     loading: true,
-    movie: null,
+    movie: {
+        id: 0,
+        title: '',
+        tagline: '',
+        vote_average: 0,
+        vote_count: 0,
+        release_date: '',
+        poster_path: '',
+        overview: '',
+        budget: 0,
+        revenue: 0,
+        runtime: 0,
+        genres: []
+    },
     limit: 9,
     total: 0,
     currentPage: 1,
 }
 
-export const moviesReducer = (state = MoviesDefaultState, action: MoviesAction) => {
-    switch (action.type) {
-        case MoviesActionTypes.REQUEST_MOVIES: {
-            return {
-                ...state,
-                loading: true
-            }
-        }
-        case MoviesActionTypes.REQUEST_MOVIES_SUCCESS: {
-            return {
-                ...state,
-                loading: false,
-                movies: action.payload.movies,
-                total: action.payload.total,
-            }
-        }
-        case MoviesActionTypes.REQUEST_MOVIES_ERROR: {
-            return {
-                ...state,
-                loading: false
-            }
-        }
-
-        case MoviesActionTypes.REQUEST_MOVIE_BY_ID: {
-            return {
-                ...state,
-                loading: true
-            }
-        }
-        case MoviesActionTypes.REQUEST_MOVIE_BY_ID_SUCCESS: {
-            return {
-                ...state,
-                loading: false,
-                movie: action.payload.movie,
-            }
-        }
-        case MoviesActionTypes.REQUEST_MOVIE_BY_ID_ERROR: {
-            return {
-                ...state,
-                loading: false
-            }
-        }
-        case MoviesActionTypes.RESET_MOVIES: {
-            return MoviesDefaultState
-
-        }
-        case MoviesActionTypes.SET_CURRENT_PAGE: {
-            return {
-                ...state,
-                currentPage: action.currentPage
-            }
-        }
-
-        // requestMovieDetailsData
-        case MoviesActionTypes.REQUEST_MOVIE_DETAILS_DATA: {
-            return {
-                ...state,
-            }
-        }
-        default: return state;
+const moviesSlice = createSlice({
+    name: "moviesSlice",
+    moviesDefaultState,
+    reducers: {
+        requestMovies(state: MoviesDefaultState, action: PayloadAction<RequestMoviesAction>) {
+            state.loading = true;
+        },
+        requestMoviesSuccess(state: MoviesDefaultState, action: PayloadAction<RequestMoviesSuccessAction>) {
+            state.loading = false;
+            state.movies = action.payload.movies;
+            state.total = action.payload.total;
+        },
+        requestMoviesError(state: MoviesDefaultState) {
+            state.loading = false;
+        },
+        requestMovieById(state: MoviesDefaultState, action: PayloadAction<RequestMovieByIdAction>) {
+            state.loading = false;
+        },
+        requestMovieByIdSuccess(state: MoviesDefaultState, action: PayloadAction<RequestMovieByIdSuccessAction>) {
+            state.loading = false;
+            state.movie = action.payload.movie;
+        },
+        requestMovieByIdError(state: MoviesDefaultState) {
+            state.loading = false;
+        },
+        resetMovies() {
+            return moviesDefaultState;
+        },
+        setCurrentPage(state: MoviesDefaultState, action: PayloadAction<SetCurrentPageAction>) {
+            state.currentPage = action.payload.currentPage;
+        },
+        requestMovieDetailsData(state: MoviesDefaultState, action: PayloadAction<RequestMovieDetailsDataAction>) {
+            return state;
+        },
     }
-};
+});
+const { actions, reducer } = moviesSlice;
+
+export const {
+    requestMovies,
+    requestMoviesSuccess,
+    requestMoviesError,
+    requestMovieById,
+    requestMovieByIdSuccess,
+    requestMovieByIdError,
+    resetMovies,
+    setCurrentPage,
+    requestMovieDetailsData
+} = actions;
+export default reducer;
+

@@ -2,13 +2,12 @@ import "./SearchBtn.scss";
 
 interface ISearchBtnProps {
     title: string,
-    // onSubmit(): void
 }
 
-function SearchBtn({ title }: ISearchBtnProps) {
+function SearchBtn(props: ISearchBtnProps) {
     return (
         <div className="btn">
-            <button className="search-btn" type="submit">{title}</button>
+            <button className="search-btn" type="submit">{props.title}</button>
         </div>
     );
 }
