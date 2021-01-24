@@ -25,11 +25,7 @@ export const FilmCard = ({
 
   return (
     <Link to={`/film/${id}`}>
-      <div className="card"
-           // onClick={() => {
-           //   fetchMoviesById(id);
-           // }}
-      >
+      <div className="card">
         <img className="poster" src={poster} alt="poster"/>
         <div className="section-about">
           <div className="film-info">

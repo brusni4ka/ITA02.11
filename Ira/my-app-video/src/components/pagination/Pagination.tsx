@@ -1,90 +1,90 @@
 import React from "react";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import {useLocation} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {RootState} from "../../toolkitRedux";
 import {Button} from "../shared/button/Button";
 import {queryString} from "../../constants/queryString";
-import {PaginationConnectProps} from "./index";
 import "./styles.scss";
 
 interface IPaginationProps {
   onPage(btnId: number): void,
 }
 
-type PaginationType = PaginationConnectProps & RouteComponentProps & IPaginationProps;
+export const Pagination = ({onPage}: IPaginationProps) => {
+  const location = useLocation();
+  const totalMovies = useSelector((state: RootState) => state.store.totalMovies);
 
-class Pagination extends React.Component<PaginationType> {
-
-  getNumberPage = (): number => {
-    const params: { search: string, searchBy: string, sortBy: string, page: number } =
-      queryString.parse(this.props.location.search) as
-        { search: string, searchBy: string, sortBy: string, page: number };
-    return  Number(params.page) || 1;
+  const getParams = (): { search: string, searchBy: string, sortBy: string, page: number } => {
+    return queryString.parse(location.search) as
+      { search: string, searchBy: string, sortBy: string, page: number };
   }
-  onNextPage = () => {
-    const page = this.getNumberPage();
-    this.props.onPage(page + 1);
-  }
+  const params = getParams();
 
-  onPrevPage = () => {
-    const page = this.getNumberPage();
-    this.props.onPage(page - 1);
-  }
+  const getNumberPage = (): number => {
+    return Number(params.page) || 1;
+  };
+
+  const onNextPage = () => {
+    const page = getNumberPage();
+    onPage(page + 1);
+  };
+
+  const onPrevPage = () => {
+    const page = getNumberPage();
+    onPage(page - 1);
+  };
 
 
-  render() {
-    const params: { search: string, searchBy: string, sortBy: string, page: number } =
-      queryString.parse(this.props.location.search) as
-        { search: string, searchBy: string, sortBy: string, page: number };
-    const page = Number(params.page) || 1;
-    const {totalMovies} = this.props;
-    const totalPages: number = Math.ceil(totalMovies / 9);
+  const totalPages: number = Math.ceil(totalMovies / 9);
+  const page = Number(params.page) || 1;
+
+
+  const getPaginationButtons = (): number[] => {
     const arrBtn: number[] = [];
+    let renderPages: number = 5;
 
-    if (totalPages === 1) {
-      return null;
+    if (totalPages < renderPages) {
+      renderPages = totalPages;
     }
 
-    if (page <= 5 && totalPages !== 1) {
-      for (let i = 1; i <= 5; i++) {
+    if (page <= renderPages && totalPages !== 1) {
+
+      for (let i = 1; i <= renderPages; i++) {
         arrBtn.push(i);
       }
     }
 
-    if (page > 5) {
+    if (page > renderPages) {
       for (let i = 1; i <= page; i++) {
         arrBtn.push(i);
       }
     }
+    return arrBtn;
+  };
 
-    if (page === totalPages && page !== 1) {
-      for (let i = 1; i <= totalPages; i++) {
-        arrBtn.push(i);
-      }
-    }
+  const buttons: number[] = getPaginationButtons();
 
-    return (
-      <div className='pagination'>
-        <span className="total">Total pages: {totalPages}</span>
-        {page !== 1 && <Button
-          title="<"
-          className="btn prev-page-btn"
-          onClick={() => this.onPrevPage()}
-        />}
-        {arrBtn.map(number => <Button
-            title={number.toString()}
-            className={page === number ? "btn currentPageButton" : "btn pageButton"}
-            onClick={() => this.props.onPage(number)}
-            key={number}
-          />
-        )}
-        {page !== totalPages && <Button
-          title=">"
-          className="btn next-page-btn"
-          onClick={() => this.onNextPage()}
+  return (
+    <div className='pagination'>
+      <span className="total">Total pages: {totalPages}</span>
+      {page !== 1 && <Button
+        title="<"
+        className="btn prev-page-btn"
+        onClick={() => onPrevPage()}
+      />}
+      {buttons.map(number => <Button
+          title={number.toString()}
+          className={page === number ? "btn currentPageButton" : "btn pageButton"}
+          onClick={() => onPage(number)}
+          key={number}
         />
-        }
-      </div>
-    );
-  }
+      )}
+      {page !== totalPages && <Button
+        title=">"
+        className="btn next-page-btn"
+        onClick={() => onNextPage()}
+      />
+      }
+    </div>
+  );
 }
-
-export default withRouter(Pagination);

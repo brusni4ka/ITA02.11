@@ -1,5 +1,6 @@
-import React from 'react';
-import {RouteComponentProps} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {useLocation, useHistory} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import {Header} from "../layout/header";
 import {Footer} from "../layout/footer";
 import {FilmList} from "../filmList";
@@ -7,136 +8,125 @@ import {SortingSection} from "../sortingSection";
 import Pagination from "../pagination";
 import SearchFilmForm from "../shared/searchFilmForm";
 import {queryString} from "../../constants/queryString";
-import {movieConnectProps} from "./index";
 import loader from '../../accets/Dual Ball-1s-200px.svg';
 import {SortBy} from "../sortingSection/SortingSection";
+import {RootState} from "../../toolkitRedux";
+import {fetchMovies, resetMovies} from "../../toolkitRedux/toolkitSlice";
 import './styles.scss';
 
-type HomeProps = RouteComponentProps & movieConnectProps;
+export const Home = () => {
 
-export class Home extends React.Component<HomeProps> {
+  const dispatch = useDispatch();
+  const movies = useSelector((state: RootState) => state.store.movies);
+  const loading = useSelector((state: RootState) => state.store.loading);
+  const location = useLocation();
+  const history = useHistory();
 
-  componentDidMount() {
-    this.getMovies();
-  };
+  useEffect(() => {
+    getMovies();
+    return () => {
+      dispatch(resetMovies());
+    }
+  }, []);
 
-  componentWillUnmount() {
-    this.props.resetMovies();
+  useEffect(() => {
+    getMovies();
+  }, [location]);
+
+  // componentDidUpdate(prevProps: Readonly<HomeProps>) {
+  //   if (this.props.history.action !== 'PUSH' && this.props.location !== prevProps.location) {
+  //     this.getMovies();
+  //   }
+  // };
+
+  const getParams = (): { search: string, searchBy: string, sortBy: string, page: number } => {
+    return queryString.parse(location.search) as
+      { search: string, searchBy: string, sortBy: string, page: number };
   }
 
-  componentDidUpdate(prevProps: Readonly<HomeProps>) {
-    if (this.props.history.action !== 'PUSH' && this.props.location !== prevProps.location) {
-      this.getMovies();
-    }
-  };
+  const params = getParams();
 
-  getMovies = () => {
-    const params: { search: string, searchBy: string, sortBy: string, page: number } =
-      queryString.parse(this.props.location.search) as
-        { search: string, searchBy: string, sortBy: string, page: number };
-
+  const getMovies = (): void => {
     if (Object.keys(params).length === 0) {
-      this.props.fetchMovies( {sortBy: SortBy.release});
+      dispatch(fetchMovies({sortBy: SortBy.release}))
     } else {
-      this.props.fetchMovies({
-        search: params.search,
-        searchBy: params.searchBy,
-        sortBy: params.sortBy || SortBy.release,
-        page: Number(params.page) || 1,
-      });
+      dispatch(
+        fetchMovies({
+          search: params.search,
+          searchBy: params.searchBy,
+          sortBy: params.sortBy || SortBy.release,
+          page: Number(params.page) || 1,
+        })
+      )
     }
   };
 
-  onSearchSubmit = ({searchValue, searchBy}: { searchValue: string, searchBy: string}): void => {
-    const params: { search: string, searchBy: string, sortBy: string, page: number } =
-      queryString.parse(this.props.location.search) as
-        { search: string, searchBy: string, sortBy: string, page: number };
-
+  const onSearchSubmit = ({searchValue, searchBy}: { searchValue: string, searchBy: string }): void => {
     const newParams: string = queryString.stringify({
       ...params,
       search: searchValue,
       searchBy: searchBy,
+      page: 1,
     });
 
-    this.props.history.push(`/search?${newParams}`);
+    history.push(`/search?${newParams}`);
 
-    this.props.fetchMovies({
+    dispatch(fetchMovies({
       search: searchValue,
       searchBy: searchBy,
       sortBy: params.sortBy || SortBy.release,
-    });
+    }))
   };
 
-  onToggleSortBy = (btnName: string) => {
-    const params: { search: string, searchBy: string, sortBy: string, page: number } =
-      queryString.parse(this.props.location.search) as
-        { search: string, searchBy: string, sortBy: string, page: number };
-
+  const onToggleSortBy = (btnName: string): void => {
     const newParams: string = queryString.stringify({...params, sortBy: btnName, page: 1});
 
-    this.props.history.push(`/search?${newParams}`);
-    this.props.fetchMovies({
+    history.push(`/search?${newParams}`);
+
+    dispatch(fetchMovies({
       search: params.search,
       searchBy: params.searchBy,
       sortBy: btnName,
       page: 1,
-    });
-  }
-
-  onPage = (btnId: number) => {
-    // console.log('id', btnId)
-    const params: { search: string, searchBy: string, sortBy: string, page: number } =
-      queryString.parse(this.props.location.search) as
-        { search: string, searchBy: string, sortBy: string, page: number };
-
-    const newParams: string = queryString.stringify({...params, page: btnId});
-    const payLoadParams: { search: string, searchBy: string, sortBy: string, page: number } = {
-      search: params.search, searchBy: params.searchBy, sortBy: params.sortBy || 'release_date', page: btnId
-    };
-
-    this.props.history.push(`/search?${newParams}`);
-    this.props.fetchMovies(payLoadParams);
-  }
-
-  render() {
-    const {
-      movies,
-      loading,
-    }: HomeProps = this.props;
-
-    const params: { sortBy?: string } =
-      queryString.parse(this.props.location.search) as { sortBy: string };
-
-    return (loading ?
-        <img className="loader" src={loader} alt="loader"/>
-        : (
-          <>
-            <div className="header-container">
-              <div className="header-content">
-                <Header/>
-              </div>
-            </div>
-            <div className="top-header-section">
-              <div className="search-result-content">
-                <SearchFilmForm
-                  onSearchSubmit={this.onSearchSubmit}
-                />
-              </div>
-            </div>
-            <SortingSection
-              sortBy={params.sortBy || SortBy.release}
-              result={movies.length}
-              onToggleSortBy={this.onToggleSortBy}
-            />
-            <FilmList
-              films={movies}
-            />
-            <Pagination
-              onPage={this.onPage}
-            />
-            <Footer/>
-          </>
-        )
-    );
+    }))
   };
+
+  const onPage = (btnId: number): void => {
+    const newParams: string = queryString.stringify({...params, sortBy: params.sortBy || 'release_date', page: btnId});
+
+    history.push(`/search?${newParams}`);
+    dispatch(fetchMovies({...params, sortBy: params.sortBy || 'release_date', page: btnId}))
+  };
+
+  return (loading ?
+      <img className="loader" src={loader} alt="loader"/>
+      : (
+        <>
+          <div className="header-container">
+            <div className="header-content">
+              <Header/>
+            </div>
+          </div>
+          <div className="top-header-section">
+            <div className="search-result-content">
+              <SearchFilmForm
+                onSearchSubmit={onSearchSubmit}
+              />
+            </div>
+          </div>
+          <SortingSection
+            sortBy={params.sortBy || SortBy.release}
+            result={movies.length}
+            onToggleSortBy={onToggleSortBy}
+          />
+          <FilmList
+            films={movies}
+          />
+          <Pagination
+            onPage={onPage}
+          />
+          <Footer/>
+        </>
+      )
+  );
 }

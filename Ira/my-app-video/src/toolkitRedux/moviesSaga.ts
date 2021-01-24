@@ -1,26 +1,30 @@
 import {takeLatest, call, put, all} from 'redux-saga/effects';
-import {queryString} from "../../constants/queryString";
-import {MovieActionTypes} from "./actionTypes";
-import {baseUrl} from "../../constants/baseUrl";
+import {queryString} from "../constants/queryString";
+import {baseUrl} from "../constants/baseUrl";
 import {
+  fetchMovies,
   fetchMoviesSuccess,
   fetchMoviesError,
+  fetchMovieById,
+  fetchMovieByIdSuccess,
+  initMoviePage,
   IFetchMovies,
   IFetchMovieById,
-  fetchMovieByIdSuccess, fetchMovieById, IInitMoviePage, fetchMovies,
-} from "./actions";
-import {SortBy} from "../../components/sortingSection/SortingSection";
+  IInitMoviePage
+} from "./toolkitSlice";
+import {SortBy} from "../components/sortingSection/SortingSection";
+
 
 const fetchMoviesSub = () => {
-  return takeLatest(MovieActionTypes.FETCH_MOVIES, fetchMoviesSaga);
+  return takeLatest(fetchMovies, fetchMoviesSaga);
 };
 
 const fetchMovieByIdSub = () => {
-  return takeLatest(MovieActionTypes.FETCH_MOVIE_BY_ID, fetchMovieByIdSaga);
+  return takeLatest(fetchMovieById, fetchMovieByIdSaga);
 };
 
 const initMoviePageSub = () => {
-  return takeLatest(MovieActionTypes.INIT_MOVIE_PAGE, initMoviePageSaga);
+  return takeLatest(initMoviePage, initMoviePageSaga);
 };
 
 function* fetchMoviesSaga(action: IFetchMovies) {
@@ -37,29 +41,31 @@ function* fetchMoviesSaga(action: IFetchMovies) {
   try {
     const movies = yield call(() => fetch(`${url}`).then(res => res.json()));
 
-    yield put(fetchMoviesSuccess({films: movies.data, total: movies.total}));
+    yield put(fetchMoviesSuccess(
+      {films: movies.data, total: movies.total}
+    ));
   } catch (e) {
     yield put(fetchMoviesError());
   }
 }
 
 function* initMoviePageSaga(action: IInitMoviePage) {
-  const movie = yield* fetchMovieByIdSaga(fetchMovieById(action.payload.id))
+  const movie = yield* fetchMovieByIdSaga(fetchMovieById({id: action.payload.id}))
   const search: string = movie.genres[0];
-
-  yield* fetchMoviesSaga(fetchMovies({
+  const payload = {
     search: search,
     searchBy: action.payload.searchBy,
     sortBy: SortBy.release,
     page: action.payload.page
-  }));
+  }
+  yield* fetchMoviesSaga(fetchMovies(payload));
 }
 
 function* fetchMovieByIdSaga(action: IFetchMovieById) {
   try {
-    const movie = yield call(() => fetch(`${baseUrl}/movies/${action.payload}`).then(res => res.json()));
+    const movie = yield call(() => fetch(`${baseUrl}/movies/${action.payload.id}`).then(res => res.json()));
 
-    yield put(fetchMovieByIdSuccess(movie));
+    yield put(fetchMovieByIdSuccess({film: movie}));
     return movie;
 
   } catch (e) {

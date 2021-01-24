@@ -1,5 +1,5 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
-import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga';
 import {IMovieInitialState, MoviesReducer} from "./movies/reducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootSaga from "./rootSaga";

@@ -10,7 +10,7 @@ interface IFilmsProps {
 export const FilmList = ({films}: IFilmsProps) => {
 
   return (
-    <main>
+    <>
       {
         films.length !== 0 ?
           <div className="main">
@@ -27,6 +27,6 @@ export const FilmList = ({films}: IFilmsProps) => {
           :
           <div className="main-no-result">no film found</div>
       }
-    </main>
+    </>
   );
 }
