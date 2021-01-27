@@ -1,3 +1,1 @@
-import {FilmPage} from "./FilmPage";
-
-export default FilmPage;
+export {FilmPage} from "./FilmPage";

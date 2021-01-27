@@ -13,6 +13,7 @@ import {
   IInitMoviePage
 } from "./toolkitSlice";
 import {SortBy} from "../components/sortingSection/SortingSection";
+import {PayloadAction} from "@reduxjs/toolkit";
 
 
 const fetchMoviesSub = () => {
@@ -27,7 +28,7 @@ const initMoviePageSub = () => {
   return takeLatest(initMoviePage, initMoviePageSaga);
 };
 
-function* fetchMoviesSaga(action: IFetchMovies) {
+function* fetchMoviesSaga(action: PayloadAction<IFetchMovies>) {
   const limit = 9;
   const {page = 1, ...restParams} = action.payload;
   const offset: number = (page - 1) * limit + 1;
@@ -49,7 +50,7 @@ function* fetchMoviesSaga(action: IFetchMovies) {
   }
 }
 
-function* initMoviePageSaga(action: IInitMoviePage) {
+function* initMoviePageSaga(action: PayloadAction<IInitMoviePage>) {
   const movie = yield* fetchMovieByIdSaga(fetchMovieById({id: action.payload.id}))
   const search: string = movie.genres[0];
   const payload = {
@@ -58,10 +59,11 @@ function* initMoviePageSaga(action: IInitMoviePage) {
     sortBy: SortBy.release,
     page: action.payload.page
   }
-  yield* fetchMoviesSaga(fetchMovies(payload));
+
+  yield * fetchMoviesSaga(fetchMovies(payload));
 }
 
-function* fetchMovieByIdSaga(action: IFetchMovieById) {
+function* fetchMovieByIdSaga(action: PayloadAction<IFetchMovieById>) {
   try {
     const movie = yield call(() => fetch(`${baseUrl}/movies/${action.payload.id}`).then(res => res.json()));
 

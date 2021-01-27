@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {filmCardConnectProps} from "./index";
 import './styles.scss';
 
 interface IFilmCardProps {
@@ -9,7 +8,6 @@ interface IFilmCardProps {
   poster: string,
   release: string,
   rating: number,
-
   genres: string[],
 }
 
@@ -20,9 +18,7 @@ export const FilmCard = ({
                            genres,
                            id,
                            rating,
-                           fetchMoviesById,
-                         }: IFilmCardProps & filmCardConnectProps) => {
-
+                         }: IFilmCardProps) => {
   return (
     <Link to={`/film/${id}`}>
       <div className="card">
@@ -42,4 +38,4 @@ export const FilmCard = ({
       </div>
     </Link>
   );
-}
+};

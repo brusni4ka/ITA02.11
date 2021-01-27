@@ -16,49 +16,39 @@ const initialState: IMovieInitialState = {
 };
 
 export interface IFetchMovies {
-  payload: {
-    search?: string,
-    searchBy?: string,
-    sortBy: string,
-    page?: number,
-  }
+  search?: string,
+  searchBy?: string,
+  sortBy: string,
+  page?: number,
 }
 
 export interface IFetchMoviesSuccess {
-  payload: {
-    films: IFilm[],
-    total: number,
-  }
+  films: IFilm[],
+  total: number,
 }
 
 export interface IFetchMovieById {
-  payload: {
-    id: number,
-  }
+  id: number
 }
 
 export interface IFetchMovieByIdSuccess {
-  payload: {
-    film: IFilm,
-  }
+  film: IFilm,
 }
 
 export interface IInitMoviePage {
-  payload: {
   searchBy?: string,
   page?: number,
   id: number,
-  }
 }
 
 export const moviesToolkitSlice = createSlice({
     name: 'movies',
     initialState,
     reducers: {
-      fetchMovies(state: IMovieInitialState, action: IFetchMovies) {
+      fetchMovies(state: IMovieInitialState, action: PayloadAction<IFetchMovies>) {
         state.loading = true;
       },
-      fetchMoviesSuccess(state: IMovieInitialState, action: IFetchMoviesSuccess) {
+      fetchMoviesSuccess(state: IMovieInitialState, action: PayloadAction<IFetchMoviesSuccess>) {
         state.movies = [...action.payload.films];
         state.totalMovies = action.payload.total;
         state.loading = false;
@@ -66,14 +56,14 @@ export const moviesToolkitSlice = createSlice({
       fetchMoviesError(state: IMovieInitialState) {
         state.loading = false;
       },
-      fetchMovieById(state: IMovieInitialState, action: IFetchMovieById) {
+      fetchMovieById(state: IMovieInitialState, action: PayloadAction<IFetchMovieById>) {
         state.loading = true;
       },
-      fetchMovieByIdSuccess(state: IMovieInitialState, action: IFetchMovieByIdSuccess) {
+      fetchMovieByIdSuccess(state: IMovieInitialState, action: PayloadAction<IFetchMovieByIdSuccess>) {
         state.currentMovie = action.payload.film;
         state.loading = false;
       },
-      initMoviePage(state: IMovieInitialState, action: IInitMoviePage) {
+      initMoviePage(state: IMovieInitialState, action: PayloadAction<IInitMoviePage>) {
         state.loading = true;
       },
       resetMovies() {

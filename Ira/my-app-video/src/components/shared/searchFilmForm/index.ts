@@ -1,3 +1,1 @@
-import SearchFilmForm from './SearchFilmForm';
-
-export default SearchFilmForm;
+export {SearchFilmForm} from './SearchFilmForm';

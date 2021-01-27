@@ -13,12 +13,8 @@ interface IPaginationProps {
 export const Pagination = ({onPage}: IPaginationProps) => {
   const location = useLocation();
   const totalMovies = useSelector((state: RootState) => state.store.totalMovies);
-
-  const getParams = (): { search: string, searchBy: string, sortBy: string, page: number } => {
-    return queryString.parse(location.search) as
-      { search: string, searchBy: string, sortBy: string, page: number };
-  }
-  const params = getParams();
+  const params = queryString.parse(location.search) as
+    { search: string, searchBy: string, sortBy: string, page: number };
 
   const getNumberPage = (): number => {
     return Number(params.page) || 1;
@@ -87,4 +83,4 @@ export const Pagination = ({onPage}: IPaginationProps) => {
       }
     </div>
   );
-}
+};
