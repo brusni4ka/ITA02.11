@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import queryString from "query-string";
 
 import "./SearchMovie.scss";
@@ -15,26 +15,15 @@ export enum SearchBy {
 }
 
 function SearchMovie(props: ISearchMovieProps) {
-
     const [value, setValue] = useState("");
-    const [searchBy, setSearchBy] = useState(SearchBy.Title as string);
-
-    let history = useHistory();
-    let location = useLocation();
+    const [searchBy, setSearchBy] = useState(SearchBy.Title);
+    const location = useLocation();
 
     useEffect(() => {
         const parsed = queryString.parse(location.search);
         setValue(parsed.search as string || "");
-        setSearchBy(parsed.searchBy as string || SearchBy.Title);
-    }, [location.search]);
-
-    useEffect(() => {
-        if (history.action !== "PUSH") {
-            const { search = "", searchBy = SearchBy.Title } = queryString.parse(location.search) as { search: string, searchBy: string };
-            setValue(search);
-            setSearchBy(searchBy);
-        }
-    }, [history.action, location.search]);
+        (parsed.searchBy === SearchBy.Genre) ? setSearchBy(SearchBy.Genre) : setSearchBy(SearchBy.Title);
+    }, [location]);
 
     const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);
@@ -42,7 +31,7 @@ function SearchMovie(props: ISearchMovieProps) {
 
     const handlerSearchBy = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue("");
-        setSearchBy(e.target.value);
+        (e.target.value === SearchBy.Title) ? setSearchBy(SearchBy.Title) : setSearchBy(SearchBy.Genre);
     }
 
     const handlerSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
@@ -75,6 +64,5 @@ function SearchMovie(props: ISearchMovieProps) {
         </div>
     );
 }
-
 
 export default SearchMovie;

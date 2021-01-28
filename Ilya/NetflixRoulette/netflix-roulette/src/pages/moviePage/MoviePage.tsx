@@ -9,84 +9,29 @@ import GenreSorter from 'shared/genreSorter/GenreSorter';
 import MovieDecscription from 'shared/movieDescription/MovieDescription';
 import MovieList from 'shared/movieList/MovieList';
 import Pagination from 'shared/pagination/Pagination';
-import { SearchBy } from 'shared/searchMovie/SearchMovie';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
-import { requestMovieDetailsData, requestMovies, resetMovies, setCurrentPage } from 'redux/moviesReducer';
+import { requestMovieDetailsData, resetMovies } from 'redux/moviesSlice';
 
 function MoviePage() {
-    let history = useHistory();
-    let location = useLocation();
-    let params: { id: string } = useParams();
-
-    const movies = useSelector((state: RootState) => state.store.movies);
-    const currentPage = useSelector((state: RootState) => state.store.currentPage);
+    const history = useHistory();
+    const location = useLocation();
+    const params: { id: string } = useParams();
     const movie = useSelector((state: RootState) => state.store.movie);
-    const total = useSelector((state: RootState) => state.store.total);
-    const limit = useSelector((state: RootState) => state.store.limit);
     const dispatch = useDispatch();
+    const parsed = queryString.parse(location.search);
+    const currentPage = Number(parsed.page);
 
     useEffect(() => {
-        console.log("Mounted");
-        dispatch(requestMovieDetailsData(params.id));
+        dispatch(requestMovieDetailsData({ id: params.id, page: currentPage }));
         return () => {
-            console.log("Unmounted");
             dispatch(resetMovies());
         }
-    }, []);
+    }, [location]);
 
-    let currentPageUrl = currentPage;
-    const parsed = queryString.parse(location.search);
-
-    if ("page" in parsed) {
-        currentPageUrl = Number(parsed.page);
-    }
-
-    //Pagination Methods
-    const changePage = (e: React.MouseEvent<HTMLButtonElement>) => {
-        let page;
-        let searchBy = SearchBy.Genre
-        let search = movie.genres[0];
-
-        const elem: HTMLButtonElement = e.target as HTMLButtonElement;
-
-        if (elem.value === "next" && currentPage < Math.ceil(total / limit)) {
-            page = currentPage + 1;
-            dispatch(setCurrentPage(page));
-            const parsed = queryString.parse(location.search);
-            const newSearchParams = queryString.stringify({ ...parsed, search, searchBy, page });
-            history.push(`/moviePage/${movie.id}?page=${page}`);
-
-            dispatch(requestMovies(newSearchParams));
-
-        } else if (elem.value === "prev" && currentPage > 1) {
-            page = currentPage - 1;
-            dispatch(setCurrentPage(page));
-            const parsed = queryString.parse(location.search);
-            const newSearchParams = queryString.stringify({ ...parsed, search, searchBy, page });
-            console.log(newSearchParams);
-            history.push(`/moviePage/${movie.id}?page=${page}`);
-
-            dispatch(requestMovies(newSearchParams));
-        }
-    }
-
-    const moveToLimitPage = (e: React.MouseEvent<HTMLButtonElement>) => {
-        let page;
-        let searchBy = SearchBy.Genre
-        let search = movie.genres[0];
-        const elem: HTMLButtonElement = e.target as HTMLButtonElement;
-
-        page = (elem.value === "1") ? 1 : (Math.ceil(total / limit));
-
-        dispatch(setCurrentPage(page));
-        const parsed = queryString.parse(location.search);
-        const newSearchParams = queryString.stringify({ ...parsed, search, searchBy, page });
-        console.log(newSearchParams);
+    const onPage = (page: number): void => {
         history.push(`/moviePage/${movie.id}?page=${page}`);
-
-        dispatch(requestMovies(newSearchParams));
-    }
+    };
 
     return (
         (movie === null) ? (
@@ -103,8 +48,8 @@ function MoviePage() {
                         <MovieDecscription film={movie} />
                     </div>
                     <GenreSorter genre={movie.genres[0]} />
-                    <MovieList movies={movies} total={total} />
-                    <Pagination total={total} limit={limit} currentPage={currentPageUrl} onChangePage={changePage} onMoveToLimitPage={moveToLimitPage} />
+                    <MovieList />
+                    <Pagination onPage={onPage} />
                     <Footer />
                 </div>
             )

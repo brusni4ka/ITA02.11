@@ -1,12 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import { MoviesDefaultState } from 'redux/moviesReducer';
-import { rootReducer } from 'redux/rootReducer';
+import { reducer } from 'redux/moviesSlice';
 import rootSaga from 'rootSaga';
 
-export interface RootState {
-    store: MoviesDefaultState,
-}
+export const rootReducer = combineReducers({
+    store: reducer,
+});
 
 const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
@@ -14,5 +13,7 @@ const store = configureStore({
     middleware: [sagaMiddleware],
 });
 
+export type RootState = ReturnType<typeof rootReducer>
+// export type RootState = ReturnType<typeof store.getState>
 sagaMiddleware.run(rootSaga);
 export default store;
