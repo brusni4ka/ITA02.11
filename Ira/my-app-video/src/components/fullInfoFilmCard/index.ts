@@ -1,0 +1,1 @@
+export {FullInfoFilmCard} from './FullInfoFilmCard';

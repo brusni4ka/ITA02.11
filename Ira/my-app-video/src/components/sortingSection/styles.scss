@@ -1,0 +1,37 @@
+@import "src/components/styles/variables";
+
+.search-result-section {
+  height: 40px;
+  background-color: $searchResultSectionBackGroundColor;
+}
+
+.content-search-result {
+  margin: 0 auto;
+  height: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (min-width: 680px) {
+    max-width: 600px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 900px;
+  }
+
+  @media (min-width: 1200px) {
+    min-width: 1100px;
+  }
+}
+
+.result {
+  font-weight: bold;
+  color: $filmTitleColor;
+}
+
+.sorting-label {
+  margin: 14px;
+}

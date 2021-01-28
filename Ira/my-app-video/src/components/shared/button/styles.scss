@@ -1,0 +1,78 @@
+@import "src/components/styles/variables";
+
+.btn {
+  cursor: pointer;
+  outline: none;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  border: none;
+  color: $lightColor;
+}
+
+.btn-by-title,
+.btn-by-genre {
+
+  &.active {
+    background-color: $mainTitleColor;
+  }
+
+  &:hover {
+    background-color: $lightColor;
+    color: $mainTitleColor;
+  }
+}
+
+.btn-by-title {
+  background-color: $genreBtnBackGroundColor;
+  font-size: $searchByBtnFontSize;
+  margin-right: 20px;
+}
+
+.btn-by-genre {
+  background-color: $genreBtnBackGroundColor;
+  font-size: $searchByBtnFontSize;
+}
+
+.search-btn {
+  background-color: $mainTitleColor;
+  font-size: $searchBtnFontSize;
+  padding: 8px 40px;
+
+  &:hover {
+    background-color: $lightColor;
+    color: $mainTitleColor;
+  }
+}
+
+.btn-return-to-home {
+  background-color: $lightColor;
+  color: $mainTitleColor;
+  font-size: $searchByBtnFontSize;
+  padding: 5px 30px;
+
+  &:hover {
+    background-color: $mainTitleColor;
+    color: $lightColor;
+  }
+}
+
+.by-release-btn,
+.by-rating-btn {
+  color: $filmTitleColor;
+  border: none;
+  background: transparent;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &.active {
+    color: $mainTitleColor;
+  }
+
+  &:hover {
+    color: $lightColor;
+  }
+}
+
+.by-release-btn {
+  margin-right: 10px;
+}
