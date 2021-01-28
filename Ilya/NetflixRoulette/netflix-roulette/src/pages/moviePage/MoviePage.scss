@@ -1,0 +1,26 @@
+.wrapper{
+    background-image:  linear-gradient(to left, transparent, rgba(0, 0, 0, 0.658) 70%), url(../../images/background-img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 60px;
+    .back-to-search-btn{
+        position:absolute;
+        top: -64px;
+        right: 0;
+        text-transform: uppercase;
+        background-color: #f3f3f3;
+        color: #e95656;
+        border: none;
+        font-size: 14px;
+        font-weight: 700;
+        height: 36px;
+        padding-right: 30px;
+        padding-left: 30px;
+        &:hover{
+            background-color: #e95656;
+            color: #ffffff;
+        }
+
+    }
+}
+

@@ -1,0 +1,40 @@
+.movie-card{
+    max-width: 340px;
+    margin-bottom: 30px;
+    .information{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 10px 14px 10px;
+
+        .movie-name{
+            font-size: 20px;
+            color: #000000;
+            margin-bottom: 0px;
+        }
+        .realese-year{
+            display: block;
+            font-size: 18px;
+            color: #000000;
+            padding: 4px 10px 4px 10px;
+            border: 2px solid #000000;
+            border-radius: 4px;
+        }
+    }
+    p{
+        padding: 0px 10px 0px 10px;
+        .movie-genres{
+            color: #000000;
+            margin-right: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            
+        }
+    }
+    .rating{
+        font-size: 18px;
+        color:#e95656;
+        font-weight: 500;
+        padding: 10px 10px 0px 10px;
+    }
+}
